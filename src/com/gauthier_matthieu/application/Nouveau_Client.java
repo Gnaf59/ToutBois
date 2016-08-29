@@ -413,49 +413,59 @@ public class Nouveau_Client extends javax.swing.JFrame {
 
     private void Bt_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ValiderActionPerformed
         try {
-
+            String Verification="Veuillez remplir les champs ";
+            
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
+                Verification+="Société, ";
             }
 
             if ("".equals(TF_Siret.getText())) {
                 Lb_Siret.setForeground(Color.red);
+                Verification+="Siret, ";
             }
 
             if ("".equals(TF_NumRue.getText())) {
                 Lb_NumRue.setForeground(Color.red);
+                Verification+="numéro de la rue, ";
             }
 
             if ("".equals(TF_Rue.getText())) {
                 Lb_Rue.setForeground(Color.red);
+                Verification+="rue, ";
             }
 
             if ("".equals(TF_Ville.getText())) {
                 Lb_Ville.setForeground(Color.red);
+                Verification+="ville, ";
             }
 
             if ("".equals(TF_codePostal.getText())) {
                 Lb_CodePostal.setForeground(Color.red);
+                Verification+="code postal, ";
             }
 
             if ("".equals(TF_Pays.getText())) {
                 Lb_Pays.setForeground(Color.red);
+                Verification+="pays, ";
             }
 
             if ("".equals(TF_NomContact.getText())) {
                 Lb_NomContact.setForeground(Color.red);
+                Verification+="nom du contact, ";
             }
 
             if ("".equals(TF_PrenomContact.getText())) {
                 Lb_PrenomContact.setForeground(Color.red);
+                Verification+="prenom du contact";
             }
 
             if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "".equals(TF_codePostal.getText()) || "".equals(TF_Pays.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
-                JOptionPane.showMessageDialog(null, "Veuillez remplir", "Attention", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 String chaine1;
-                chaine1 = TF_NomContact.getText() + "¤" + TF_PrenomContact.getText() + "¤" + TF_Societe.getText();
+                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText();
 
                 try {
                     File ff = new File("Clients.txt");

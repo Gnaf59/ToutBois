@@ -16,6 +16,7 @@ public class fenetre_applications extends javax.swing.JFrame {
      */
     public fenetre_applications() {
         initComponents();
+
     }
 
     /**
@@ -53,7 +54,7 @@ public class fenetre_applications extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\glantoine\\Documents\\NetBeansProjects\\TP_TOUTBOIS_M\\logo-01.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/logo-01.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -170,19 +171,19 @@ public class fenetre_applications extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientsMouseClicked
-        
+
     }//GEN-LAST:event_menuClientsMouseClicked
 
     private void menuClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientsActionPerformed
-        Gestion_Clients gc =new Gestion_Clients();
+        Gestion_Clients gc = new Gestion_Clients();
         gc.setVisible(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
-        
+
+
     }//GEN-LAST:event_menuClientsActionPerformed
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_quitterActionPerformed
 
     private void menuProspectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProspectsActionPerformed
@@ -206,10 +207,10 @@ public class fenetre_applications extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+               
+                    javax.swing.UIManager.setLookAndFeel(
+                            javax.swing.UIManager.getSystemLookAndFeelClassName());               
+
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(fenetre_applications.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

@@ -174,7 +174,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\glantoine\Documents\NetBeansProjects\TP_TOUTBOIS_M\logo-01.png"/>
+          <Image iconType="3" name="/com/gauthier_matthieu/image/logo-01.png"/>
         </Property>
       </Properties>
     </Component>
