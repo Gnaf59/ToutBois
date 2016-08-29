@@ -110,7 +110,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         Lb_Titre.setFont(new java.awt.Font("Gill Sans MT", 3, 48)); // NOI18N
         Lb_Titre.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Titre.setText("Fichier Clients");
+        Lb_Titre.setText("Fichier Clients gauthier");
 
         TF_FiltreClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
