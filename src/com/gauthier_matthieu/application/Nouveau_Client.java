@@ -496,10 +496,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Verification+="code postal, ";
             }
 
-            if ("".equals(CB_Pays.getModel())) {
-                Lb_Pays.setForeground(Color.red);
-                Verification+="pays, ";
-            }
 
             if ("".equals(TF_NomContact.getText())) {
                 Lb_NomContact.setForeground(Color.red);
@@ -511,12 +507,12 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Verification+="prenom du contact";
             }
 
-            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "".equals(TF_codePostal.getText()) || "".equals(CB_Pays.getModel()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
+            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getModel()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + null+ ";" + CB_Representant.getSelectedItem().toString()+ ";" + CB_Representant.getSelectedItem();
+                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + null+ ";" + CB_Representant.getSelectedItem().toString()+ ";" + CB_Representant.getSelectedItem();
 
                 try {
                     File ff = new File("Clients.txt");
