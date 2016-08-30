@@ -62,32 +62,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel_Entreprise2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel_Entreprise" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel_Adresse" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel_Entreprise1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="label1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
+                      <Component id="jPanel_Adresse" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="47" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="logo" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="jPanel_Entreprise" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="Bt_Valider" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -95,6 +81,14 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="Bt_Aide" min="-2" pref="131" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="logo" max="32767" attributes="0"/>
+                              <Component id="jPanel_Commande" alignment="1" pref="0" max="32767" attributes="0"/>
+                              <Component id="jPanel_Contact" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -113,9 +107,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jPanel_Entreprise" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="logo" min="-2" pref="262" max="-2" attributes="0"/>
+                          <Component id="jPanel_Contact" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel_Commande" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="logo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Bt_Valider" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -124,16 +120,16 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jPanel_Entreprise1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jPanel_Entreprise" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_Adresse" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                           <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="label1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace pref="71" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -202,7 +198,104 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Bt_AideActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel_Entreprise">
+        <Container class="javax.swing.JPanel" name="jPanel_Commande">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="3" title="COMMANDE">
+                  <Font PropertyName="font" name="Gill Sans MT Condensed" size="24" style="2"/>
+                  <Color PropertyName="color" blue="66" green="66" red="66" type="rgb"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Lb_NombreCommande" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_DerniereCommande" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Lb_DerniereCommande_Entree" alignment="1" min="-2" pref="282" max="-2" attributes="0"/>
+                          <Component id="Lb_NombreCommande_Entree" alignment="1" min="-2" pref="282" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Lb_NombreCommande" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_NombreCommande_Entree" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="Lb_DerniereCommande" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_DerniereCommande_Entree" min="-2" pref="21" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="Lb_NombreCommande">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nombre de commande :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_DerniereCommande">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Derni&#xe8;re commande :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_NombreCommande_Entree">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_DerniereCommande_Entree">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzzz"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel_Contact">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -223,12 +316,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Lb_Mail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Telephone" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_NomContact" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_PrenomContact" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lb_Telephone" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lb_Mail" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Lb_NomContact_Entree" alignment="1" min="-2" pref="282" max="-2" attributes="0"/>
                           <Component id="Lb_PrenomContact_Entree" alignment="1" min="-2" pref="282" max="-2" attributes="0"/>
@@ -246,22 +339,21 @@
                           <Component id="Lb_NomContact" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_NomContact_Entree" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Lb_PrenomContact" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_PrenomContact_Entree" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Lb_Telephone" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_Telephone_Entree" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Lb_Mail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_Mail_Entree" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -309,6 +401,7 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#xe9;l&#xe9;phone :"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lb_NomContact_Entree">
@@ -319,6 +412,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lb_PrenomContact_Entree">
@@ -329,6 +424,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lb_Telephone_Entree">
@@ -339,6 +436,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lb_Mail_Entree">
@@ -349,6 +448,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
           </SubComponents>
@@ -376,76 +477,73 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Lb_Rue" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Lb_Complement" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="Lb_NumRue" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="TF_NumRue" min="-2" pref="45" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="Lb_Boite" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="TF_Boite" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="Lb_NumRue_Consul" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="Lb_CodePostal" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Lb_Rue" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="TF_codePostal" min="-2" pref="87" max="-2" attributes="0"/>
+                                      <Component id="Lb_Rue_Consul" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="TF_Rue" max="32767" attributes="0"/>
+                                  <Component id="Lb_Complement_Consul" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Lb_Complement" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Lb_Ville" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Lb_Pays" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lb_Pays" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="CB_Pays" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lb_Ville" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="Lb_Ville_Consul" min="-2" pref="236" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TF_Ville" max="32767" attributes="0"/>
-                                  <Component id="TF_Complement" max="32767" attributes="0"/>
-                                  <Component id="CB_Pays" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="Lb_CodePostal" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Lb_codePostal_Consul" min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Lb_Rue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_Rue" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Lb_NumRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_NumRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lb_CodePostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_codePostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lb_Boite" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_Boite" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_NumRue_Consul" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Rue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Rue_Consul" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Lb_Complement" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_Complement" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Lb_Complement_Consul" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Complement" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Lb_Ville" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_Ville" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Lb_Ville_Consul" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Lb_CodePostal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Lb_codePostal_Consul" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="Lb_Ville" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Lb_Pays" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CB_Pays" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="CB_Pays" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Pays" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -506,16 +604,6 @@
                 <Property name="text" type="java.lang.String" value="Num&#xe9;ro :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TF_NumRue">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_Rue">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_Complement">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_Ville">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_codePostal">
-            </Component>
             <Component class="javax.swing.JLabel" name="Lb_Complement">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -527,21 +615,11 @@
                 <Property name="text" type="java.lang.String" value="Complement :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Lb_Boite">
+            <Component class="javax.swing.JComboBox" name="CB_Pays">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Gill Sans MT" size="14" style="0"/>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Bte :"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_Boite">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="CB_Pays">
-              <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="28">
                     <StringItem index="0" value="Allemagne"/>
@@ -576,9 +654,49 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="Lb_Rue_Consul">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_NumRue_Consul">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_codePostal_Consul">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_Complement_Consul">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_Ville_Consul">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzz"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel_Entreprise1">
+        <Container class="javax.swing.JPanel" name="jPanel_Entreprise">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -603,26 +721,25 @@
                           <Component id="Lb_Siret" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="TF_Siret" pref="304" max="32767" attributes="0"/>
-                          <Component id="TF_Societe" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Lb_Societe_Consult" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Lb_Siret_Consult" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Lb_Societe" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_Societe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Societe_Consult" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TF_Siret" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_Siret" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_Siret_Consult" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -641,10 +758,6 @@
                 <Property name="text" type="java.lang.String" value="Soci&#xe9;t&#xe9; : "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TF_Societe">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_Siret">
-            </Component>
             <Component class="javax.swing.JLabel" name="Lb_Siret">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -654,6 +767,22 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Siret : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_Societe_Consult">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzz"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Lb_Siret_Consult">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Gill Sans MT" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="zzzzz"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -680,7 +809,7 @@
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="Lb_RepresentantNomPrenom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="CB_Repres" pref="294" max="32767" attributes="0"/>
+                      <Component id="CB_Repres" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

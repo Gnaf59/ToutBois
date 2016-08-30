@@ -59,8 +59,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
         TF_Ville = new javax.swing.JTextField();
         TF_codePostal = new javax.swing.JTextField();
         Lb_Complement = new javax.swing.JLabel();
-        Lb_Boite = new javax.swing.JLabel();
-        TF_Boite = new javax.swing.JTextField();
         CB_Pays = new javax.swing.JComboBox();
         jPanel_Entreprise1 = new javax.swing.JPanel();
         Lb_Societe = new javax.swing.JLabel();
@@ -235,10 +233,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
         Lb_Complement.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Complement.setText("Complement :");
 
-        Lb_Boite.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        Lb_Boite.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Boite.setText("Bte :");
-
         CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
 
         javax.swing.GroupLayout jPanel_AdresseLayout = new javax.swing.GroupLayout(jPanel_Adresse);
@@ -256,11 +250,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
                         .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                                 .addComponent(TF_NumRue, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Lb_Boite)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TF_Boite, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                                 .addComponent(Lb_CodePostal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TF_codePostal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,9 +279,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
                     .addComponent(Lb_NumRue)
                     .addComponent(TF_NumRue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lb_CodePostal)
-                    .addComponent(TF_codePostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lb_Boite)
-                    .addComponent(TF_Boite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TF_codePostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_Complement)
@@ -617,7 +605,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
     private javax.swing.JButton Bt_Valider;
     private javax.swing.JComboBox CB_Pays;
     private javax.swing.JComboBox CB_Representant;
-    private javax.swing.JLabel Lb_Boite;
     private javax.swing.JLabel Lb_ChampsObligatoires;
     private javax.swing.JLabel Lb_CodePostal;
     private javax.swing.JLabel Lb_Complement;
@@ -633,7 +620,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_Societe;
     private javax.swing.JLabel Lb_Telephone;
     private javax.swing.JLabel Lb_Ville;
-    private javax.swing.JTextField TF_Boite;
     private javax.swing.JTextField TF_Complement;
     private javax.swing.JTextField TF_Mail;
     private javax.swing.JTextField TF_NomContact;
