@@ -262,8 +262,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        Modifications_Client mc = new Modifications_Client();
-        mc.setVisible(true);
+        Consultation_Client cc = new Consultation_Client();
+        cc.setVisible(true);
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     /**
