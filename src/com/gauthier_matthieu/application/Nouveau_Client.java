@@ -413,6 +413,18 @@ public class Nouveau_Client extends javax.swing.JFrame {
 
     private void Bt_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ValiderActionPerformed
         try {
+            
+            //Réinitialise les couleurs des labels
+            Lb_Societe.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_NumRue.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Rue.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Ville.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_CodePostal.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
+            
             String Verification="Veuillez remplir les champs ";
             
             if ("".equals(TF_Societe.getText())) {
@@ -465,7 +477,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
             } else {
 
                 String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText();
+                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + TF_Pays.getText()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + ""+ ";" + CB_Representant.getSelectedItem().toString()+ ";" + CB_Representant.getSelectedItem();
 
                 try {
                     File ff = new File("Clients.txt");
