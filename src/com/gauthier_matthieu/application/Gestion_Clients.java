@@ -74,6 +74,11 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         BT_Modifier.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Modifier.setText("Modifier");
+        BT_Modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_ModifierActionPerformed(evt);
+            }
+        });
 
         BT_Supprimer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Supprimer.setText("Supprimer");
@@ -255,6 +260,11 @@ public class Gestion_Clients extends javax.swing.JFrame {
                 + "Création Software SSII MGc \n"
                 + "all rights reserved 2016", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_BT_AideActionPerformed
+
+    private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
+        Modifications_Client mc = new Modifications_Client();
+        mc.setVisible(true);
+    }//GEN-LAST:event_BT_ModifierActionPerformed
 
     /**
      * @param args the command line arguments

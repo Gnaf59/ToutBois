@@ -16,6 +16,7 @@ public class fenetre_applications extends javax.swing.JFrame {
      */
     public fenetre_applications() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 
