@@ -20,7 +20,17 @@ public class Model_Table_Client extends AbstractTableModel {
         "Prénom contact",
         "Société",
         "Adresse",
-        "Ville","Mail","Numéro de Tel", "Pays", "Code postal", "Siret", "Nombre de commande", "nom du représantant", "Prenom du représentant"};
+        "Ville",
+        "Mail",
+        "Numéro de Tel", 
+        "Pays", 
+        "Code postal", 
+        "Siret", 
+        "Nombre de commande", 
+        "Nom du représantant", 
+        "Prenom du représentant"};
+    
+    
     ArrayList<Clients> data = new ArrayList<>();
 
     public Model_Table_Client() {
@@ -43,7 +53,19 @@ public class Model_Table_Client extends AbstractTableModel {
                     enregistrement=ligne.split(";");
                     
                     //Ajoute dans l'Arraylist data le Client    
-                    data.add(new Clients(Integer.parseInt(enregistrement[9]),Integer.parseInt(enregistrement[10]),Integer.parseInt(enregistrement[11]),Integer.parseInt(enregistrement[12]),enregistrement[0],enregistrement[1],enregistrement[2],enregistrement[3],enregistrement[4],enregistrement[5],enregistrement[6],enregistrement[7],enregistrement[8]));
+                    data.add(new Clients(Integer.parseInt(enregistrement[9]),
+                            Integer.parseInt(enregistrement[10]),
+                            Integer.parseInt(enregistrement[11]),
+                            Integer.parseInt(enregistrement[12]),
+                            enregistrement[0],
+                            enregistrement[1],
+                            enregistrement[2],
+                            enregistrement[3],
+                            enregistrement[4],
+                            enregistrement[5],
+                            enregistrement[6],
+                            enregistrement[7],
+                            enregistrement[8]));
                 }
             }
         }     

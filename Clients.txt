@@ -1,3 +1,4 @@
 ﻿Lantoine;Gauthier;AFPA;Rue de je ne sais où;Roubaix;;;France;59000;121314;1;1;1
 Lantoine;Gauthier;MathieuBois;2 Rue de la paix;Imaginaire;;;Allemagne;9999;0202020202;2;0;1
 gfdhfg;gfdhfg;gfhggdf;gfdhfdg fgdhgf;fgdhgfdgh;;;Allemagne;gfdhdgf;fdhfghg;Item 1;0;0
+matthieu;deschmap;bouf;36 rue;tiange;jfgsiij@gmail.com;06060606;Allemagne;5944;1125;Item 2;0;0
