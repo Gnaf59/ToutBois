@@ -101,7 +101,11 @@ public class Model_Table_Client extends AbstractTableModel {
     public String getColumnName(int col) {
         return columnNames[col];
     }
-
+    public void removeAmi(int rowIndex) {
+        data.remove(rowIndex);
+ 
+        fireTableRowsDeleted(rowIndex, rowIndex);
+    }
     public void setTable() {
         //data=
     }

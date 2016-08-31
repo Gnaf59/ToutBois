@@ -5,6 +5,10 @@
  */
 package com.gauthier_matthieu.application;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author glantoine
@@ -17,7 +21,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     public fenetre_applications() {
         initComponents();
         setLocationRelativeTo(null);
-
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -52,6 +56,11 @@ public class fenetre_applications extends javax.swing.JFrame {
         setTitle("ToutBois LGI 1.0");
         setIconImages(null);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -176,11 +185,10 @@ public class fenetre_applications extends javax.swing.JFrame {
     }//GEN-LAST:event_menuClientsMouseClicked
 
     private void menuClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientsActionPerformed
-        Gestion_Clients gc = new Gestion_Clients();
+        Gestion_Clients gc = new Gestion_Clients(this);
         gc.setVisible(true);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-
+        this.setVisible(false);
+        
     }//GEN-LAST:event_menuClientsActionPerformed
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
@@ -190,12 +198,15 @@ public class fenetre_applications extends javax.swing.JFrame {
     private void menuProspectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProspectsActionPerformed
         //Gestion_Prospect gp =new Gestion_Prospect();
         //gp.setVisible(true);
-        //this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_menuProspectsActionPerformed
 
     private void menuConsult1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsult1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuConsult1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -208,9 +219,9 @@ public class fenetre_applications extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-               
-                    javax.swing.UIManager.setLookAndFeel(
-                            javax.swing.UIManager.getSystemLookAndFeelClassName());               
+
+                javax.swing.UIManager.setLookAndFeel(
+                        javax.swing.UIManager.getSystemLookAndFeelClassName());
 
             }
         } catch (ClassNotFoundException ex) {
@@ -227,7 +238,7 @@ public class fenetre_applications extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fenetre_applications().setVisible(true);
+                 new fenetre_applications().setVisible(true);
             }
         });
     }

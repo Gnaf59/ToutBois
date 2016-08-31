@@ -16,10 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class Nouveau_Client extends javax.swing.JFrame {
 
-    public Nouveau_Client() {
+    private Gestion_Clients gc;
+    
+    public Nouveau_Client(Gestion_Clients gc) {
         initComponents();
         setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.gc=gc;
     }
     
     
@@ -76,6 +79,14 @@ public class Nouveau_Client extends javax.swing.JFrame {
         setName("Création Client"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(950, 640));
@@ -490,6 +501,11 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="ville, ";
             }
+            
+            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
+                Lb_Pays.setForeground(Color.red);
+                Verification+="Pays, ";
+            }
 
             if ("".equals(TF_codePostal.getText())) {
                 Lb_CodePostal.setForeground(Color.red);
@@ -507,12 +523,12 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Verification+="prenom du contact";
             }
 
-            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
+            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + null+ ";" + CB_Representant.getSelectedItem().toString()+ ";" + CB_Representant.getSelectedItem();
+                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + CB_Representant.getSelectedItem().toString() + ";" + "0"+ ";" + "0"; //Nombre de commande et numéro de représentant à implémenter
 
                 try {
                     File ff = new File("Clients.txt");
@@ -526,7 +542,10 @@ public class Nouveau_Client extends javax.swing.JFrame {
                     ffw.write(chaine1);
                     ffw.newLine();
                     ffw.close();
+                    
+                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
                     dispose();
+                    gc.setVisible(true);
                     
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
@@ -542,6 +561,8 @@ public class Nouveau_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_Bt_ValiderActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
+         //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
+        gc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
 
@@ -560,40 +581,16 @@ public class Nouveau_Client extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TF_TelephoneActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Nouveau_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Nouveau_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Nouveau_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Nouveau_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
+        gc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Nouveau_Client().pack();
-                new Nouveau_Client().setLocationRelativeTo(null);
-                new Nouveau_Client().setVisible(true);
-                
-            }
-        });
-    }
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+    }//GEN-LAST:event_formWindowClosed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bt_Aide;

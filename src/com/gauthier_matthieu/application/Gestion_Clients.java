@@ -7,6 +7,8 @@ package com.gauthier_matthieu.application;
 
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +19,17 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
     /**
      * Creates new form Gestion_Clients
+     * @param fa
      */
-    public Gestion_Clients() {
+    private fenetre_applications fa=new fenetre_applications();
+    
+    public Gestion_Clients(fenetre_applications fa) {
+        this.fa=fa;
         initComponents();
         setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //empêche la fermeture automatique de la fenêtre
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }
 
     /**
@@ -60,6 +68,11 @@ public class Gestion_Clients extends javax.swing.JFrame {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -241,6 +254,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1ComponentAdded
 
     private void BT_QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_QuitterActionPerformed
+        //réaffiche la fenêtre fenetre_application
+        fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_QuitterActionPerformed
 
@@ -249,8 +264,10 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_TF_FiltreClientActionPerformed
 
     private void BT_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AjouterActionPerformed
-        Nouveau_Client nc = new Nouveau_Client();
+        //Ouvre une fenêtre Nouveau client et masque la fenêtre de gestion client
+        Nouveau_Client nc = new Nouveau_Client(this);
         nc.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BT_AjouterActionPerformed
 
     private void BT_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AideActionPerformed
@@ -266,42 +283,16 @@ public class Gestion_Clients extends javax.swing.JFrame {
         cc.setVisible(true);
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        fa.setVisible(true);
+        this.dispose();
+        /* mettre le code pour enregistrer les données ici*/
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gestion_Clients().setVisible(true);
-                
-                
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BT_Aide;
