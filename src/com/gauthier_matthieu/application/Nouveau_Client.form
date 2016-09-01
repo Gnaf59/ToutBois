@@ -89,7 +89,7 @@
                                       <Component id="jPanel_Entreprise2" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jPanel_Entreprise1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                                  <EmptySpace pref="101" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="Lb_ChampsObligatoires" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                       <Component id="logo" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
