@@ -9,7 +9,7 @@ package com.gauthier_matthieu.entities;
  *
  * @author glantoine
  */
-public class Clients extends Personne {
+public class Clients extends Personnes {
     
     private int siret,numeroClient,nbrCommande,numeroRepresentant;
     private static int increment=1;
