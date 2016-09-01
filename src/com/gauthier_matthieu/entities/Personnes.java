@@ -10,18 +10,36 @@ package com.gauthier_matthieu.entities;
  * @author glantoine
  */
 public class Personnes {
-    private String nom,prenom,entreprise,adresse,ville,mail,numerotel,pays,codePostal;
+    private String nom,prenom,entreprise,adresse,complementAdresse,ville,mail,numerotel,pays,codePostal;
+    private int numeroVoie;
 
-    public Personnes(String nom, String prenom, String entreprise, String adresse, String ville,String mail,String numerotel, String pays, String codePostal) {
+    public Personnes(String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
         this.nom = nom;
         this.prenom = prenom;
-        this.entreprise = entreprise;
+        this.numeroVoie= numeroVoie;
         this.adresse = adresse;
+        this.complementAdresse=complementAdresse;
         this.ville = ville;
         this.pays = pays;
         this.codePostal = codePostal;
         this.mail=mail;
         this.numerotel=numerotel;
+    }
+
+    public String getComplementAdresse() {
+        return complementAdresse;
+    }
+
+    public void setComplementAdresse(String complementAdresse) {
+        this.complementAdresse = complementAdresse;
+    }
+
+    public int getNumeroVoie() {
+        return numeroVoie;
+    }
+
+    public void setNumeroVoie(int numeroVoie) {
+        this.numeroVoie = numeroVoie;
     }
 
     public String getNom() {

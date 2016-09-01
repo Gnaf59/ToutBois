@@ -50,7 +50,7 @@ public class GestionDonnees {
     public void ChargerDoneesClients()
     {
         
-    // lire le fichier client et remplir data avec
+    // lire le fichier client 
         try {
                 InputStream ips = new FileInputStream("Clients.txt");
                 InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
@@ -67,20 +67,7 @@ public class GestionDonnees {
                     enregistrement=ligne.split(";");
                     
                     
-                    Clients client=new Clients(
-                            Integer.parseInt(enregistrement[9]),
-                            Integer.parseInt(enregistrement[10]),
-                            Integer.parseInt(enregistrement[11]),
-                            Integer.parseInt(enregistrement[12]),
-                            enregistrement[0],
-                            enregistrement[1],
-                            enregistrement[2],
-                            enregistrement[3],
-                            enregistrement[4],
-                            enregistrement[5],
-                            enregistrement[6],
-                            enregistrement[7],
-                            enregistrement[8]);
+                    /*Clients client=new Clients();*/
                 }
             }
         }     
@@ -97,10 +84,32 @@ public class GestionDonnees {
     
     }*/
     
-    public void EnregistrerClientsFichier()
+    public void EnregistrerClientsFichier(String Societe,String Siret)
     {
-    
-    
+            /*String chaine1;
+                chaine1 = 
+
+                try {
+                    File ff = new File("Clients.txt");
+
+                    
+                    ff.createNewFile();
+                    
+
+                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
+
+                    ffw.write(chaine1);
+                    ffw.newLine();
+                    ffw.close();
+                    
+                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
+                    dispose();
+                    gc.setVisible(true);
+                    
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
+                }
+                */
     }
     
     /*public HashMap<Integer,Prospects> EnregistrerProspectsCollection()
