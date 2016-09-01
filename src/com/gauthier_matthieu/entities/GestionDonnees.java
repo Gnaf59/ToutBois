@@ -5,12 +5,9 @@
  */
 package com.gauthier_matthieu.entities;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,8 +63,7 @@ public class GestionDonnees {
                     //décompose une ligne du fichier Clients.txt en 
                     enregistrement=ligne.split(";");
                     
-                    
-                    /*Clients client=new Clients();*/
+                    this.clients= this.EnregistrerClientsCollection(Integer.parseInt(enregistrement[0]),enregistrement[1], enregistrement[2], enregistrement[3], Integer.parseInt(enregistrement[4]), Integer.parseInt(enregistrement[5]), enregistrement[6], enregistrement[7],enregistrement[8], enregistrement[9], enregistrement[10], enregistrement[11], enregistrement[12], Integer.parseInt(enregistrement[13]),Integer.parseInt(enregistrement[14]));
                 }
             }
         }     
@@ -78,38 +74,70 @@ public class GestionDonnees {
         
     }
     
-    /*public HashMap<Integer,Clients> EnregistrerClientsCollection()
+    public HashMap<Integer,Clients> EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,int numeroRepresentant,String telephone,String mail)
     {
-    
-    
-    }*/
-    
-    public void EnregistrerClientsFichier(String Societe,String Siret)
+        //Enregistre le client dans la collection
+        Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
+        this.clients.put(objetClient.getNumeroClient(), objetClient);
+        return this.clients;
+    }
+    //Sert pour charger les données du fichier Clients.txt
+    public HashMap<Integer,Clients> EnregistrerClientsCollection(int numeroClient,String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,int nbrCommande,int numeroRepresentant)
     {
-            /*String chaine1;
-                chaine1 = 
+        //Enregistre le client dans la collection
+        Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
+        objetClient.setNumeroClient(numeroClient);
+        objetClient.setNbrCommande(nbrCommande);
+        this.clients.put(objetClient.getNumeroClient(), objetClient);
+        return this.clients;
+    }
+    
+    public void EnregistrerClientsFichier()
+    {
+        Iterator i = this.clients.keySet().iterator();
+        int clef;
+        Clients valeur;
+        String chaineEnregistrement;
+        
+        
+        try{
+            File ff = new File("Clients.txt");
+            
+            ff.createNewFile();
+            BufferedWriter ffw = new BufferedWriter(new FileWriter(ff));
+            
+            
+            while (i.hasNext())
+            {
+                clef = (int)i.next();
+                valeur = (Clients)clients.get(clef);
 
-                try {
-                    File ff = new File("Clients.txt");
-
-                    
-                    ff.createNewFile();
-                    
-
-                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
-
-                    ffw.write(chaine1);
-                    ffw.newLine();
-                    ffw.close();
-                    
-                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
-                    dispose();
-                    gc.setVisible(true);
-                    
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
-                }
-                */
+                chaineEnregistrement= Integer.toString(valeur.getNumeroClient())+";"
+                                      +valeur.getNom()+";"
+                                      +valeur.getPrenom()+";"
+                                      +valeur.getEntreprise()+";"
+                                      +Integer.toString(valeur.getSiret())+";"
+                                      +Integer.toString(valeur.getNumeroVoie())+";"
+                                      +valeur.getAdresse()+";"
+                                      +valeur.getComplementAdresse()+";"
+                                      +valeur.getVille()+";"
+                                      +valeur.getCodePostal()+";"
+                                      +valeur.getPays()+";"
+                                      +valeur.getMail()+";"
+                                      +valeur.getNumerotel()+";"
+                                      +Integer.toString(valeur.getNbrCommande())+";"
+                                      +Integer.toString(valeur.getNumeroRepresentant());
+                
+                ffw.write(chaineEnregistrement);
+                ffw.newLine();                
+            }
+            ffw.close();            
+            } 
+            catch (IOException ex) 
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
+            }
+                
     }
     
     /*public HashMap<Integer,Prospects> EnregistrerProspectsCollection()

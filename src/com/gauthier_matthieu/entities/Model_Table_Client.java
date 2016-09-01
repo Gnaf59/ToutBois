@@ -8,6 +8,7 @@ package com.gauthier_matthieu.entities;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import java.io.*;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,27 +17,29 @@ import javax.swing.JOptionPane;
  */
 public class Model_Table_Client extends AbstractTableModel {
 
-    private String[] columnNames = {"Nom contact",
+    private String[] columnNames = {
+        "Numéro client",
+        "Nom contact",
         "Prénom contact",
         "Société",
+        "Siret",
         "Adresse",
+        "Complement d'adresse",
         "Ville",
+        "Code postal",
+        "Pays",
         "Mail",
         "Numéro de Tel", 
-        "Pays", 
-        "Code postal", 
-        "Siret", 
         "Nombre de commande", 
-        "Nom du représantant", 
-        "Prenom du représentant"};
+        "Numéro Représentant"};
     
-    
-    ArrayList<Clients> data = new ArrayList<>();
+    private HashMap<Integer,Clients> clients;
+    //ArrayList<Clients> data = new ArrayList<>();
 
     public Model_Table_Client() {
 
-        /*
-        // lire le fichier client et remplir data avec
+        
+        // lire le fichier client et remplir clients avec
         try {
                 InputStream ips = new FileInputStream("Clients.txt");
                 InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
@@ -49,11 +52,11 @@ public class Model_Table_Client extends AbstractTableModel {
                 //parcours toutes les lignes du fichier Clients.txt
                 while ((ligne = br.readLine()) != null)
                 {
-                    //décompose une ligne du fichier Clients.txt en 
+                    //décompose une ligne du fichier Clients.txt 
                     enregistrement=ligne.split(";");
-                    
+                   
                     //Ajoute dans l'Arraylist data le Client    
-                    data.add(new Clients(Integer.parseInt(enregistrement[9]),
+                    /*data.add(new Clients(Integer.parseInt(enregistrement[9]),
                             Integer.parseInt(enregistrement[10]),
                             Integer.parseInt(enregistrement[11]),
                             Integer.parseInt(enregistrement[12]),
@@ -65,20 +68,20 @@ public class Model_Table_Client extends AbstractTableModel {
                             enregistrement[5],
                             enregistrement[6],
                             enregistrement[7],
-                            enregistrement[8]));
+                            enregistrement[8]));*/
                 }
             }
         }     
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Jtable", JOptionPane.ERROR_MESSAGE);
             
-        } */
+        } 
         
     }
 
     @Override
     public int getRowCount() {
-        return data.size();
+        return clients.size();
     }
 
     @Override
@@ -90,31 +93,33 @@ public class Model_Table_Client extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return data.get(rowIndex).getNom();
+                return clients.get(rowIndex).getNumeroClient();
             case 1:
-                return data.get(rowIndex).getPrenom();
+                return clients.get(rowIndex).getNom();
             case 2:
-                return data.get(rowIndex).getEntreprise();
+                return clients.get(rowIndex).getPrenom();
             case 3:
-                return data.get(rowIndex).getAdresse();
+                return clients.get(rowIndex).getEntreprise();
             case 4:
-                return data.get(rowIndex).getVille();
+                return clients.get(rowIndex).getSiret();
             case 5:
-                return data.get(rowIndex).getMail();
+                return clients.get(rowIndex).getAdresse();
             case 6:
-                return data.get(rowIndex).getNumerotel();
+                return clients.get(rowIndex).getComplementAdresse();
             case 7:
-                return data.get(rowIndex).getPays();
+                return clients.get(rowIndex).getVille();
             case 8:
-                return data.get(rowIndex).getCodePostal();
+                return clients.get(rowIndex).getCodePostal();
             case 9:
-                return data.get(rowIndex).getSiret();
+                return clients.get(rowIndex).getPays();
             case 10:
-                return data.get(rowIndex).getNbrCommande();
+                return clients.get(rowIndex).getMail();
             case 11:
-                return data.get(rowIndex).getNumeroRepresentant();
+                return clients.get(rowIndex).getNumerotel();
             case 12:
-                return data.get(rowIndex).getNumeroRepresentant();
+                return clients.get(rowIndex).getNbrCommande();
+            case 13:
+                return clients.get(rowIndex).getNumeroRepresentant();
             default:
                 return null;
         }
@@ -123,10 +128,4 @@ public class Model_Table_Client extends AbstractTableModel {
     public String getColumnName(int col) {
         return columnNames[col];
     }
-    public void removeAmi(int rowIndex) {
-        data.remove(rowIndex);
- 
-        fireTableRowsDeleted(rowIndex, rowIndex);
-    }
-
 }
