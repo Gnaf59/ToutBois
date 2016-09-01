@@ -9,10 +9,10 @@ package com.gauthier_matthieu.entities;
  *
  * @author glantoine
  */
-public class Personne {
+public class Personnes {
     private String nom,prenom,entreprise,adresse,ville,mail,numerotel,pays,codePostal;
 
-    public Personne(String nom, String prenom, String entreprise, String adresse, String ville,String mail,String numerotel, String pays, String codePostal) {
+    public Personnes(String nom, String prenom, String entreprise, String adresse, String ville,String mail,String numerotel, String pays, String codePostal) {
         this.nom = nom;
         this.prenom = prenom;
         this.entreprise = entreprise;

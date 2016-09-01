@@ -35,7 +35,7 @@ public class Model_Table_Client extends AbstractTableModel {
 
     public Model_Table_Client() {
 
-        
+        /*
         // lire le fichier client et remplir data avec
         try {
                 InputStream ips = new FileInputStream("Clients.txt");
@@ -72,7 +72,7 @@ public class Model_Table_Client extends AbstractTableModel {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Jtable", JOptionPane.ERROR_MESSAGE);
             
-        }
+        } */
         
     }
 
@@ -127,9 +127,6 @@ public class Model_Table_Client extends AbstractTableModel {
         data.remove(rowIndex);
  
         fireTableRowsDeleted(rowIndex, rowIndex);
-    }
-    public void setTable() {
-        //data=
     }
 
 }

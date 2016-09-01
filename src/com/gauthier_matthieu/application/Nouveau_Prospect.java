@@ -19,7 +19,6 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
     public Nouveau_Prospect() {
         initComponents();
         setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     
@@ -67,7 +66,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         CB_Representant = new javax.swing.JComboBox<>();
         Lb_ChampsObligatoires = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Création Clients");
         setName("Création Client"); // NOI18N
         setResizable(false);

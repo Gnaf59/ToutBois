@@ -21,7 +21,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     public fenetre_applications() {
         initComponents();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -52,7 +52,7 @@ public class fenetre_applications extends javax.swing.JFrame {
         menuSupp1 = new javax.swing.JMenuItem();
         aPropos = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ToutBois LGI 1.0");
         setIconImages(null);
         setResizable(false);
@@ -205,7 +205,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConsult1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
+        /*Code de gestion de fermeture de la fenêtre */
     }//GEN-LAST:event_formWindowClosing
 
     /**

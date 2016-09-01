@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author glantoine
  */
-public class Representant extends Personne{
+public class Representants extends Personnes{
     
     private int numeroRepresantant;
     private static int increment=1;
@@ -20,7 +20,7 @@ public class Representant extends Personne{
 
     
 
-    public Representant(double salaireBrut, double tauxCommission, ArrayList numeroClient, ArrayList numeroProspect, String nom, String prenom, String entreprise, String adresse, String ville, String mail, String numerotel, String pays, String codePostal) {
+    public Representants(double salaireBrut, double tauxCommission, ArrayList numeroClient, ArrayList numeroProspect, String nom, String prenom, String entreprise, String adresse, String ville, String mail, String numerotel, String pays, String codePostal) {
         super(nom, prenom, entreprise, adresse, ville, mail, numerotel, pays, codePostal);
         this.salaireBrut = salaireBrut;
         this.tauxCommission = tauxCommission;

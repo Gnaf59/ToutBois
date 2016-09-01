@@ -27,8 +27,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
         this.fa=fa;
         initComponents();
         setLocationRelativeTo(null);
-        //empêche la fermeture automatique de la fenêtre
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         
     }
 
@@ -57,8 +55,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(970, 522));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(945, 600));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
