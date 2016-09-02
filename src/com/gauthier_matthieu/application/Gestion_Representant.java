@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author glantoine
  */
-public class Gestion_Clients extends javax.swing.JFrame {
+public class Gestion_Representant extends javax.swing.JFrame {
 
     /**
      * Creates new form Gestion_Clients
@@ -23,7 +23,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
      */
     private fenetre_applications fa=new fenetre_applications();
     
-    public Gestion_Clients(fenetre_applications fa) {
+    public Gestion_Representant(fenetre_applications fa) {
         this.fa=fa;
         initComponents();
         setLocationRelativeTo(null);
@@ -56,8 +56,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Fichier Clients");
-        setPreferredSize(new java.awt.Dimension(970, 522));
+        setTitle("Fichier Représentants");
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -143,7 +142,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         Lb_Titre.setFont(new java.awt.Font("Gill Sans MT", 3, 48)); // NOI18N
         Lb_Titre.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Titre.setText("Fichier Clients");
+        Lb_Titre.setText("Fichier Représentants");
 
         TF_FiltreClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +253,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("Fichier Représants");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -271,8 +272,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
     private void BT_QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_QuitterActionPerformed
         //réaffiche la fenêtre fenetre_application
-        fa.setVisible(true);
-        this.dispose();
+       /* fa.setVisible(true);
+        this.dispose();*/
     }//GEN-LAST:event_BT_QuitterActionPerformed
 
     private void TF_FiltreClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_FiltreClientActionPerformed
@@ -281,9 +282,9 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
     private void BT_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AjouterActionPerformed
         //Ouvre une fenêtre Nouveau client et masque la fenêtre de gestion client
-        Nouveau_Client nc = new Nouveau_Client(this);
+       /* Nouveau_Client nc = new Nouveau_Client(this);
         nc.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);*/
     }//GEN-LAST:event_BT_AjouterActionPerformed
 
     private void BT_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AideActionPerformed
@@ -305,8 +306,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
-        Consultation_Client cc = new Consultation_Client(jTable1);
-        cc.setVisible(true);       
+        //Consultation_Client cc = new Consultation_Client(jTable1);
+        //cc.setVisible(true);       
     }//GEN-LAST:event_BT_ConsulterActionPerformed
 
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
