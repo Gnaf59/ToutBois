@@ -12,7 +12,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import com.gauthier_matthieu.entities.GestionDonnees;
 
 /**
  *
@@ -20,16 +19,13 @@ import com.gauthier_matthieu.entities.GestionDonnees;
  */
 public class fenetre_applications extends javax.swing.JFrame {
 
-    
-    GestionDonnees donnees;
     /**
      * Creates new form fenetre_applications
      */
-    public fenetre_applications(GestionDonnees donnees) {
+    public fenetre_applications() {
         initComponents();
         setLocationRelativeTo(null);
-        this.donnees=donnees;
-        
+        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     
     private void initialise(){
@@ -203,7 +199,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     }//GEN-LAST:event_menuClientsMouseClicked
 
     private void menuClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientsActionPerformed
-        Gestion_Clients gc = new Gestion_Clients(this,donnees);
+        Gestion_Clients gc = new Gestion_Clients(this);
         gc.setVisible(true);
         this.setVisible(false);
         
@@ -265,9 +261,7 @@ public class fenetre_applications extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GestionDonnees donnees= new GestionDonnees();
-                new fenetre_applications(donnees).setVisible(true);
-                 
+                 new fenetre_applications().setVisible(true);
             }
             
         });

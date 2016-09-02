@@ -18,17 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class Gestion_Prospect extends javax.swing.JFrame {
 
-    private fenetre_applications fa;
-    private GestionDonnees donnees;
-    
     /**
      * Creates new form Gestion_Clients
      */
-    public Gestion_Prospect(fenetre_applications fa,GestionDonnees donnees) {
+    public Gestion_Prospect() {
         initComponents();
         setLocationRelativeTo(null);
-        this.fa=fa;
-        this.donnees=donnees;
     }
 
     /**

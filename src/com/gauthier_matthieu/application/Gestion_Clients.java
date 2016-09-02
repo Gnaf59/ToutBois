@@ -21,12 +21,10 @@ public class Gestion_Clients extends javax.swing.JFrame {
      * Creates new form Gestion_Clients
      * @param fa
      */
-    private GestionDonnees donnees;
-    private fenetre_applications fa;
+    private fenetre_applications fa=new fenetre_applications();
     
-    public Gestion_Clients(fenetre_applications fa,GestionDonnees donnees) {
+    public Gestion_Clients(fenetre_applications fa) {
         this.fa=fa;
-        this.donnees=donnees;
         initComponents();
         setLocationRelativeTo(null);
         
