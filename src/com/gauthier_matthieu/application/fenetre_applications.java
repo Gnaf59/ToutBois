@@ -21,7 +21,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     public fenetre_applications() {
         initComponents();
         setLocationRelativeTo(null);
-        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }
 
     /**
