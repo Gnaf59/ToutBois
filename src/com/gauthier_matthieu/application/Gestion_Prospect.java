@@ -7,6 +7,8 @@ package com.gauthier_matthieu.application;
 
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -55,6 +57,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Fichier Prospect");
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -83,6 +86,11 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
         BT_Modifier_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Modifier_PR.setText("Modifier");
+        BT_Modifier_PR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_Modifier_PRActionPerformed(evt);
+            }
+        });
 
         BT_Supprimer_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Supprimer_PR.setText("Supprimer");
@@ -229,6 +237,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
             .addComponent(jPanel1, 602, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        getAccessibleContext().setAccessibleName("Fichier Prospect");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -245,6 +255,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1ComponentAdded
 
     private void BT_Quitter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Quitter_PRActionPerformed
+        fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
 
@@ -255,6 +266,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void BT_Ajouter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Ajouter_PRActionPerformed
         Nouveau_Prospect np = new Nouveau_Prospect();
         np.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_BT_Ajouter_PRActionPerformed
 
     private void BT_Aide_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Aide_PRActionPerformed
@@ -268,8 +281,14 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_Aide_PRActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        fa.setVisible(true);
+        this.dispose();
         /* mettre le code pour enregistrer les données ici*/
     }//GEN-LAST:event_formWindowClosing
+
+    private void BT_Modifier_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Modifier_PRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BT_Modifier_PRActionPerformed
 
     /**
      * @param args the command line arguments

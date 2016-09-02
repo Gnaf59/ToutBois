@@ -5,8 +5,12 @@
  */
 package com.gauthier_matthieu.application;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import com.gauthier_matthieu.entities.GestionDonnees;
 
@@ -27,7 +31,12 @@ public class fenetre_applications extends javax.swing.JFrame {
         this.donnees=donnees;
         
     }
-
+    
+    private void initialise(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
+    }
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,6 +132,11 @@ public class fenetre_applications extends javax.swing.JFrame {
         gestion.add(menuProspects);
 
         menuRepresentants.setText("Représentants");
+        menuRepresentants.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRepresentantsActionPerformed(evt);
+            }
+        });
         gestion.add(menuRepresentants);
 
         jMenuBar1.add(gestion);
@@ -200,8 +214,10 @@ public class fenetre_applications extends javax.swing.JFrame {
     }//GEN-LAST:event_quitterActionPerformed
 
     private void menuProspectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProspectsActionPerformed
-        //Gestion_Prospect gp =new Gestion_Prospect();
-        //gp.setVisible(true);
+        Gestion_Prospect gp =new Gestion_Prospect(this);
+        gp.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_menuProspectsActionPerformed
 
     private void menuConsult1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsult1ActionPerformed
@@ -211,6 +227,13 @@ public class fenetre_applications extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         /*Code de gestion de fermeture de la fenêtre */
     }//GEN-LAST:event_formWindowClosing
+
+    private void menuRepresentantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRepresentantsActionPerformed
+        Gestion_Representant gr=new Gestion_Representant(this);
+        gr.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_menuRepresentantsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +269,7 @@ public class fenetre_applications extends javax.swing.JFrame {
                 new fenetre_applications(donnees).setVisible(true);
                  
             }
+            
         });
     }
 
