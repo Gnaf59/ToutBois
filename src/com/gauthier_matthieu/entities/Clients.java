@@ -34,6 +34,14 @@ public class Clients extends Personnes {
         this.nbrCommande=0;
     }
 
+    public static int getIncrement() {
+        return increment;
+    }
+
+    public static void setIncrement(int increment) {
+        Clients.increment = increment;
+    }
+
     public int getSiret() {
         return siret;
     }
