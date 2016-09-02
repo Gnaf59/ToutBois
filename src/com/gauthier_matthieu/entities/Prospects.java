@@ -12,12 +12,14 @@ import java.util.Date;
  * @author glantoine
  */
 public class Prospects extends Personnes{
+    private String nomEntreprise;
     private Date derniereVisite;
     private int numeroProspect,siret,numeroRepresentant;
     private static int increment=1;
 
-    public Prospects(Date derniereVisite, int siret, int numeroRepresentant, String nom, String prenom, String entreprise, String adresse, String ville, String mail, String numerotel, String pays, String codePostal) {
-        super(nom, prenom, entreprise, adresse, ville, mail, numerotel, pays, codePostal);
+    public Prospects(String nomEntreprise,Date derniereVisite, int siret, int numeroRepresentant, String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
+        super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
+        this.nomEntreprise=nomEntreprise;
         this.derniereVisite = derniereVisite;
         this.siret = siret;
         this.numeroRepresentant = numeroRepresentant;

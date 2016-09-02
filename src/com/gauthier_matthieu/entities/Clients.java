@@ -11,18 +11,27 @@ package com.gauthier_matthieu.entities;
  */
 public class Clients extends Personnes {
     
+    private String nomEntreprise;
     private int siret,numeroClient,nbrCommande,numeroRepresentant;
     private static int increment=1;
+
+    public void setNomEntreprise(String nomEntreprise) {
+        this.nomEntreprise = nomEntreprise;
+    }
+
+    public void setNumeroClient(int numeroClient) {
+        this.numeroClient = numeroClient;
+    }
     
 
-    public Clients(int siret, int numeroClient, int nbrCommande, int numeroRepresentant, String nom, String prenom, String entreprise, String adresse, String ville,String mail,String numerotel, String pays, String codePostal) {
-        super(nom, prenom, entreprise, adresse, ville,mail,numerotel, pays, codePostal);
+    public Clients(String nomEntreprise,int siret, int numeroRepresentant,String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
+        super(nom, prenom,numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
+        this.nomEntreprise=nomEntreprise;
         this.siret = siret;
-        this.numeroClient = numeroClient;
-        this.nbrCommande = nbrCommande;
         this.numeroRepresentant = numeroRepresentant;
         this.numeroClient=increment;
         increment++;
+        this.nbrCommande=0;
     }
 
     public int getSiret() {

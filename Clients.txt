@@ -1,7 +1,0 @@
-﻿Lantoine;Gauthier;AFPA;Rue de je ne sais où;Roubaix;;;France;59000;121314;1;1;1
-Lantoine;Gauthier;MathieuBois;2 Rue de la paix;Imaginaire;;;Allemagne;9999;0202020202;2;0;1
-gfdhfg;gfdhfg;gfhggdf;gfdhfdg fgdhgf;fgdhgfdgh;;;Allemagne;gfdhdgf;1154;1;0;0
-matthieu;deschmap;bouf;36 rue;tiange;jfgsiij@gmail.com;06060606;Allemagne;5944;1125;2;0;0
-paul;personne;testland;112 rue de la paix;tournai;bill-bal@lsk.com;11;Belgique;7500;4555444;Paul Savoure;0;0
-5465434;45343;fhgfdshsg;7 f;;fv;kv;hf;Grèce;vckhgf;b,;kgjml;Jean-Marc Delapaie;0;0
-h;jh;tezhkjh;hdsfhmh jhmjjh;jhjh;jk;jh;Allemagne;jhh;fhdsfhdshdskj;Jean-Marc Delapaie;0;0
