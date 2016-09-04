@@ -18,12 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class Gestion_Prospect extends javax.swing.JFrame {
 
+    private fenetre_applications fa;
     /**
      * Creates new form Gestion_Clients
      */
-    public Gestion_Prospect() {
+    public Gestion_Prospect(fenetre_applications fa) {
         initComponents();
         setLocationRelativeTo(null);
+        this.fa=fa;
     }
 
     /**
@@ -250,7 +252,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1ComponentAdded
 
     private void BT_Quitter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Quitter_PRActionPerformed
-        fa.setVisible(true);
+        //fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
 
@@ -278,7 +280,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fa.setVisible(true);
         this.dispose();
-        /* mettre le code pour enregistrer les données ici*/
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_Modifier_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Modifier_PRActionPerformed

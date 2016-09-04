@@ -10,7 +10,7 @@ package com.gauthier_matthieu.entities;
  * @author glantoine
  */
 public class Personnes {
-    private String nom,prenom,entreprise,adresse,complementAdresse,ville,mail,numerotel,pays,codePostal;
+    private String nom,prenom,adresse,complementAdresse,ville,mail,numerotel,pays,codePostal;
     private int numeroVoie;
 
     public Personnes(String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
@@ -56,14 +56,6 @@ public class Personnes {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public String getEntreprise() {
-        return entreprise;
-    }
-
-    public void setEntreprise(String entreprise) {
-        this.entreprise = entreprise;
     }
 
     public String getAdresse() {

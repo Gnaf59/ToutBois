@@ -17,14 +17,13 @@ import javax.swing.JOptionPane;
 public class Nouveau_Representant extends javax.swing.JFrame {
 
     private Gestion_Clients gc;
-    
+
     public Nouveau_Representant(Gestion_Clients gc) {
         initComponents();
         setLocationRelativeTo(null);
-        this.gc=gc;
+        this.gc = gc;
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -360,7 +359,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                             .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPanel_Entreprise1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(Jp_RepresentantLayout.createSequentialGroup()
                                 .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,7 +426,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        
+
     }//GEN-LAST:event_formWindowClosed
 
     private void TF_TelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_TelephoneActionPerformed
@@ -440,8 +439,8 @@ public class Nouveau_Representant extends javax.swing.JFrame {
 
     private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
         JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-            + "contacter le SAV au 06/0010020 \n"
-            + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
+                + "contacter le SAV au 06/0010020 \n"
+                + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_Bt_AideActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
@@ -464,80 +463,79 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
 
-            String Verification="Veuillez remplir les champs ";
+            String Verification = "Veuillez remplir les champs ";
 
             if ("".equals(TF_SalaireBrute.getText())) {
                 Lb_SalaireBrute.setForeground(Color.red);
-                Verification+="Société, ";
+                Verification += "Société, ";
             }
 
             if ("".equals(TF_TauxComission.getText())) {
                 Lb_TauxComission.setForeground(Color.red);
-                Verification+="Siret, ";
+                Verification += "Siret, ";
             }
 
             if ("".equals(TF_NumRue.getText())) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="numéro de la rue, ";
+                Verification += "numéro de la rue, ";
             }
 
             if ("".equals(TF_Rue.getText())) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="rue, ";
+                Verification += "rue, ";
             }
 
             if ("".equals(TF_Ville.getText())) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="ville, ";
+                Verification += "ville, ";
             }
 
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays, ";
+                Verification += "Pays, ";
             }
 
             if ("".equals(TF_codePostal.getText())) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="code postal, ";
+                Verification += "code postal, ";
             }
 
             if ("".equals(TF_NomContact.getText())) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="nom du contact, ";
+                Verification += "nom du contact, ";
             }
 
             if ("".equals(TF_PrenomContact.getText())) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="prenom du contact";
+                Verification += "prenom du contact";
             }
 
-            if ("".equals("".equals(TF_PrenomContact.getText()TF_SalaireBrute.getText()) || 
-                    "".equals(TF_TauxComission.getText()) || 
-                    "".equals(TF_NumRue.getText()) || 
-                    "".equals(TF_Rue.getText()) || 
-                    "".equals(TF_Ville.getText()) || 
-                    "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                    "".equals(TF_codePostal.getText()) || 
-                    "".equals(TF_NomContact.getText()) || 
-                    )) {
-                
-                
+            if ("".equals(TF_PrenomContact.getText())
+                    || "".equals(TF_SalaireBrute.getText())
+                    || "".equals(TF_TauxComission.getText())
+                    || "".equals(TF_NumRue.getText())
+                    || "".equals(TF_Rue.getText())
+                    || "".equals(TF_Ville.getText())
+                    || "Selection".equals(CB_Pays.getSelectedItem().toString())
+                    || "".equals(TF_codePostal.getText())
+                    || "".equals(TF_NomContact.getText())) 
+            {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
-            } else {
+            }
+            else 
+            {
 
                 String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + 
-                        TF_PrenomContact.getText() + ";" + 
-                        TF_SalaireBrute.getText()+ ";" + 
-                        TF_NumRue.getText()+" "+
-                        TF_Rue.getText()+ ";" + 
-                        TF_Ville.getText()+ ";" + 
-                        TF_Mail.getText()+ ";" + 
-                        TF_Telephone.getText()+ ";" + 
-                        CB_Pays.getSelectedItem().toString()+ ";" + 
-                        TF_codePostal.getText()+ ";" + 
-                        TF_Siret.getText()+ ";" + 
-                        CB_Representant.getSelectedItem().toString() + ";" + "0"+ ";" + "0"; //Nombre de commande et numéro de représentant à implémenter
+                chaine1 = TF_NomContact.getText() + ";"
+                        + TF_PrenomContact.getText() + ";"
+                        + TF_SalaireBrute.getText() + ";"
+                        + TF_NumRue.getText() + " "
+                        + TF_Rue.getText() + ";"
+                        + TF_Ville.getText() + ";"
+                        + TF_Mail.getText() + ";"
+                        + TF_Telephone.getText() + ";"
+                        + CB_Pays.getSelectedItem().toString() + ";"
+                        + TF_codePostal.getText() + ";";
 
                 try {
                     File ff = new File("Clients.txt");

@@ -38,12 +38,24 @@ public class Clients extends Personnes {
         return siret;
     }
 
+    public static int getIncrement() {
+        return increment;
+    }
+
+    public static void setIncrement(int increment) {
+        Clients.increment = increment;
+    }
+
     public void setSiret(int siret) {
         this.siret = siret;
     }
 
     public int getNbrCommande() {
         return nbrCommande;
+    }
+
+    public String getNomEntreprise() {
+        return nomEntreprise;
     }
 
     public void setNbrCommande(int nbrCommande) {

@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import com.gauthier_matthieu.entities.*;
 
 /**
  *
@@ -235,6 +236,9 @@ public class fenetre_applications extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        GestionDonnees gd=new GestionDonnees();
+        gd.ChargerDoneesClients();
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

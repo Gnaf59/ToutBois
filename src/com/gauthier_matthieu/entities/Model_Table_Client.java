@@ -29,54 +29,40 @@ public class Model_Table_Client extends AbstractTableModel {
         "Code postal",
         "Pays",
         "Mail",
-        "Numéro de Tel", 
-        "Nombre de commande", 
+        "Numéro de Tel",
+        "Nombre de commande",
         "Numéro Représentant"};
+
+    private HashMap<Integer, Clients> clients;
+    private Object[][] tableData; 
+    private GestionDonnees gd = new GestionDonnees();
     
-    private HashMap<Integer,Clients> clients;
-    //ArrayList<Clients> data = new ArrayList<>();
 
-    public Model_Table_Client() {
-
-        
-        // lire le fichier client et remplir clients avec
-        try {
-                InputStream ips = new FileInputStream("Clients.txt");
-                InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
-            try (BufferedReader br = new BufferedReader(ipsr)) {
-                
-                String ligne;
-                String[] enregistrement;
-                
-                
-                //parcours toutes les lignes du fichier Clients.txt
-                while ((ligne = br.readLine()) != null)
-                {
-                    //décompose une ligne du fichier Clients.txt 
-                    enregistrement=ligne.split(";");
-                   
-                    //Ajoute dans l'Arraylist data le Client    
-                    /*data.add(new Clients(Integer.parseInt(enregistrement[9]),
-                            Integer.parseInt(enregistrement[10]),
-                            Integer.parseInt(enregistrement[11]),
-                            Integer.parseInt(enregistrement[12]),
-                            enregistrement[0],
-                            enregistrement[1],
-                            enregistrement[2],
-                            enregistrement[3],
-                            enregistrement[4],
-                            enregistrement[5],
-                            enregistrement[6],
-                            enregistrement[7],
-                            enregistrement[8]));*/
-                }
-            }
-        }     
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Jtable", JOptionPane.ERROR_MESSAGE);
-            
-        } 
-        
+    public Model_Table_Client(/*GestionDonnees gd*/) {
+        /*this.gd=gd;*/
+        this.clients=this.gd.getClients();
+        this.tableData= new Object[clients.keySet().size()][getColumnCount()];
+        int index = 0;
+        for (int key : clients.keySet()) {
+            Clients cli = clients.get(key);
+            tableData[index][0] = cli.getNumeroClient();
+            tableData[index][1] = cli.getNom();
+            tableData[index][2] = cli.getPrenom();
+            tableData[index][3] = cli.getNomEntreprise();
+            tableData[index][4] = cli.getSiret();
+            tableData[index][5] = cli.getNumeroVoie()+" "+cli.getAdresse();
+            tableData[index][6] = cli.getComplementAdresse();
+            tableData[index][7] = cli.getVille();
+            tableData[index][8] = cli.getCodePostal();
+            tableData[index][9] = cli.getPays();
+            tableData[index][10] = cli.getMail();
+            tableData[index][11] = cli.getNumerotel();
+            tableData[index][12] = cli.getNbrCommande();
+            tableData[index][13] = cli.getNumeroRepresentant();
+           
+            index++;
+        }
+    
     }
 
     @Override
@@ -91,7 +77,7 @@ public class Model_Table_Client extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
+        /*switch (columnIndex) {
             case 0:
                 return clients.get(rowIndex).getNumeroClient();
             case 1:
@@ -122,7 +108,9 @@ public class Model_Table_Client extends AbstractTableModel {
                 return clients.get(rowIndex).getNumeroRepresentant();
             default:
                 return null;
-        }
+        }*/
+        
+        return tableData[rowIndex][columnIndex];
     }
 
     public String getColumnName(int col) {
