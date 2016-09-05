@@ -536,7 +536,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
                 dispose();
                 gc.setVisible(true);
-                    
+                
                 
             
             }

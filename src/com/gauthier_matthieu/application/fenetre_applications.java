@@ -20,13 +20,15 @@ import com.gauthier_matthieu.entities.*;
  */
 public class fenetre_applications extends javax.swing.JFrame {
 
+    
+    private GestionDonnees gd=new GestionDonnees();
     /**
      * Creates new form fenetre_applications
      */
     public fenetre_applications() {
         initComponents();
         setLocationRelativeTo(null);
-        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }
     
     private void initialise(){
@@ -207,6 +209,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     }//GEN-LAST:event_menuClientsActionPerformed
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
+        gd.EnregistrerClientsFichier();
         System.exit(0);
     }//GEN-LAST:event_quitterActionPerformed
 
@@ -223,6 +226,8 @@ public class fenetre_applications extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         /*Code de gestion de fermeture de la fenêtre */
+        gd.EnregistrerClientsFichier();
+        System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void menuRepresentantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRepresentantsActionPerformed

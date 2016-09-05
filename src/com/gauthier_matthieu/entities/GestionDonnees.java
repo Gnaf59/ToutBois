@@ -21,32 +21,17 @@ public class GestionDonnees {
     private static HashMap<Integer,Representants> representants=new HashMap<>();
     private static HashMap<Integer,Prospects> prospects=new HashMap<>();
     
-    public GestionDonnees() {
-        //ChargerDoneesClients();
-    }
     
     public HashMap<Integer, Clients> getClients() {
         return clients;
-    }
-
-    public void setClients(HashMap<Integer, Clients> clients) {
-        this.clients = clients;
     }
 
     public HashMap<Integer, Representants> getRepresentants() {
         return representants;
     }
 
-    public void setRepresentants(HashMap<Integer, Representants> representants) {
-        this.representants = representants;
-    }
-
     public HashMap<Integer, Prospects> getProspects() {
         return prospects;
-    }
-
-    public void setProspects(HashMap<Integer, Prospects> prospects) {
-        this.prospects = prospects;
     }
 
     public void ChargerDoneesClients() throws NullPointerException
@@ -166,11 +151,11 @@ public class GestionDonnees {
                 
     }
     
-    /*public HashMap<Integer,Prospects> EnregistrerProspectsCollection()
+    public void EnregistrerProspectsCollection()
     {
     
     
-    }*/
+    }
     
     public void EnregistrerProspectsFichier()
     {
@@ -178,11 +163,11 @@ public class GestionDonnees {
     
     }
     
-    /*public HashMap<Integer,Representants> EnregistrerRepresentantsCollection()
+    public void EnregistrerRepresentantsCollection()
     {
     
     
-    }*/
+    }
     
     public void EnregistrerRepresentantsFichier()
     {

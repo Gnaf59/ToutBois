@@ -7,8 +7,6 @@ package com.gauthier_matthieu.application;
 
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +20,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
      * @param fa
      */
     private fenetre_applications fa=new fenetre_applications();
-    private GestionDonnees gd;
+    //private GestionDonnees gd;
     
     public Gestion_Clients(fenetre_applications fa/*,GestionDonnees gd*/) {
         this.fa=fa;
@@ -249,7 +247,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
+        //Actualise la jTable
+        jTable1.setModel(new Model_Table_Client());
     }//GEN-LAST:event_formComponentShown
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
