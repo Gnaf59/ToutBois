@@ -5,7 +5,7 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.entities.Clients;
+import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
 import javax.swing.JOptionPane;
@@ -526,31 +526,18 @@ public class Nouveau_Client extends javax.swing.JFrame {
 
             if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
-            } else {
-            
-                String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + CB_Representant.getSelectedItem().toString() + ";" + "0"+ ";" + "0"; //Nombre de commande et numéro de représentant à implémenter
-
-                try {
-                    File ff = new File("Clients.txt");
-
+            } 
+            else {   
+                
+                GestionDonnees gd=new GestionDonnees();
+                gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), Integer.parseInt(TF_Siret.getText()), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,1);
+                
+                
+                //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
+                dispose();
+                gc.setVisible(true);
                     
-                    ff.createNewFile();
-                    
-
-                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
-
-                    ffw.write(chaine1);
-                    ffw.newLine();
-                    ffw.close();
-                    
-                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
-                    dispose();
-                    gc.setVisible(true);
-                    
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
-                }
+                
             
             }
 

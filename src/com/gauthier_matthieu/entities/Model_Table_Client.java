@@ -5,7 +5,6 @@
  */
 package com.gauthier_matthieu.entities;
 
-import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.util.HashMap;

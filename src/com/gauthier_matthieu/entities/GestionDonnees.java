@@ -101,13 +101,13 @@ public class GestionDonnees {
         
     }
     
-    /*public HashMap<Integer,Clients> EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,int nbrCommande,int numeroRepresentant)
+    public void EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,int nbrCommande,int numeroRepresentant)
     {
         //Enregistre le client dans la collection
         Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         this.clients.put(objetClient.getNumeroClient(), objetClient);
-        return this.clients;
-    }*/
+        
+    }
     //Sert pour charger les données du fichier Clients.txt
     public void EnregistrerClientsCollection(int numeroClient,String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,int nbrCommande,int numeroRepresentant)
     {
