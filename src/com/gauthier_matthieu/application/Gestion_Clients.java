@@ -27,14 +27,10 @@ public class Gestion_Clients extends javax.swing.JFrame {
         this.fa=fa;
         /*this.gd=gd;*/
         initComponents();
-        initialise();
         setLocationRelativeTo(null);
     }
     
-    /* Fonction pour afficher logo*/
-    private void initialise(){
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +59,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fichier Clients");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setPreferredSize(new java.awt.Dimension(970, 570));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -118,6 +115,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
         });
 
         BT_Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/plus-black-symbol.png"))); // NOI18N
         BT_Ajouter.setText("Nouveau");
         BT_Ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

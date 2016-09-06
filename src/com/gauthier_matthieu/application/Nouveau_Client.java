@@ -7,6 +7,7 @@ package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.*;
 import javax.swing.JOptionPane;
 
@@ -75,6 +76,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nouveau Clients");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));

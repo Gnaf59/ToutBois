@@ -27,6 +27,7 @@ public class Consultation_Client extends javax.swing.JFrame {
     //transmition tableau dans constructeur
     public Consultation_Client(JTable tableau) {
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau=tableau;
         

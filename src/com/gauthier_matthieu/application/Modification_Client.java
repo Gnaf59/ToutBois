@@ -32,7 +32,6 @@ public class Modification_Client extends javax.swing.JFrame {
     
     public Modification_Client(JTable tableau,Gestion_Clients gc) {
         initComponents();
-        initialise();
         setLocationRelativeTo(null);
         this.gc=gc;
         this.tableau=tableau;
@@ -51,13 +50,11 @@ public class Modification_Client extends javax.swing.JFrame {
         TF_Mail.setText(clientObjet.getMail());
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        CB_Representant.setSelectedItem(Integer.toString(clientObjet.getNumeroRepresentant()));
+        //CB_Representant.setSelectedItem(Integer.toString(clientObjet.getNumeroRepresentant()));
     }
     
     /* Fonction pour afficher logo*/
-    private void initialise(){
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
-    }
+    
     
     
     /**
@@ -115,6 +112,7 @@ public class Modification_Client extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Modification Clients");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
         setPreferredSize(new java.awt.Dimension(950, 560));
         setResizable(false);
@@ -450,8 +448,8 @@ public class Modification_Client extends javax.swing.JFrame {
                 .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_NombreCommande)
                     .addComponent(TF_NombreCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Lb_DerniereCommande)
                     .addComponent(TF_DerniereCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -621,9 +619,9 @@ public class Modification_Client extends javax.swing.JFrame {
               clientObjet.setCodePostal(TF_codePostal.getText());
               clientObjet.setPays(CB_Pays.getSelectedItem().toString());
               clientObjet.setMail(TF_Mail.getText());
-              clientObjet.setMail(TF_Telephone.getText());
+              clientObjet.setNumerotel(TF_Telephone.getText());
               clientObjet.setNbrCommande(Integer.parseInt(TF_NombreCommande.getText()));
-              clientObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
+              //clientObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
               
                 dispose();
                 gc.setVisible(true);

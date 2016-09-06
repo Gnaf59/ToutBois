@@ -7,6 +7,7 @@ package com.gauthier_matthieu.application;
 
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
     
     public Gestion_Representant(fenetre_applications fa) {
         this.fa=fa;
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         initComponents();
         setLocationRelativeTo(null);
         

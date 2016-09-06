@@ -72,7 +72,7 @@ public class GestionDonnees {
         Iterator i = this.clients.keySet().iterator();
         int clef;
         Clients valeur;
-        
+        Clients.setIncrement(0);
         while (i.hasNext())
             {
                 clef = (int)i.next();

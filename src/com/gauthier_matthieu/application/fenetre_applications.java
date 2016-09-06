@@ -27,14 +27,10 @@ public class fenetre_applications extends javax.swing.JFrame {
      */
     public fenetre_applications() {
         initComponents();
-        initialise();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
-        
     }
     
-    private void initialise(){
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
-    }
     
    
     /**
