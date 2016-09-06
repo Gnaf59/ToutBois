@@ -261,10 +261,10 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_TF_FiltreClient_PRActionPerformed
 
     private void BT_Ajouter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Ajouter_PRActionPerformed
-        Nouveau_Prospect np = new Nouveau_Prospect();
+        Nouveau_Prospect np = new Nouveau_Prospect(this);
         np.setVisible(true);
         this.setVisible(false);
-        
+                  
     }//GEN-LAST:event_BT_Ajouter_PRActionPerformed
 
     private void BT_Aide_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Aide_PRActionPerformed

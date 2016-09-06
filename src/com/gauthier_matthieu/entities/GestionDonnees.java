@@ -80,17 +80,22 @@ public class GestionDonnees {
                 
                 if (valeur.getIncrement()<valeur.getNumeroClient())
                 {
-                    Clients.setIncrement(valeur.getIncrement());
+                    Clients.setIncrement(valeur.getNumeroClient()+1);
                 }
             }
         
     }
-    
+    public void SupprimerClientsCollection (int numClient)
+    {
+        this.clients.remove(numClient);
+        
+    }
     public void EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,int siret,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,int nbrCommande,int numeroRepresentant)
     {
         //Enregistre le client dans la collection
         Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         this.clients.put(objetClient.getNumeroClient(), objetClient);
+        
         
     }
     //Sert pour charger les données du fichier Clients.txt

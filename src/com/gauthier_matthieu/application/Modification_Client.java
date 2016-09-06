@@ -6,8 +6,11 @@
 package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.entities.Clients;
+import com.gauthier_matthieu.entities.GestionDonnees;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.*;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -17,51 +20,43 @@ import javax.swing.JTable;
  */
 public class Modification_Client extends javax.swing.JFrame {
 
+    
+    GestionDonnees gd = new GestionDonnees();
+    
+    private HashMap<Integer,Clients> client= gd.getClients();
+    private Clients clientObjet; 
     private JTable tableau;
     private Gestion_Clients gc;
     
-    public Modification_Client(JTable tableau) {
+    
+    
+    public Modification_Client(JTable tableau,Gestion_Clients gc) {
         initComponents();
+        initialise();
         setLocationRelativeTo(null);
+        this.gc=gc;
         this.tableau=tableau;
+        this.clientObjet= client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
-        try {
-                    InputStream ips = new FileInputStream("Clients.txt");
-                    InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
-                    try (BufferedReader br = new BufferedReader(ipsr)) {
-
-                        String ligne;
-                        String[] decompose;
-                        //parcours toutes les lignes du fichier Clients.txt
-                        while ((ligne = br.readLine()) != null)
-                        {
-                            //décompose une ligne du fichier Clients.txt en 
-                            decompose=ligne.split(";");
-                            TF_NomContact.setText(tableau.getValueAt(tableau.getSelectedRow(), 0).toString());
-                            TF_PrenomContact.setText(tableau.getValueAt(tableau.getSelectedRow(), 1).toString());
-                            TF_Societe.setText(tableau.getValueAt(tableau.getSelectedRow(), 2).toString());
-                            TF_Rue.setText(tableau.getValueAt(tableau.getSelectedRow(), 3).toString());
-                            TF_Ville.setText(tableau.getValueAt(tableau.getSelectedRow(), 4).toString());
-                            TF_Mail.setText(tableau.getValueAt(tableau.getSelectedRow(), 5).toString());
-                            TF_Telephone.setText(tableau.getValueAt(tableau.getSelectedRow(), 6).toString());
-                            CB_Pays.setSelectedItem(tableau.getValueAt(tableau.getSelectedRow(), 7).toString());
-                            TF_codePostal.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            TF_codePostal.setText(tableau.getValueAt(tableau.getSelectedRow(), 9).toString());
-                            TF_NombreCommande.setText(tableau.getValueAt(tableau.getSelectedRow(), 10).toString());
-                            CB_Representant.setSelectedItem(tableau.getValueAt(tableau.getSelectedRow(), 11).toString());
-                            
-                            
-                            TF_NumRue.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            
-                            TF_DerniereCommande.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            TF_Complement.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                        }
-                    }
-                }
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Jtable", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        TF_NomContact.setText(clientObjet.getNom());
+        TF_PrenomContact.setText(clientObjet.getPrenom());
+        TF_Societe.setText(clientObjet.getNomEntreprise());
+        TF_Siret.setText(Integer.toString(clientObjet.getSiret()));
+        TF_NumRue.setText(Integer.toString(clientObjet.getNumeroVoie()));
+        TF_Rue.setText(clientObjet.getAdresse());
+        TF_Complement.setText(clientObjet.getComplementAdresse());
+        TF_Ville.setText(clientObjet.getVille());
+        TF_codePostal.setText(clientObjet.getCodePostal());
+        CB_Pays.setSelectedItem(clientObjet.getPays());
+        TF_Mail.setText(clientObjet.getMail());
+        TF_Telephone.setText(clientObjet.getNumerotel());
+        TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
+        CB_Representant.setSelectedItem(Integer.toString(clientObjet.getNumeroRepresentant()));
+    }
+    
+    /* Fonction pour afficher logo*/
+    private void initialise(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
     }
     
     
@@ -121,7 +116,7 @@ public class Modification_Client extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Modification Clients");
         setName("Création Client"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(950, 530));
+        setPreferredSize(new java.awt.Dimension(950, 560));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -533,18 +528,12 @@ public class Modification_Client extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        getAccessibleContext().setAccessibleName("Modification Clients");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -566,78 +555,78 @@ public class Modification_Client extends javax.swing.JFrame {
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="Société, ";
+                Verification+="Société"+"\n";
             }
 
             if ("".equals(TF_Siret.getText())) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="Siret, ";
+                Verification+="Siret"+"\n";
             }
 
             if ("".equals(TF_NumRue.getText())) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="numéro de la rue, ";
+                Verification+="Numéro de la rue"+"\n";
             }
 
             if ("".equals(TF_Rue.getText())) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="rue, ";
+                Verification+="Adresse"+"\n";
             }
 
             if ("".equals(TF_Ville.getText())) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="ville, ";
+                Verification+="Ville"+"\n";
             }
             
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays, ";
+                Verification+="Pays"+"\n";
             }
 
             if ("".equals(TF_codePostal.getText())) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="code postal, ";
+                Verification+="code postal"+"\n";
             }
 
 
             if ("".equals(TF_NomContact.getText())) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="nom du contact, ";
+                Verification+="Nom du contact"+"\n";
             }
 
             if ("".equals(TF_PrenomContact.getText())) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="prenom du contact";
+                Verification+="Prénom du contact"+"\n";
             }
 
-            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
+            if ("".equals(TF_Societe.getText()) || 
+                    "".equals(TF_Siret.getText()) || 
+                    "".equals(TF_NumRue.getText()) || 
+                    "".equals(TF_Rue.getText()) || 
+                    "".equals(TF_Ville.getText()) || 
+                    "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
+                    "".equals(TF_codePostal.getText()) || 
+                    "".equals(TF_NomContact.getText()) || 
+                    "".equals(TF_PrenomContact.getText())) {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
-            
-                String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + CB_Representant.getSelectedItem().toString() + ";" + "0"+ ";" + "0"; //Nombre de commande et numéro de représentant à implémenter
-
-                try {
-                    File ff = new File("Clients.txt");
-
-                    
-                    ff.createNewFile();
-                    
-
-                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
-
-                    ffw.write(chaine1);
-                    ffw.newLine();
-                    ffw.close();
-                    
-                    //ferme la fenêtre Modification client et réaffiche la fenêtre gestion client
-                    dispose();
-                    gc.setVisible(true);
-                    
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
-                }
-            
+              clientObjet.setNom(TF_NomContact.getText());
+              clientObjet.setPrenom(TF_PrenomContact.getText());
+              clientObjet.setNomEntreprise(TF_Societe.getText());
+              clientObjet.setAdresse(TF_Rue.getText());
+              clientObjet.setSiret(Integer.parseInt(TF_Siret.getText()));
+              clientObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
+              clientObjet.setComplementAdresse(TF_Complement.getText());
+              clientObjet.setVille(TF_Ville.getText());
+              clientObjet.setCodePostal(TF_codePostal.getText());
+              clientObjet.setPays(CB_Pays.getSelectedItem().toString());
+              clientObjet.setMail(TF_Mail.getText());
+              clientObjet.setMail(TF_Telephone.getText());
+              clientObjet.setNbrCommande(Integer.parseInt(TF_NombreCommande.getText()));
+              clientObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
+              
+                dispose();
+                gc.setVisible(true);
             }
 
         } catch (Exception ex) {

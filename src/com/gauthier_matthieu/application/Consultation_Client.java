@@ -9,11 +9,11 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.fonctions.MPanelPrinter;
 
 import java.awt.*;
-
+import com.gauthier_matthieu.entities.*;
 import java.awt.print.Printable;
-
 import javax.swing.*;
 import java.io.*;
+import java.util.*;
 
 
 
@@ -30,7 +30,7 @@ public class Consultation_Client extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.tableau=tableau;
         
-        
+        Lb_NumeroClient.setText("");
         Lb_Complement_Consult.setText("");
         Lb_DerniereCommande_Consult.setText("");
         Lb_Mail_Consult.setText("");
@@ -47,43 +47,31 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_Ville_Consult.setText("");
         Lb_codePostal_Consult.setText("");
         
-            try {
-                    InputStream ips = new FileInputStream("Clients.txt");
-                    InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
-                    try (BufferedReader br = new BufferedReader(ipsr)) {
-
-                        String ligne;
-                        String[] decompose;
-                        //parcours toutes les lignes du fichier Clients.txt
-                        while ((ligne = br.readLine()) != null)
-                        {
-                            //décompose une ligne du fichier Clients.txt en 
-                            decompose=ligne.split(";");
-                            Lb_NomContact_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 0).toString());
-                            Lb_PrenomContact_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 1).toString());
-                            Lb_Societe_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 2).toString());
-                            Lb_Rue_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 3).toString());
-                            Lb_Ville_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 4).toString());
-                            Lb_Mail_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 5).toString());
-                            Lb_Telephone_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 6).toString());
-                            Lb_Pays_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 7).toString());
-                            Lb_codePostal_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            Lb_Siret_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 9).toString());
-                            Lb_NombreCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 10).toString());
-                            Lb_RepresentantNomPrenom_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 11).toString());
-                            
-                            
-                            Lb_NumRue_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            
-                            Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                            Lb_Complement_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
-                        }
-                    }
-                }     
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Jtable", JOptionPane.ERROR_MESSAGE);
-        }
+        /*appel de la méthode Gestion Client*/
+        GestionDonnees gd = new GestionDonnees();
+        /*appel du hashMat client avec toute les fonctions*/
+        HashMap<Integer,Clients> client= gd.getClients();
+        /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
+        Clients clientObjet = client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
+        Lb_NomContact_Consult.setText(clientObjet.getNom());
+        Lb_PrenomContact_Consult.setText(clientObjet.getPrenom());
+        Lb_Societe_Consult.setText(clientObjet.getNomEntreprise());
+        Lb_Siret_Consult.setText(Integer.toString(clientObjet.getSiret()));
+        Lb_NumRue_Consult.setText(Integer.toString(clientObjet.getNumeroVoie()));
+        Lb_Rue_Consult.setText(clientObjet.getAdresse());
+        Lb_Complement_Consult.setText(clientObjet.getComplementAdresse());
+        Lb_Ville_Consult.setText(clientObjet.getVille());
+        Lb_codePostal_Consult.setText(clientObjet.getCodePostal());
+        Lb_Pays_Consult.setText(clientObjet.getPays());
+        Lb_Mail_Consult.setText(clientObjet.getMail());
+        Lb_Telephone_Consult.setText(clientObjet.getNumerotel());
+        Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
+        //Lb_RepresentantNomPrenom_Consult.setText(Integer.toString(clientObjet.getNumeroRepresentant()));
+        //Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
     }
+    
+    
     
     
 
@@ -139,11 +127,14 @@ public class Consultation_Client extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         Lb_copyright = new java.awt.Label();
         Lb_ChampsObligatoires = new javax.swing.JLabel();
+        Lb_NumeroClient = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consultation Clients");
-        setName("Création Client"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(950, 530));
+        setMaximumSize(new java.awt.Dimension(950, 530));
+        setMinimumSize(new java.awt.Dimension(950, 530));
+        setName("Consultation Clients"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(950, 560));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
@@ -154,7 +145,7 @@ public class Consultation_Client extends javax.swing.JFrame {
 
         Lb_Fenetre.setFont(new java.awt.Font("Gill Sans MT", 3, 30)); // NOI18N
         Lb_Fenetre.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Fenetre.setText("CONSULTATION CLIENTS");
+        Lb_Fenetre.setText("CONSULTATION CLIENTS    n°");
         Lb_Fenetre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         Bt_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -527,6 +518,11 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_ChampsObligatoires.setText("Les champs précédé d'une étoile (*) sont obligatoires");
         Lb_ChampsObligatoires.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        Lb_NumeroClient.setFont(new java.awt.Font("Gill Sans MT", 3, 24)); // NOI18N
+        Lb_NumeroClient.setForeground(new java.awt.Color(51, 51, 51));
+        Lb_NumeroClient.setText("*");
+        Lb_NumeroClient.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jPanel_ConsutationClientsLayout = new javax.swing.GroupLayout(jPanel_ConsutationClients);
         jPanel_ConsutationClients.setLayout(jPanel_ConsutationClientsLayout);
         jPanel_ConsutationClientsLayout.setHorizontalGroup(
@@ -534,46 +530,46 @@ public class Consultation_Client extends javax.swing.JFrame {
             .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
                 .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                        .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(Lb_ChampsObligatoires)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationClientsLayout.createSequentialGroup()
-                                .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap()
+                        .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lb_ChampsObligatoires))
+                    .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
+                                .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Lb_NumeroClient, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationClientsLayout.createSequentialGroup()
+                        .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel_ConsutationClientsLayout.setVerticalGroup(
             jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Lb_NumeroClient, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
                         .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -589,7 +585,7 @@ public class Consultation_Client extends javax.swing.JFrame {
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(logo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -603,36 +599,30 @@ public class Consultation_Client extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel_ConsutationClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel_ConsutationClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel_ConsutationClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel_ConsutationClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Bt_ImprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ImprimerActionPerformed
+        MPanelPrinter fiche = new MPanelPrinter(jPanel_ConsutationClients);
+        fiche.print();
+    }//GEN-LAST:event_Bt_ImprimerActionPerformed
+
+    private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
+        JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
+            + "contacter le SAV au 06/0010020 \n"
+            + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_Bt_AideActionPerformed
+
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
         this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
-
-    private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
-    JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-                + "contacter le SAV au 06/0010020 \n"
-                + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_Bt_AideActionPerformed
-
-    private void Bt_ImprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ImprimerActionPerformed
-        MPanelPrinter fiche = new MPanelPrinter(jPanel_ConsutationClients);
-        fiche.print();       
-    }//GEN-LAST:event_Bt_ImprimerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -654,6 +644,7 @@ public class Consultation_Client extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_NombreCommande_Consult;
     private javax.swing.JLabel Lb_NumRue;
     private javax.swing.JLabel Lb_NumRue_Consult;
+    private javax.swing.JLabel Lb_NumeroClient;
     private javax.swing.JLabel Lb_Pays;
     private javax.swing.JLabel Lb_Pays_Consult;
     private javax.swing.JLabel Lb_PrenomContact;

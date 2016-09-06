@@ -7,6 +7,7 @@ package com.gauthier_matthieu.application;
 
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,8 +27,13 @@ public class Gestion_Clients extends javax.swing.JFrame {
         this.fa=fa;
         /*this.gd=gd;*/
         initComponents();
+        initialise();
         setLocationRelativeTo(null);
-        
+    }
+    
+    /* Fonction pour afficher logo*/
+    private void initialise(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo-02.png")));
     }
 
     /**
@@ -57,7 +63,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fichier Clients");
-        setPreferredSize(new java.awt.Dimension(970, 522));
+        setPreferredSize(new java.awt.Dimension(970, 570));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -96,10 +102,20 @@ public class Gestion_Clients extends javax.swing.JFrame {
         BT_Supprimer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Supprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/subtract-sign.png"))); // NOI18N
         BT_Supprimer.setText("Supprimer");
+        BT_Supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_SupprimerActionPerformed(evt);
+            }
+        });
 
         BT_Consulter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Consulter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/magnifier-tool.png"))); // NOI18N
         BT_Consulter.setText("Consulter");
+        BT_Consulter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_ConsulterActionPerformed(evt);
+            }
+        });
 
         BT_Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Ajouter.setText("Nouveau");
@@ -238,9 +254,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -285,8 +299,9 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        //Consultation_Client cc = new Consultation_Client();
-        //cc.setVisible(true);
+        Modification_Client mc = new Modification_Client(jTable1,this);
+        mc.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -294,6 +309,19 @@ public class Gestion_Clients extends javax.swing.JFrame {
         this.dispose();
         /* mettre le code pour enregistrer les données ici*/
     }//GEN-LAST:event_formWindowClosing
+
+    private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
+       Consultation_Client cc = new Consultation_Client(jTable1);
+       cc.setVisible(true);
+    }//GEN-LAST:event_BT_ConsulterActionPerformed
+
+    private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
+        GestionDonnees gd=new GestionDonnees();
+        int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        gd.SupprimerClientsCollection(numeroClient);
+        jTable1.setModel(new Model_Table_Client());       
+        
+    }//GEN-LAST:event_BT_SupprimerActionPerformed
 
     /**
      * @param args the command line arguments
