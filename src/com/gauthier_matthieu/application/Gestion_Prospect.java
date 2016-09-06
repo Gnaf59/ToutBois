@@ -25,7 +25,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
      */
     public Gestion_Prospect(fenetre_applications fa) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
+        
         setLocationRelativeTo(null);
         this.fa=fa;
     }
@@ -57,6 +57,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fichier Prospect");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -235,8 +236,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, 602, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        getAccessibleContext().setAccessibleName("Fichier Prospect");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
