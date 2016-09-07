@@ -612,6 +612,7 @@ public class Consultation_Client extends javax.swing.JFrame {
 
     private void Bt_ImprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ImprimerActionPerformed
         MPanelPrinter fiche = new MPanelPrinter(jPanel_ConsutationClients);
+        fiche.initPrintablePanel();
         fiche.print();
     }//GEN-LAST:event_Bt_ImprimerActionPerformed
 

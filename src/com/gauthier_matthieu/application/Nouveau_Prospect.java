@@ -5,9 +5,11 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.entities.Clients;
+import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,7 @@ import javax.swing.JOptionPane;
 public class Nouveau_Prospect extends javax.swing.JFrame {
 
     private Gestion_Prospect gp;
+    private GestionDonnees gd;
     
     public Nouveau_Prospect(Gestion_Prospect gp) {
         initComponents();
@@ -349,7 +352,9 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
 
         CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
 
-        jDate.setDateFormatString("d/mm/yyyy");
+        jDate.setDateFormatString("dd-MM-yyyy");
+        jDate.setFocusCycleRoot(true);
+        jDate.setMinSelectableDate(new java.util.Date(-62135769486000L));
 
         Lb_Date.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
@@ -479,7 +484,6 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
 
     private void Bt_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ValiderActionPerformed
         try {
-            
             //Réinitialise les couleurs des labels
             Lb_Societe.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
@@ -555,29 +559,25 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     "".equals(TF_NomContact.getText()) ||
                     "".equals(jDate.getDateFormatString()) ||
                     "".equals(TF_PrenomContact.getText())) {
-                
-                
+                   
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
+                
+                
+                //SimpleDateFormat sdf =new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+                SimpleDateFormat sdf =new SimpleDateFormat(jDate.getDateFormatString());
+                sdf.setLenient(false);
+                
+                Date d= (Date)sdf.parse(jDate.getDateFormatString());
+                sdf.setLenient(false);
+               // sdf.applyPattern("dd-MM-yyyy");
+                
+                
             
-                String chaine1;
-                chaine1 = TF_NomContact.getText() + ";" + TF_PrenomContact.getText() + ";" + TF_Societe.getText()+ ";" + TF_NumRue.getText()+" "+TF_Rue.getText()+ ";" + TF_Ville.getText()+ ";" + TF_Mail.getText()+ ";" + TF_Telephone.getText()+ ";" + CB_Pays.getSelectedItem().toString()+ ";" + TF_codePostal.getText()+ ";" + TF_Siret.getText()+ ";" + CB_Representant.getSelectedItem().toString() + ";" + "0"+ ";" + "0"; //Nombre de commande et numéro de représentant à implémenter
-
-                try {
-                    File ff = new File("Clients.txt");
-                    ff.createNewFile();
-                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
-                    ffw.write(chaine1);
-                    ffw.newLine();
-                    ffw.close();
-                    
-                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
-                    dispose();
-                    gp.setVisible(true);
-                    
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
-                }
+            gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
+            Integer.parseInt(TF_Siret.getText()),Integer.parseInt(TF_NumRue.getText()),TF_Rue.getText(),TF_Complement.getText(),TF_Ville.getText(),
+            TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
+            0,d);
             
             }
 
