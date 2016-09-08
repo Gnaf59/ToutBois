@@ -6,7 +6,6 @@
 package com.gauthier_matthieu.entities;
 
 import java.io.*;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -170,7 +169,7 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     
     
-    public void ChargerDonneesProspect() throws NullPointerException
+    public void ChargerDonneesProspect()
     {
        
             try {

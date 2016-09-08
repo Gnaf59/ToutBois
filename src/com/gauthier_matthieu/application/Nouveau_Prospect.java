@@ -8,7 +8,6 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
 public class Nouveau_Prospect extends javax.swing.JFrame {
 
     private Gestion_Prospect gp;
-    private GestionDonnees gd;
+    private GestionDonnees gd=new GestionDonnees();
     
     public Nouveau_Prospect(Gestion_Prospect gp) {
         initComponents();
@@ -74,7 +73,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         Lb_RepresentantNomPrenom = new javax.swing.JLabel();
         CB_Representant = new javax.swing.JComboBox();
         Lb_Date = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDate = new com.toedter.calendar.JDateChooser();
         logo = new javax.swing.JLabel();
         label1 = new java.awt.Label();
 
@@ -352,13 +351,11 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
 
         CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
 
-        jDate.setDateFormatString("dd-MM-yyyy");
-        jDate.setFocusCycleRoot(true);
-        jDate.setMinSelectableDate(new java.util.Date(-62135769486000L));
-
         Lb_Date.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Date.setText("Dernière visite :");
+
+        jDate.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel_ReprésentantLayout = new javax.swing.GroupLayout(jPanel_Représentant);
         jPanel_Représentant.setLayout(jPanel_ReprésentantLayout);
@@ -372,7 +369,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CB_Representant, 0, 299, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_ReprésentantLayout.setVerticalGroup(
@@ -384,7 +381,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lb_Date)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -544,7 +541,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 Verification+="Prenom du contact";
             }
             
-            if ("".equals(jDateChooser1.getDate().toString())) {
+            if ("".equals(jDate.getDate().toString())) {
                 Lb_Date.setForeground(Color.red);
                 Verification+="Date";
             }
@@ -557,7 +554,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
                     "".equals(TF_codePostal.getText()) || 
                     "".equals(TF_NomContact.getText()) ||
-                    /*"".equals(jDateChooser1.getDateFormatString()) ||*/
+                    /*"".equals(jDate.getDateFormatString()) ||*/
                     "".equals(TF_PrenomContact.getText())) {
                    
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
@@ -565,11 +562,11 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 
                 
                 //SimpleDateFormat sdf =new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-                SimpleDateFormat sdf =new SimpleDateFormat(jDate.getDateFormatString());
-                sdf.setLenient(false);
+                //SimpleDateFormat sdf =new SimpleDateFormat(jDate.getDateFormatString());
+                //sdf.setLenient(false);
                 
-                Date d= (Date)sdf.parse(jDate.getDateFormatString());
-                sdf.setLenient(false);
+                //Date d= (Date)sdf.parse(jDate.getDateFormatString());
+                //sdf.setLenient(false);
                // sdf.applyPattern("dd-MM-yyyy");
                 
                 
@@ -577,7 +574,10 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
             Integer.parseInt(TF_Siret.getText()),Integer.parseInt(TF_NumRue.getText()),TF_Rue.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
-            0,d);
+            0,jDate.getDate());
+            
+            this.dispose();
+            gp.setVisible(true);
             
             }
 
@@ -653,7 +653,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
     private javax.swing.JTextField TF_Telephone;
     private javax.swing.JTextField TF_Ville;
     private javax.swing.JTextField TF_codePostal;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Adresse;
     private javax.swing.JPanel jPanel_Contact;
