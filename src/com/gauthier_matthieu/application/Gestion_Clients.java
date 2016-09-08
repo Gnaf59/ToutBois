@@ -11,21 +11,25 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Cette fenêtre s'occupe de la gestion du fichier client.
+ * Par l'intermédiaire des boutons nouveau, modifier, consulter ou supprimer 
+ * l'utilisateur à la possibilité de créer un nouveau client en lançant la fenêtre Nouveau_Client,
+ * modifier un client déjà existant et préalablement sélectionné sur la jTable en ouvrant la fenêtre Modification_client,
+ * voir les informations du Client sélectionné sur l'écran Consultation_Client ou
+ * supprimer un client sélectionné directement dans la fenêtre Gestion_Clients.
  * @author glantoine
  */
 public class Gestion_Clients extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Gestion_Clients
-     * @param fa
-     */
     private fenetre_applications fa=new fenetre_applications();
-    //private GestionDonnees gd;
     
-    public Gestion_Clients(fenetre_applications fa/*,GestionDonnees gd*/) {
+    
+    /**
+     * Génère la fenêtre et initialise ces composants
+     * @param fa Nécessite en paramêtre la fenetre_applications afin de gérer son affichage
+     */
+    public Gestion_Clients(fenetre_applications fa) {
         this.fa=fa;
-        /*this.gd=gd;*/
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -257,7 +261,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         //Actualise la jTable
         jTable1.setModel(new Model_Table_Client());
@@ -305,7 +309,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fa.setVisible(true);
         this.dispose();
-        /* mettre le code pour enregistrer les données ici*/
+        
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
@@ -321,9 +325,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BT_SupprimerActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

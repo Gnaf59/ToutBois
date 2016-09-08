@@ -12,13 +12,18 @@ import java.io.*;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Cette Fenêtre s'occupe de l'ajout de nouveau Clients
+ * Propose un formulaire pour entrer toutes les données relative au nouveau client
+ * et effectue une vérifications des champs obligatoires avant d'enregistrer le nouveau client dans la collection
  * @author glantoine
  */
 public class Nouveau_Client extends javax.swing.JFrame {
 
     private Gestion_Clients gc;
-    
+    /**
+     * Initialise tous les composants de la fenêtre
+     * @param gc Ecran Gestion_Clients
+     */
     public Nouveau_Client(Gestion_Clients gc) {
         initComponents();
         setLocationRelativeTo(null);

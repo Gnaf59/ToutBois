@@ -11,7 +11,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *  
  * @author glantoine
  */
 public class Model_Table_Client extends AbstractTableModel {

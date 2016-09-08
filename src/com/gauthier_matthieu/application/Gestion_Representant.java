@@ -20,7 +20,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
 
     /**
      * Creates new form Gestion_Clients
-     * @param fa
+     * 
      */
     private fenetre_applications fa=new fenetre_applications();
     
@@ -316,9 +316,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
        
     }//GEN-LAST:event_BT_SupprimerActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

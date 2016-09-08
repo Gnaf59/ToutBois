@@ -22,6 +22,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private fenetre_applications fa;
     /**
      * Creates new form Gestion_Clients
+     * @param fa Nécessite La fenêtre de démarrage du programme en paramêtre Pour gérer son affichage
      */
     public Gestion_Prospect(fenetre_applications fa) {
         initComponents();
@@ -288,9 +289,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BT_Modifier_PRActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BT_Aide_PR;

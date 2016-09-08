@@ -70,8 +70,8 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         jPanel_Représentant = new javax.swing.JPanel();
         Lb_RepresentantNomPrenom = new javax.swing.JLabel();
         CB_Representant = new javax.swing.JComboBox();
-        jDate = new com.toedter.calendar.JDateChooser();
         Lb_Date = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         logo = new javax.swing.JLabel();
         label1 = new java.awt.Label();
 
@@ -349,8 +349,6 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
 
         CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
 
-        jDate.setDateFormatString("d/mm/yyyy");
-
         Lb_Date.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Date.setText("Dernière visite :");
@@ -366,8 +364,8 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     .addComponent(Lb_Date))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CB_Representant, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CB_Representant, 0, 299, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_ReprésentantLayout.setVerticalGroup(
@@ -376,10 +374,10 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_RepresentantNomPrenom)
                     .addComponent(CB_Representant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lb_Date))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel_ReprésentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lb_Date)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -540,7 +538,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 Verification+="Prenom du contact";
             }
             
-            if ("".equals(jDate.getCalendar().toString())) {
+            if ("".equals(jDateChooser1.getDate().toString())) {
                 Lb_Date.setForeground(Color.red);
                 Verification+="Date";
             }
@@ -553,7 +551,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
                     "".equals(TF_codePostal.getText()) || 
                     "".equals(TF_NomContact.getText()) ||
-                    "".equals(jDate.getDateFormatString()) ||
+                    /*"".equals(jDateChooser1.getDateFormatString()) ||*/
                     "".equals(TF_PrenomContact.getText())) {
                 
                 
@@ -653,7 +651,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
     private javax.swing.JTextField TF_Telephone;
     private javax.swing.JTextField TF_Ville;
     private javax.swing.JTextField TF_codePostal;
-    private com.toedter.calendar.JDateChooser jDate;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Adresse;
     private javax.swing.JPanel jPanel_Contact;
