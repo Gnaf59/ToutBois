@@ -5,7 +5,9 @@
  */
 package com.gauthier_matthieu.entities;
 
+import java.text.DateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -27,13 +29,14 @@ public class Model_Table_Prospect extends AbstractTableModel{
         "Pays",
         "Mail",
         "Numéro de Tel",
-        "Dernière visite",
-        "Numéro Représentant"}; 
+        "Numéro Représentant",
+        "Dernière visite"}; 
     
     private HashMap<Integer, Prospects> prospects;
     private Object[][] tableData; 
     private GestionDonnees gd = new GestionDonnees();
-    
+    private DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+                
      public Model_Table_Prospect() {
     
         //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
@@ -55,7 +58,7 @@ public class Model_Table_Prospect extends AbstractTableModel{
             tableData[index][10] = pro.getMail();
             tableData[index][11] = pro.getNumerotel();
             tableData[index][12] = pro.getNumeroRepresentant();
-            tableData[index][13] = pro.getDerniereVisite();
+            tableData[index][13] = sdf.format(pro.getDerniereVisite());
            
             index++;
         }

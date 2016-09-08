@@ -173,7 +173,7 @@ public class GestionDonnees {
     {
        
             try {
-                InputStream ips = new FileInputStream("Prospect.txt");
+                InputStream ips = new FileInputStream("Prospects.txt");
                 InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
                 BufferedReader br = new BufferedReader(ipsr); 
                 

@@ -8,7 +8,10 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
 /**
@@ -561,20 +564,15 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             } else {
                 
                 
-                //SimpleDateFormat sdf =new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-                //SimpleDateFormat sdf =new SimpleDateFormat(jDate.getDateFormatString());
-                //sdf.setLenient(false);
-                
-                //Date d= (Date)sdf.parse(jDate.getDateFormatString());
-                //sdf.setLenient(false);
-               // sdf.applyPattern("dd-MM-yyyy");
-                
-                
+                DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+                sdf.format(jDate.getDate());
+                sdf.parse(sdf.format(jDate.getDate()));
+              
             
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
             Integer.parseInt(TF_Siret.getText()),Integer.parseInt(TF_NumRue.getText()),TF_Rue.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
-            0,jDate.getDate());
+            0,sdf.parse(sdf.format(jDate.getDate())));
             
             this.dispose();
             gp.setVisible(true);

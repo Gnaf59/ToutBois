@@ -254,7 +254,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1ComponentAdded
 
     private void BT_Quitter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Quitter_PRActionPerformed
-        //fa.setVisible(true);
+        fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
 
