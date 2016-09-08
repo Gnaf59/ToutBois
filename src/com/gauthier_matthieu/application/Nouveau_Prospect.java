@@ -7,11 +7,8 @@ package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
-import java.io.*;
 import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
 /**
@@ -564,9 +561,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             } else {
                 
                 
-                DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
-                sdf.format(jDate.getDate());
-                sdf.parse(sdf.format(jDate.getDate()));
+            DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
               
             
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),

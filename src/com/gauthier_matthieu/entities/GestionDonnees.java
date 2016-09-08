@@ -6,6 +6,7 @@
 package com.gauthier_matthieu.entities;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -36,7 +37,7 @@ public class GestionDonnees {
         return prospects;
     }
 
-    public void ChargerDonneesClients() throws NullPointerException
+    public void ChargerDonneesClients()
     {
     //File ff = new File("Clients.txt");    
     // lire le fichier client 
@@ -74,7 +75,7 @@ public class GestionDonnees {
         Iterator i = this.clients.keySet().iterator();
         int clef;
         Clients valeur;
-        Clients.setIncrement(0);
+        Clients.setIncrement(1);
         while (i.hasNext())
             {
                 clef = (int)i.next();
@@ -179,6 +180,7 @@ public class GestionDonnees {
                 
                 String ligne;
                 String[] enregistrement;
+                DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
                 
                 //parcours toutes les lignes du fichier Clients.txt
                 while ((ligne = br.readLine()) != null)
@@ -188,7 +190,7 @@ public class GestionDonnees {
                            enregistrement[2],enregistrement[3],Integer.parseInt(enregistrement[4]),
                            Integer.parseInt(enregistrement[5]),enregistrement[6],enregistrement[7],
                            enregistrement[8],enregistrement[9],enregistrement[10],enregistrement[11],
-                           enregistrement[12],Integer.parseInt(enregistrement[13]),enregistrement[14]);
+                           enregistrement[12],Integer.parseInt(enregistrement[13]),sdf.parse(enregistrement[14]));
                 }
             
             //Met l'incrément de La classe client à la valeur du plus haut numéro de client inclus 
@@ -205,20 +207,19 @@ public class GestionDonnees {
     
     public void EnregistrerProspectsExistantCollection(int numeroProspect,String nomContact,String prenomContact,String societe,
             int siret,int numeroVoie,String adresse,String complementAdresse,String ville,
-            String codePostal,String pays,String mail,String telephone,int numeroRepresentant,String derniereVisite)
+            String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
     {
         try
         {
-        SimpleDateFormat df= new SimpleDateFormat("dd-mm-yyyy");
          
         //Enregistre le Prospect dans la collection
         Prospects objetProspect=new Prospects(societe,siret,numeroRepresentant,nomContact,prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         objetProspect.setNumeroProspect(numeroProspect);
-        objetProspect.setDerniereVisite(df.parse(derniereVisite));
+        objetProspect.setDerniereVisite(derniereVisite);
         
-        this.prospects.put(numeroProspect, objetProspect);
+        GestionDonnees.prospects.put(numeroProspect, objetProspect);
         }
-        catch(ParseException ex)
+        catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur conversion date", JOptionPane.ERROR_MESSAGE);
         }
@@ -234,12 +235,12 @@ public class GestionDonnees {
         Prospects objetProspect=new Prospects(societe,siret,numeroRepresentant,nomContact,prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         objetProspect.setDerniereVisite(derniereVisite);
         // on prend le numero de client existant dans l'objet prospect 
-        this.prospects.put(objetProspect.getNumeroProspect(),objetProspect);
+        GestionDonnees.prospects.put(objetProspect.getNumeroProspect(),objetProspect);
     }
     
     public void EnregistrerProspectsFichier()
     {
-        Iterator i = this.prospects.keySet().iterator();
+        Iterator i = GestionDonnees.prospects.keySet().iterator();
         int clef;
         Prospects valeur; // valeur à l'indice ou clef 
         String chaineEnregistrement;
@@ -262,7 +263,7 @@ public class GestionDonnees {
                 valeur = (Prospects)prospects.get(clef);
                 
                 
-                        SimpleDateFormat df=new SimpleDateFormat("dd-mm-yyyy");
+                        SimpleDateFormat df=new SimpleDateFormat("dd/mm/yyyy");
                         String dateString= df.format(valeur.getDerniereVisite());
                                       
                 chaineEnregistrement= Integer.toString(valeur.getNumeroProspect())+";"
