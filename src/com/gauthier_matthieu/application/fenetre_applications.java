@@ -207,6 +207,7 @@ public class fenetre_applications extends javax.swing.JFrame {
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
         gd.EnregistrerClientsFichier();
+        gd.EnregistrerProspectsFichier();
         System.exit(0);
     }//GEN-LAST:event_quitterActionPerformed
 
@@ -224,6 +225,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         /*Code de gestion de fermeture de la fenêtre */
         gd.EnregistrerClientsFichier();
+        gd.EnregistrerProspectsFichier();
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
@@ -239,7 +241,8 @@ public class fenetre_applications extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         GestionDonnees gd=new GestionDonnees();
-        gd.ChargerDoneesClients();
+        gd.ChargerDonneesClients();
+        gd.ChargerDonneesProspect();
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

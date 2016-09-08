@@ -1,3 +1,0 @@
-1;Serge;Labas;Auchan;123456789;77;rue de la paix;bloc 3;Roubaix;59100;France;labas@Auchan.fr;444444444;15;1
-2;Personne;Paul;Castorama;78451296;80;avenue du paradis;;Paris;75000;France;personne@Castorama.be;444444444;100;1
-6;Delavie;Paul;toutmeuble;789456123;78;rue de la gloire;appart 8;tournai;7500;Belgique;delavie@toutmeuble.be;0785963741;0;1

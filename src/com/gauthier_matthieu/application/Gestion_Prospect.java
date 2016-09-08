@@ -26,7 +26,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
      */
     public Gestion_Prospect(fenetre_applications fa) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
+        
         setLocationRelativeTo(null);
         this.fa=fa;
     }
@@ -58,6 +58,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fichier Prospect");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -99,6 +100,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         BT_Consulter_PR.setText("Consulter");
 
         BT_Ajouter_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Ajouter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/plus-black-symbol.png"))); // NOI18N
         BT_Ajouter_PR.setText("Nouveau");
         BT_Ajouter_PR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +150,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         label1.setText("Création Software SSII MGc all rights reserved 2016");
 
         jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new Model_Table_Client());
+        jTable1.setModel(new Model_Table_Prospect());
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jTable1);
 
@@ -168,7 +170,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                                     .addComponent(BT_Modifier_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Ajouter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Consulter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
+                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(image_2_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,8 +238,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, 602, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        getAccessibleContext().setAccessibleName("Fichier Prospect");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

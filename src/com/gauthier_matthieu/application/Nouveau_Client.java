@@ -530,7 +530,9 @@ public class Nouveau_Client extends javax.swing.JFrame {
             else {   
                 
                 GestionDonnees gd=new GestionDonnees();
-                gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), Integer.parseInt(TF_Siret.getText()), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,1);
+                gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), 
+                        Integer.parseInt(TF_Siret.getText()), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
+                        TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,1);
                 
                 
                 //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
