@@ -40,7 +40,7 @@ public class Modification_Client extends javax.swing.JFrame {
         TF_NomContact.setText(clientObjet.getNom());
         TF_PrenomContact.setText(clientObjet.getPrenom());
         TF_Societe.setText(clientObjet.getNomEntreprise());
-        TF_Siret.setText(Integer.toString(clientObjet.getSiret()));
+        TF_Siret.setText(clientObjet.getSiret());
         TF_NumRue.setText(Integer.toString(clientObjet.getNumeroVoie()));
         TF_Rue.setText(clientObjet.getAdresse());
         TF_Complement.setText(clientObjet.getComplementAdresse());
@@ -612,7 +612,7 @@ public class Modification_Client extends javax.swing.JFrame {
               clientObjet.setPrenom(TF_PrenomContact.getText());
               clientObjet.setNomEntreprise(TF_Societe.getText());
               clientObjet.setAdresse(TF_Rue.getText());
-              clientObjet.setSiret(Integer.parseInt(TF_Siret.getText()));
+              clientObjet.setSiret(TF_Siret.getText());
               clientObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
               clientObjet.setComplementAdresse(TF_Complement.getText());
               clientObjet.setVille(TF_Ville.getText());

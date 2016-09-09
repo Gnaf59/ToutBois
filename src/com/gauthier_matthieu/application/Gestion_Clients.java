@@ -301,28 +301,53 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        Modification_Client mc = new Modification_Client(jTable1,this);
-        mc.setVisible(true);
-        this.setVisible(false);
+       
+        try
+        {
+            Modification_Client mc = new Modification_Client(jTable1,this);
+            mc.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fa.setVisible(true);
-        this.dispose();
-        
+        this.dispose();        
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
-       Consultation_Client cc = new Consultation_Client(jTable1);
-       cc.setVisible(true);
+       
+        try
+        {
+            Consultation_Client cc = new Consultation_Client(jTable1,this);
+            cc.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à consulter", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_BT_ConsulterActionPerformed
 
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
-        GestionDonnees gd=new GestionDonnees();
-        int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-        gd.SupprimerClientsCollection(numeroClient);
-        jTable1.setModel(new Model_Table_Client());       
-        
+        try
+        {
+            GestionDonnees gd=new GestionDonnees();
+            int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            gd.SupprimerClientsCollection(numeroClient);
+            jTable1.setModel(new Model_Table_Client());     
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_BT_SupprimerActionPerformed
 
    

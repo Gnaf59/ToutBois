@@ -24,12 +24,14 @@ import java.util.*;
 public class Consultation_Client extends javax.swing.JFrame {
 
     private JTable tableau;
+    private Gestion_Clients gc;
     //transmition tableau dans constructeur
-    public Consultation_Client(JTable tableau) {
+    public Consultation_Client(JTable tableau,Gestion_Clients gc) {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau=tableau;
+        this.gc=gc;
         
         Lb_NumeroClient.setText("");
         Lb_Complement_Consult.setText("");
@@ -58,7 +60,7 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_NomContact_Consult.setText(clientObjet.getNom());
         Lb_PrenomContact_Consult.setText(clientObjet.getPrenom());
         Lb_Societe_Consult.setText(clientObjet.getNomEntreprise());
-        Lb_Siret_Consult.setText(Integer.toString(clientObjet.getSiret()));
+        Lb_Siret_Consult.setText(clientObjet.getSiret());
         Lb_NumRue_Consult.setText(Integer.toString(clientObjet.getNumeroVoie()));
         Lb_Rue_Consult.setText(clientObjet.getAdresse());
         Lb_Complement_Consult.setText(clientObjet.getComplementAdresse());
@@ -138,6 +140,11 @@ public class Consultation_Client extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(950, 560));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel_ConsutationClients.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_ConsutationClients.setMaximumSize(new java.awt.Dimension(950, 530));
@@ -623,8 +630,14 @@ public class Consultation_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_Bt_AideActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
-        this.dispose();
+        gc.setVisible(true);
+        this.dispose();       
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       gc.setVisible(true);
+       this.dispose();      
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

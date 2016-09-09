@@ -9,6 +9,8 @@ import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,8 @@ import javax.swing.JOptionPane;
 public class Nouveau_Client extends javax.swing.JFrame {
 
     private Gestion_Clients gc;
+    private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternSiret,patternCodePostal;
+    private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherSiret,matcherCodePostal;
     /**
      * Initialise tous les composants de la fenêtre
      * @param gc Ecran Gestion_Clients
@@ -315,7 +319,7 @@ public class Nouveau_Client extends javax.swing.JFrame {
 
         Lb_Siret.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Siret.setText("* Siret : ");
+        Lb_Siret.setText("Siret : ");
 
         javax.swing.GroupLayout jPanel_Entreprise1Layout = new javax.swing.GroupLayout(jPanel_Entreprise1);
         jPanel_Entreprise1.setLayout(jPanel_Entreprise1Layout);
@@ -475,15 +479,22 @@ public class Nouveau_Client extends javax.swing.JFrame {
             Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
             
-            String Verification="Veuillez remplir les champs ";
+            patternNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
+            patternMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            patternNumeroTel = Pattern.compile("[0-9]{10}");
+            patternSiret=Pattern.compile("[0-9]{14}");
+            
+            String Verification="Veuillez remplir correctement le(s) champs ";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
                 Verification+="Société, ";
             }
-
-            if ("".equals(TF_Siret.getText())) {
+            matcherSiret=patternSiret.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
                 Verification+="Siret, ";
             }
@@ -492,13 +503,13 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Lb_NumRue.setForeground(Color.red);
                 Verification+="numéro de la rue, ";
             }
-
-            if ("".equals(TF_Rue.getText())) {
+            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
+            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
                 Verification+="rue, ";
             }
-
-            if ("".equals(TF_Ville.getText())) {
+            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="ville, ";
             }
@@ -513,25 +524,46 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 Verification+="code postal, ";
             }
 
-
-            if ("".equals(TF_NomContact.getText())) {
+           
+            matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
+            if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
                 Verification+="nom du contact, ";
             }
-
-            if ("".equals(TF_PrenomContact.getText())) {
+            matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
+            if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="prenom du contact";
+                Verification+="prenom du contact ";
             }
+            
+            
+            
+            matcherMail = patternMail.matcher(TF_Mail.getText());
+            
+            if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
+            {
+                Verification+="mail ";
+                Lb_Mail.setForeground(Color.red);
+            }
+            
+            
+            matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
 
-            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) || "".equals(TF_Ville.getText()) || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) || "".equals(TF_PrenomContact.getText())) {
+            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
+            {
+                Verification+="numéro de téléphone ";
+                Lb_Telephone.setForeground(Color.red);
+            }
+            
+            
+            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } 
             else {   
                 
                 GestionDonnees gd=new GestionDonnees();
                 gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), 
-                        Integer.parseInt(TF_Siret.getText()), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
+                        TF_Siret.getText(), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
                         TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,1);
                 
                 

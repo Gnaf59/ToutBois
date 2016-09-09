@@ -11,8 +11,8 @@ package com.gauthier_matthieu.entities;
  */
 public class Clients extends Personnes {
     
-    private String nomEntreprise;
-    private int siret,numeroClient,nbrCommande,numeroRepresentant;
+    private String siret,nomEntreprise;
+    private int numeroClient,nbrCommande,numeroRepresentant;
     private static int increment=1;
     
     /**
@@ -44,11 +44,11 @@ public class Clients extends Personnes {
      * @param complementAdresse : complément d'adresse de l'entreprise cliente
      * @param ville : Ville ou est situé l'entreprise cliente
      * @param mail :Mail du contact au sein de l'entreprise cliente
-     * @param numerotel : Numéro de ltéléphone au sein de l'entreprise cliente
+     * @param numerotel : Numéro de téléphone au sein de l'entreprise cliente
      * @param pays : Pays ou est situé l'entreprise cliente
      * @param codePostal : Code postal de l'entreprise cliente
     */
-    public Clients(String nomEntreprise,int siret, int numeroRepresentant,String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
+    public Clients(String nomEntreprise,String siret, int numeroRepresentant,String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
         super(nom, prenom,numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.nomEntreprise=nomEntreprise;
         this.siret = siret;
@@ -60,14 +60,14 @@ public class Clients extends Personnes {
     
     /**
     * Permet d'obtenir le numéro de SIRET de l'entreprise cliente
-     * @return le numéro de SIRET
+    * @return le numéro de SIRET
     */
-    public int getSiret() {
+    public String getSiret() {
         return siret;
     }
     /**
     * Permet d'obtenir l'incrément servant a donner le numéro de client.
-     * @return l'incrément
+    * @return l'incrément
     */
     public static int getIncrement() {
         return increment;
@@ -84,7 +84,7 @@ public class Clients extends Personnes {
     * Permet de modifier le numéro de SIRET
      * @param siret Numéro de SIRET
     */
-    public void setSiret(int siret) {
+    public void setSiret(String siret) {
         this.siret = siret;
     }
     /**

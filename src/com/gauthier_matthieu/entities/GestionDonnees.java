@@ -55,7 +55,7 @@ public class GestionDonnees {
                 {
                     //décompose une ligne du fichier Clients.txt en tableau de String
                     enregistrement=ligne.split(";");
-                    EnregistrerClientsCollection(Integer.parseInt(enregistrement[0]),enregistrement[1], enregistrement[2], enregistrement[3], Integer.parseInt(enregistrement[4]), Integer.parseInt(enregistrement[5]), enregistrement[6], enregistrement[7],enregistrement[8], enregistrement[9], enregistrement[10], enregistrement[11], enregistrement[12], Integer.parseInt(enregistrement[13]),Integer.parseInt(enregistrement[14]));
+                    EnregistrerClientsCollection(Integer.parseInt(enregistrement[0]),enregistrement[1], enregistrement[2], enregistrement[3], enregistrement[4], Integer.parseInt(enregistrement[5]), enregistrement[6], enregistrement[7],enregistrement[8], enregistrement[9], enregistrement[10], enregistrement[11], enregistrement[12], Integer.parseInt(enregistrement[13]),Integer.parseInt(enregistrement[14]));
                     //EnregistrerClientsCollection(1,"Bernard","Henri","pasunclou",222222,89,"Rue des perdu","","Ville","9999","France","bof@pasunclou.fr","0000",0,0);
                 }
             
@@ -72,7 +72,7 @@ public class GestionDonnees {
     
    private void InitialisationIncrementNumeroClient()
     {
-        Iterator i = this.clients.keySet().iterator();
+        Iterator i = GestionDonnees.clients.keySet().iterator();
         int clef;
         Clients valeur;
         Clients.setIncrement(1);
@@ -81,7 +81,7 @@ public class GestionDonnees {
                 clef = (int)i.next();
                 valeur = (Clients)clients.get(clef);
                 
-                if (valeur.getIncrement()<valeur.getNumeroClient())
+                if (Clients.getIncrement()<valeur.getNumeroClient())
                 {
                     Clients.setIncrement(valeur.getNumeroClient()+1);
                 }
@@ -90,21 +90,20 @@ public class GestionDonnees {
     }
     public void SupprimerClientsCollection (int numClient)
     {
-        this.clients.remove(numClient);
+        GestionDonnees.clients.remove(numClient);
         
     }
-    public void EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,int siret,int numeroVoie,
+    public void EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,String siret,int numeroVoie,
             String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,
             int nbrCommande,int numeroRepresentant)
     {
         //Enregistre le client dans la collection
         Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
-        this.clients.put(objetClient.getNumeroClient(), objetClient);
-        
-        
+        GestionDonnees.clients.put(objetClient.getNumeroClient(), objetClient);
+    
     }
     //Sert pour charger les données du fichier Clients.txt
-    public void EnregistrerClientsCollection(int numeroClient,String nomContact,String prenomContact,String societe,int siret,
+    public void EnregistrerClientsCollection(int numeroClient,String nomContact,String prenomContact,String societe,String siret,
             int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,
             String telephone,int nbrCommande,int numeroRepresentant)
     {
@@ -112,12 +111,12 @@ public class GestionDonnees {
         Clients objetClient=new Clients(societe,siret , numeroRepresentant, nomContact, prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         objetClient.setNumeroClient(numeroClient);
         objetClient.setNbrCommande(nbrCommande);
-        this.clients.put(numeroClient, objetClient);
+        GestionDonnees.clients.put(numeroClient, objetClient);
     }
     
     public void EnregistrerClientsFichier()
     {
-        Iterator i = this.clients.keySet().iterator();
+        Iterator i = GestionDonnees.clients.keySet().iterator();
         int clef;
         Clients valeur;
         String chaineEnregistrement;
@@ -139,7 +138,7 @@ public class GestionDonnees {
                                       +valeur.getNom()+";"
                                       +valeur.getPrenom()+";"
                                       +valeur.getNomEntreprise()+";"
-                                      +Integer.toString(valeur.getSiret())+";"
+                                      +valeur.getSiret()+";"
                                       +Integer.toString(valeur.getNumeroVoie())+";"
                                       +valeur.getAdresse()+";"
                                       +valeur.getComplementAdresse()+";"
