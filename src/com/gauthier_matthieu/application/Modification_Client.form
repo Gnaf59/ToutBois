@@ -85,7 +85,7 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="101" max="32767" attributes="0"/>
+                                  <EmptySpace pref="91" max="32767" attributes="0"/>
                                   <Component id="logo" min="-2" pref="400" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -129,8 +129,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_Adresse" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel_Commande" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel_Commande" min="-2" pref="68" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Lb_ChampsObligatoires" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -758,18 +758,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Lb_NombreCommande" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TF_NombreCommande" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Lb_DerniereCommande" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="TF_DerniereCommande" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="Lb_NombreCommande" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="TF_NombreCommande" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -781,12 +772,7 @@
                           <Component id="Lb_NombreCommande" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TF_NombreCommande" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="Lb_DerniereCommande" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_DerniereCommande" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -803,20 +789,10 @@
                 <Property name="text" type="java.lang.String" value="Nombre de commande :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Lb_DerniereCommande">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Gill Sans MT" size="14" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Derni&#xe8;re commande :"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="TF_NombreCommande">
-            </Component>
-            <Component class="javax.swing.JTextField" name="TF_DerniereCommande">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

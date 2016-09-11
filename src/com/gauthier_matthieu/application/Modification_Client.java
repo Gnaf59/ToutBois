@@ -11,11 +11,14 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;
 import java.util.HashMap;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
- *
+ * Cette fenêtre permet la modification d'un Client
+ * préalablement sélectionné et effectue une vérification de saisie sur les différents champs
+ * avant d'enregistrer la modification dans la Collection
  * @author glantoine
  */
 public class Modification_Client extends javax.swing.JFrame {
@@ -27,9 +30,14 @@ public class Modification_Client extends javax.swing.JFrame {
     private Clients clientObjet; 
     private JTable tableau;
     private Gestion_Clients gc;
+    private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternSiret,patternCodePostalNumeroRue;
+    private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherSiret,matcherCodePostal,matcherNumeroRue;
     
-    
-    
+     /**
+     * Initialise tous les composants de la fenêtre
+     * @param tableau Tableau des clients de l'écran gestion Client
+     * @param gc Ecran Gestion_Clients
+     */
     public Modification_Client(JTable tableau,Gestion_Clients gc) {
         initComponents();
         setLocationRelativeTo(null);
@@ -106,9 +114,7 @@ public class Modification_Client extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jPanel_Commande = new javax.swing.JPanel();
         Lb_NombreCommande = new javax.swing.JLabel();
-        Lb_DerniereCommande = new javax.swing.JLabel();
         TF_NombreCommande = new javax.swing.JTextField();
-        TF_DerniereCommande = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Modification Clients");
@@ -421,9 +427,7 @@ public class Modification_Client extends javax.swing.JFrame {
         Lb_NombreCommande.setForeground(new java.awt.Color(102, 102, 102));
         Lb_NombreCommande.setText("Nombre de commande :");
 
-        Lb_DerniereCommande.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        Lb_DerniereCommande.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_DerniereCommande.setText("Dernière commande :");
+        TF_NombreCommande.setEditable(false);
 
         javax.swing.GroupLayout jPanel_CommandeLayout = new javax.swing.GroupLayout(jPanel_Commande);
         jPanel_Commande.setLayout(jPanel_CommandeLayout);
@@ -431,15 +435,9 @@ public class Modification_Client extends javax.swing.JFrame {
             jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CommandeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_CommandeLayout.createSequentialGroup()
-                        .addComponent(Lb_NombreCommande)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_NombreCommande))
-                    .addGroup(jPanel_CommandeLayout.createSequentialGroup()
-                        .addComponent(Lb_DerniereCommande)
-                        .addGap(18, 18, 18)
-                        .addComponent(TF_DerniereCommande)))
+                .addComponent(Lb_NombreCommande)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TF_NombreCommande)
                 .addContainerGap())
         );
         jPanel_CommandeLayout.setVerticalGroup(
@@ -448,11 +446,7 @@ public class Modification_Client extends javax.swing.JFrame {
                 .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_NombreCommande)
                     .addComponent(TF_NombreCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel_CommandeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Lb_DerniereCommande)
-                    .addComponent(TF_DerniereCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -474,7 +468,7 @@ public class Modification_Client extends javax.swing.JFrame {
                             .addComponent(jPanel_Commande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
@@ -508,8 +502,8 @@ public class Modification_Client extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(Lb_ChampsObligatoires)))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -538,6 +532,7 @@ public class Modification_Client extends javax.swing.JFrame {
 
     private void Bt_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_ValiderActionPerformed
         try {
+            
             //Réinitialise les couleurs des labels
             Lb_Societe.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
@@ -548,66 +543,88 @@ public class Modification_Client extends javax.swing.JFrame {
             Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
             
-            String Verification="Veuillez remplir les champs ";
+            patternNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
+            patternMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            patternNumeroTel = Pattern.compile("[0-9]{10}");
+            patternSiret=Pattern.compile("[0-9]{14}");
+            patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
+            
+            String Verification="Veuillez remplir correctement le(s) champs ";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="Société"+"\n";
+                Verification+="Société, ";
             }
-
-            if ("".equals(TF_Siret.getText())) {
+            matcherSiret=patternSiret.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="Siret"+"\n";
+                Verification+="Siret, ";
             }
-
-            if ("".equals(TF_NumRue.getText())) {
+            matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="Numéro de la rue"+"\n";
+                Verification+="numéro de la rue, ";
             }
-
-            if ("".equals(TF_Rue.getText())) {
+            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
+            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="Adresse"+"\n";
+                Verification+="rue, ";
             }
-
-            if ("".equals(TF_Ville.getText())) {
+            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="Ville"+"\n";
+                Verification+="ville, ";
             }
             
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays"+"\n";
+                Verification+="Pays, ";
             }
-
-            if ("".equals(TF_codePostal.getText())) {
+            matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="code postal"+"\n";
+                Verification+="code postal, ";
             }
 
-
-            if ("".equals(TF_NomContact.getText())) {
+           
+            matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
+            if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="Nom du contact"+"\n";
+                Verification+="nom du contact, ";
             }
-
-            if ("".equals(TF_PrenomContact.getText())) {
+            matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
+            if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="Prénom du contact"+"\n";
+                Verification+="prenom du contact ";
             }
+            
+            
+            
+            matcherMail = patternMail.matcher(TF_Mail.getText());
+            
+            if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
+            {
+                Verification+="mail ";
+                Lb_Mail.setForeground(Color.red);
+            }
+            
+            
+            matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
 
-            if ("".equals(TF_Societe.getText()) || 
-                    "".equals(TF_Siret.getText()) || 
-                    "".equals(TF_NumRue.getText()) || 
-                    "".equals(TF_Rue.getText()) || 
-                    "".equals(TF_Ville.getText()) || 
-                    "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                    "".equals(TF_codePostal.getText()) || 
-                    "".equals(TF_NomContact.getText()) || 
-                    "".equals(TF_PrenomContact.getText())) {
+            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
+            {
+                Verification+="numéro de téléphone ";
+                Lb_Telephone.setForeground(Color.red);
+            }
+            
+            
+            if ("".equals(TF_Societe.getText()) || "".equals(TF_Siret.getText()) || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
-            } else {
+            } 
+            else {
               clientObjet.setNom(TF_NomContact.getText());
               clientObjet.setPrenom(TF_PrenomContact.getText());
               clientObjet.setNomEntreprise(TF_Societe.getText());
@@ -675,7 +692,6 @@ public class Modification_Client extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_ChampsObligatoires;
     private javax.swing.JLabel Lb_CodePostal;
     private javax.swing.JLabel Lb_Complement;
-    private javax.swing.JLabel Lb_DerniereCommande;
     private javax.swing.JLabel Lb_Fenetre;
     private javax.swing.JLabel Lb_Mail;
     private javax.swing.JLabel Lb_NomContact;
@@ -690,7 +706,6 @@ public class Modification_Client extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_Telephone;
     private javax.swing.JLabel Lb_Ville;
     private javax.swing.JTextField TF_Complement;
-    private javax.swing.JTextField TF_DerniereCommande;
     private javax.swing.JTextField TF_Mail;
     private javax.swing.JTextField TF_NomContact;
     private javax.swing.JTextField TF_NombreCommande;
