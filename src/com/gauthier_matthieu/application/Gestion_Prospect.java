@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author glantoine
  */
 public class Gestion_Prospect extends javax.swing.JFrame {
-
+    private GestionDonnees gd = new GestionDonnees();
     private fenetre_applications fa;
     /**
      * Creates new form Gestion_Clients
@@ -28,6 +28,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         
         setLocationRelativeTo(null);
         this.fa=fa;
+        
     }
 
     /**
@@ -78,13 +79,9 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(980, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(945, 600));
-        jPanel1.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                jPanel1ComponentAdded(evt);
-            }
-        });
 
         BT_Modifier_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Modifier_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/edit.png"))); // NOI18N
         BT_Modifier_PR.setText("Modifier");
         BT_Modifier_PR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,10 +90,22 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         });
 
         BT_Supprimer_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Supprimer_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/subtract-sign.png"))); // NOI18N
         BT_Supprimer_PR.setText("Supprimer");
+        BT_Supprimer_PR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_Supprimer_PRActionPerformed(evt);
+            }
+        });
 
         BT_Consulter_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Consulter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/magnifier-tool.png"))); // NOI18N
         BT_Consulter_PR.setText("Consulter");
+        BT_Consulter_PR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_Consulter_PRActionPerformed(evt);
+            }
+        });
 
         BT_Ajouter_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Ajouter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/plus-black-symbol.png"))); // NOI18N
@@ -111,6 +120,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         BT_Recherche_PR.setText("Rechercher");
 
         BT_Quitter_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Quitter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/fermer-croix-supprimer-erreurs-sortie-icone-4368-16.png"))); // NOI18N
         BT_Quitter_PR.setText("Quitter");
         BT_Quitter_PR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +129,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         });
 
         BT_Aide_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BT_Aide_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/question-mark.png"))); // NOI18N
         BT_Aide_PR.setText("Aide");
         BT_Aide_PR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,47 +174,43 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(BT_Modifier_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Ajouter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Consulter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BT_Recherche_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(image_2_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(image_2_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(image_PR))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BT_Aide_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BT_Quitter_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BT_Aide_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BT_Quitter_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(image_PR)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(Lb_Titre_PR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BT_Recherche_PR)))
-                .addGap(77, 77, 77))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(329, 329, 329)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BT_Recherche_PR)))
-                    .addComponent(Lb_Titre_PR))
-                .addGap(51, 51, 51)
+                .addComponent(Lb_Titre_PR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BT_Recherche_PR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -214,16 +221,16 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                         .addComponent(BT_Consulter_PR)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BT_Supprimer_PR)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(image_PR)
                     .addComponent(image_2_PR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BT_Aide_PR)
-                    .addComponent(BT_Quitter_PR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BT_Aide_PR)
+                        .addComponent(BT_Quitter_PR))
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,11 +238,11 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, 602, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -249,12 +256,9 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
 
-    private void jPanel1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel1ComponentAdded
-
-    }//GEN-LAST:event_jPanel1ComponentAdded
-
     private void BT_Quitter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Quitter_PRActionPerformed
         fa.setVisible(true);
+        gd.EnregistrerProspectsFichier();
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
 
@@ -281,12 +285,51 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fa.setVisible(true);
+        gd.EnregistrerProspectsFichier();
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_Modifier_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Modifier_PRActionPerformed
-        // TODO add your handling code here:
+        try
+        {
+            Modification_Prospect mp = new Modification_Prospect(jTable1,this);
+            mp.setVisible(true);
+            this.setVisible(false);
+        }catch (IndexOutOfBoundsException iobe){
+            JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à modifier ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_BT_Modifier_PRActionPerformed
+
+    private void BT_Supprimer_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Supprimer_PRActionPerformed
+        
+        try
+        {
+            GestionDonnees gd=new GestionDonnees();
+            int numeroProspect=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            
+            int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Prospect?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
+            if (selectedOption == JOptionPane.YES_OPTION) 
+            {
+                gd.SupprimerProspectsCollection(numeroProspect);
+                jTable1.setModel(new Model_Table_Prospect());
+            }
+        }catch(IndexOutOfBoundsException iobe){
+            JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à supprimer ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BT_Supprimer_PRActionPerformed
+
+    private void BT_Consulter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Consulter_PRActionPerformed
+        try
+        {
+            Consultation_Prospects cp=new Consultation_Prospects(jTable1);
+            cp.setVisible(true);
+        }catch (IndexOutOfBoundsException iobe){
+            JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à consulter ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }
+                     
+    }//GEN-LAST:event_BT_Consulter_PRActionPerformed
 
     
 

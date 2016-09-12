@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author glantoine
  */
 public class Nouveau_Prospect extends javax.swing.JFrame {
-
+    // initialisation 
     private Gestion_Prospect gp;
     private GestionDonnees gd=new GestionDonnees();
     
@@ -414,10 +414,10 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel_Contact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Lb_ChampsObligatoires, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jPanel_Contact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Lb_ChampsObligatoires, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,16 +444,15 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                         .addComponent(jPanel_Représentant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Lb_ChampsObligatoires)
-                        .addGap(1, 1, 1)
+                        .addGap(24, 24, 24)
                         .addComponent(logo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Lb_ChampsObligatoires)))
                 .addGap(8, 8, 8)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -493,57 +492,56 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
             
-            String Verification="Veuillez remplir les champs ";
+            String Verification="Veuillez remplir le(s) champ(s): "+"\n";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="Société, ";
+                Verification+="--> Société"+"\n";
             }
 
             if ("".equals(TF_Siret.getText())) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="Siret, ";
+                Verification+="--> Siret"+"\n";
             }
 
             if ("".equals(TF_NumRue.getText())) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="numéro de la rue, ";
+                Verification+="--> Numéro de la rue"+"\n";
             }
 
             if ("".equals(TF_Rue.getText())) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="rue, ";
+                Verification+="--> Adresse"+"\n";
             }
 
             if ("".equals(TF_Ville.getText())) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="ville, ";
+                Verification+="--> Ville"+"\n";
             }
             
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays, ";
+                Verification+="--> Pays"+"\n";
             }
 
             if ("".equals(TF_codePostal.getText())) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="Code postal, ";
+                Verification+="--> Code postal"+"\n";
             }
-
 
             if ("".equals(TF_NomContact.getText())) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="Nom du contact, ";
+                Verification+="--> Nom du contact" + "\n";
             }
 
             if ("".equals(TF_PrenomContact.getText())) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="Prenom du contact";
+                Verification+="--> Prénom du contact"+"\n";
             }
             
-            if ("".equals(jDate.getDate().toString())) {
+            if (jDate.getDate()==null) {
                 Lb_Date.setForeground(Color.red);
-                Verification+="Date";
+                Verification+="--> Date";
             }
 
             if ("".equals(TF_Societe.getText()) || 
@@ -554,7 +552,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
                     "".equals(TF_codePostal.getText()) || 
                     "".equals(TF_NomContact.getText()) ||
-                    /*"".equals(jDate.getDateFormatString()) ||*/
+                    jDate.getDate()==null ||
                     "".equals(TF_PrenomContact.getText())) {
                    
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
@@ -562,8 +560,9 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 
                 
             DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+            sdf.format(jDate.getDate());
+            sdf.parse(sdf.format(jDate.getDate()));
               
-            
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
             Integer.parseInt(TF_Siret.getText()),Integer.parseInt(TF_NumRue.getText()),TF_Rue.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
