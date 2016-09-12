@@ -165,7 +165,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
         label1.setText("Création Software SSII MGc all rights reserved 2016");
 
         jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new Model_Table_Client());
+        jTable1.setModel(new Model_Table_Representants());
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jTable1);
 
@@ -261,7 +261,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
+        jTable1.setModel(new Model_Table_Representants());
     }//GEN-LAST:event_formComponentShown
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -274,8 +274,8 @@ public class Gestion_Representant extends javax.swing.JFrame {
 
     private void BT_QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_QuitterActionPerformed
         //réaffiche la fenêtre fenetre_application
-       /* fa.setVisible(true);
-        this.dispose();*/
+        fa.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BT_QuitterActionPerformed
 
     private void TF_FiltreClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_FiltreClientActionPerformed
@@ -283,10 +283,10 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_TF_FiltreClientActionPerformed
 
     private void BT_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AjouterActionPerformed
-        //Ouvre une fenêtre Nouveau client et masque la fenêtre de gestion client
-       /* Nouveau_Representant nr = new Nouveau_Representant();
-        nr.setVisible(true);
-        this.setVisible(false);*/ 
+        //Ouvre une fenêtre Nouveau Representant et masque la fenêtre de gestion representant
+       Nouveau_Representant nr = new Nouveau_Representant(this);
+       nr.setVisible(true);
+       this.setVisible(false); 
     }//GEN-LAST:event_BT_AjouterActionPerformed
 
     private void BT_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AideActionPerformed

@@ -5,9 +5,10 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.entities.Clients;
+import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class Nouveau_Representant extends javax.swing.JFrame {
 
-    private Gestion_Clients gc;
+    private Gestion_Representant gr;
+    private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternDouble,patternCodePostalNumeroRue;
+    private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherTauxCommission,matcherSalaireBrut,matcherCodePostal,matcherNumeroRue;
 
-    public Nouveau_Representant(Gestion_Clients gc) {
+    public Nouveau_Representant(Gestion_Representant gr) {
         initComponents();
         setLocationRelativeTo(null);
-        this.gc = gc;
+        this.gr = gr;
     }
 
     /**
@@ -63,8 +66,8 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         TF_Rue = new javax.swing.JTextField();
         logo = new javax.swing.JLabel();
         jPanel_Entreprise1 = new javax.swing.JPanel();
-        Lb_SalaireBrute = new javax.swing.JLabel();
-        TF_SalaireBrute = new javax.swing.JTextField();
+        Lb_SalaireBrut = new javax.swing.JLabel();
+        TF_SalaireBrut = new javax.swing.JTextField();
         Lb_TauxComission = new javax.swing.JLabel();
         TF_TauxComission = new javax.swing.JTextField();
 
@@ -301,13 +304,13 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         jPanel_Entreprise1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_Entreprise1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PAIE", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Condensed", 2, 24), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        Lb_SalaireBrute.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        Lb_SalaireBrute.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_SalaireBrute.setText("Salaire Brute");
+        Lb_SalaireBrut.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_SalaireBrut.setForeground(new java.awt.Color(102, 102, 102));
+        Lb_SalaireBrut.setText("* Salaire Brut");
 
         Lb_TauxComission.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_TauxComission.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_TauxComission.setText("Taux de commission.");
+        Lb_TauxComission.setText("* Taux de commission.");
 
         javax.swing.GroupLayout jPanel_Entreprise1Layout = new javax.swing.GroupLayout(jPanel_Entreprise1);
         jPanel_Entreprise1.setLayout(jPanel_Entreprise1Layout);
@@ -316,11 +319,11 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             .addGroup(jPanel_Entreprise1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_Entreprise1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lb_SalaireBrute)
+                    .addComponent(Lb_SalaireBrut)
                     .addComponent(Lb_TauxComission))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel_Entreprise1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TF_SalaireBrute, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(TF_SalaireBrut, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(TF_TauxComission))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
@@ -328,8 +331,8 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             jPanel_Entreprise1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Entreprise1Layout.createSequentialGroup()
                 .addGroup(jPanel_Entreprise1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lb_SalaireBrute)
-                    .addComponent(TF_SalaireBrute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lb_SalaireBrut)
+                    .addComponent(TF_SalaireBrut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_Entreprise1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_TauxComission)
@@ -355,7 +358,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                             .addComponent(jPanel_Entreprise1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_RepresentantLayout.createSequentialGroup()
                                 .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,7 +422,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
-        gc.setVisible(true);
+        gr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -443,7 +446,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
         //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
-        gc.setVisible(true);
+        gr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
 
@@ -452,7 +455,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
 
             //Réinitialise les couleurs des labels
             Lb_TauxComission.setForeground(new java.awt.Color(102, 102, 102));
-            Lb_SalaireBrute.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_SalaireBrut.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NumRue.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Rue.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Ville.setForeground(new java.awt.Color(102, 102, 102));
@@ -460,100 +463,96 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
+            
+            patternNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
+            patternMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            patternNumeroTel = Pattern.compile("[0-9]{10}");
+            patternDouble=Pattern.compile("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
+            patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
+            
+            String Verification = "Veuillez remplir correctement le(s) champs\n";
 
-            String Verification = "Veuillez remplir les champs ";
-
-            if ("".equals(TF_SalaireBrute.getText())) {
-                Lb_SalaireBrute.setForeground(Color.red);
-                Verification += "Société, ";
+            matcherSalaireBrut=patternDouble.matcher(TF_SalaireBrut.getText());
+            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches()) {
+                Lb_SalaireBrut.setForeground(Color.red);
+                Verification += "--> Salaire Brut\n";
             }
-
-            if ("".equals(TF_TauxComission.getText())) {
+            matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
+            if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
                 Lb_TauxComission.setForeground(Color.red);
-                Verification += "Siret, ";
+                Verification += "--> Siret\n";
             }
-
-            if ("".equals(TF_NumRue.getText())) {
+            matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification += "numéro de la rue, ";
+                Verification += "--> Numéro de la rue\n";
             }
 
-            if ("".equals(TF_Rue.getText())) {
+            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
+            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
-                Verification += "rue, ";
+                Verification+="--> Adresse\n";
             }
 
-            if ("".equals(TF_Ville.getText())) {
+            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
-                Verification += "ville, ";
+                Verification+="--> Ville\n";
             }
 
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification += "Pays, ";
+                Verification+="--> Pays\n";
             }
 
-            if ("".equals(TF_codePostal.getText())) {
+            matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification += "code postal, ";
+                Verification+="--> Code postal\n";
             }
 
-            if ("".equals(TF_NomContact.getText())) {
+            matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
+            if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification += "nom du contact, ";
+                Verification+="--> Nom du contact\n";
             }
 
-            if ("".equals(TF_PrenomContact.getText())) {
+            matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
+            if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification += "prenom du contact";
+                Verification+="--> Prénom du contact\n";
+            }
+            
+            matcherMail = patternMail.matcher(TF_Mail.getText());
+            
+            if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
+            {
+                Verification+="--> Email\n";
+                Lb_Mail.setForeground(Color.red);
+            }
+            
+            
+            matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
+
+            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
+            {
+                Verification+="--> Numéro de téléphone\n";
+                Lb_Telephone.setForeground(Color.red);
             }
 
-            if ("".equals(TF_PrenomContact.getText())
-                    || "".equals(TF_SalaireBrute.getText())
-                    || "".equals(TF_TauxComission.getText())
-                    || "".equals(TF_NumRue.getText())
-                    || "".equals(TF_Rue.getText())
-                    || "".equals(TF_Ville.getText())
-                    || "Selection".equals(CB_Pays.getSelectedItem().toString())
-                    || "".equals(TF_codePostal.getText())
-                    || "".equals(TF_NomContact.getText())) 
+            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches() || "".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches() || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  
             {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             }
             else 
             {
-
-                String chaine1;
-                chaine1 = TF_NomContact.getText() + ";"
-                        + TF_PrenomContact.getText() + ";"
-                        + TF_SalaireBrute.getText() + ";"
-                        + TF_NumRue.getText() + " "
-                        + TF_Rue.getText() + ";"
-                        + TF_Ville.getText() + ";"
-                        + TF_Mail.getText() + ";"
-                        + TF_Telephone.getText() + ";"
-                        + CB_Pays.getSelectedItem().toString() + ";"
-                        + TF_codePostal.getText() + ";";
-
-                try {
-                    File ff = new File("Clients.txt");
-
-                    ff.createNewFile();
-
-                    BufferedWriter ffw = new BufferedWriter(new FileWriter(ff, true));
-
-                    ffw.write(chaine1);
-                    ffw.newLine();
-                    ffw.close();
-
-                    //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
-                    dispose();
-                    gc.setVisible(true);
-
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
-                }
-
+                GestionDonnees gd=new GestionDonnees();
+                gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
+                
+                dispose();
+                gr.setVisible(true);
             }
 
         } catch (Exception ex) {
@@ -580,7 +579,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_Pays;
     private javax.swing.JLabel Lb_PrenomContact;
     private javax.swing.JLabel Lb_Rue;
-    private javax.swing.JLabel Lb_SalaireBrute;
+    private javax.swing.JLabel Lb_SalaireBrut;
     private javax.swing.JLabel Lb_TauxComission;
     private javax.swing.JLabel Lb_Telephone;
     private javax.swing.JLabel Lb_Ville;
@@ -590,7 +589,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NumRue;
     private javax.swing.JTextField TF_PrenomContact;
     private javax.swing.JTextField TF_Rue;
-    private javax.swing.JTextField TF_SalaireBrute;
+    private javax.swing.JTextField TF_SalaireBrut;
     private javax.swing.JTextField TF_TauxComission;
     private javax.swing.JTextField TF_Telephone;
     private javax.swing.JTextField TF_Ville;

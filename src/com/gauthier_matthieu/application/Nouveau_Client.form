@@ -88,7 +88,7 @@
                               <Component id="Lb_ChampsObligatoires" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                               <Component id="label1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="81" max="32767" attributes="0"/>
+                          <EmptySpace pref="91" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -125,7 +125,7 @@
                           <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Lb_ChampsObligatoires" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="64" max="32767" attributes="0"/>
+                          <EmptySpace pref="80" max="32767" attributes="0"/>
                           <Component id="label1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">

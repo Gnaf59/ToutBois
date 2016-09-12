@@ -315,33 +315,119 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
     
-   /* private void InitialisationIncrementNumeroRepresentants()
+    private void InitialisationIncrementNumeroRepresentants()
     {
         Iterator i = this.representants.keySet().iterator();
         int clef;
         Representants valeur;
-       // Representants.setIncrement(0);
+        Representants.setIncrement(1);
         while (i.hasNext())
             {
                 clef = (int)i.next();
                 valeur = (Representants)representants.get(clef);
                 
-                if (valeur.getIncrement()<valeur.getNumeroProspect())
+                if (valeur.getIncrement()<valeur.getNumeroRepresentant())
                 {
-                    Prospects.setIncrement(valeur.getNumeroProspect()+1);
+                    Prospects.setIncrement(valeur.getNumeroRepresentant()+1);
                 }
             }
         
-    }*/
-    public void EnregistrerRepresentantsCollection()
+    }
+    public void ChargerDonneesRepresentants()
     {
+       
+            try {
+                InputStream ips = new FileInputStream("Representants.txt");
+                InputStreamReader ipsr = new InputStreamReader(ips,"UTF-8");
+                BufferedReader br = new BufferedReader(ipsr); 
+                
+                String ligne;
+                String[] enregistrement;               
+                
+                //parcours toutes les lignes du fichier Representants.txt
+                while ((ligne = br.readLine()) != null)
+                {
+                   enregistrement=ligne.split(";");
+                   EnregistrerRepresentantsCollection(Integer.parseInt(enregistrement[0]),enregistrement[1],
+                           enregistrement[2],Integer.parseInt(enregistrement[3]),enregistrement[4],
+                           enregistrement[5],enregistrement[6],enregistrement[7],
+                           enregistrement[8],enregistrement[9],enregistrement[10],Double.parseDouble(enregistrement[11]),
+                           Double.parseDouble(enregistrement[12]));
+                }
+            
+            //Met l'incrément de La classe Representants à la valeur du plus haut numéro de prospect inclus 
+            InitialisationIncrementNumeroRepresentants();
+        }     
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Chargement des données", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        
+    }
+    public void EnregistrerRepresentantsCollection(String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
+    {
+        //Enregistre le Prospect dans la collection
+        Representants objetRepresentants=new Representants(salaireBrut,tauxCommission,nomRepresentant,prenomRepresentant,numeroVoie,adresse,complementAdresse,ville,mail,numerotel,pays,codePostal);
+        
+        // on prend le numero de Representant existant dans l'objet prospect 
+        GestionDonnees.representants.put(objetRepresentants.getNumeroRepresentant(),objetRepresentants);
     
+    }
+    public void EnregistrerRepresentantsCollection(int numeroRepresentant,String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
+    {
+        //Enregistre le Prospect dans la collection
+        Representants objetRepresentants=new Representants(salaireBrut,tauxCommission,nomRepresentant,prenomRepresentant,numeroVoie,adresse,complementAdresse,ville,mail,numerotel,pays,codePostal);
+        objetRepresentants.setNumeroRepresentant(numeroRepresentant);
+        // on prend le numero de Representant existant dans l'objet prospect 
+        GestionDonnees.representants.put(objetRepresentants.getNumeroRepresentant(),objetRepresentants);
     
     }
     
     public void EnregistrerRepresentantsFichier()
     {
-    
+        Iterator i = GestionDonnees.representants.keySet().iterator();
+        int clef;
+        Representants valeur; // valeur à l'indice ou clef 
+        String chaineEnregistrement;
+        
+         try
+         {
+            File ff = new File("Representants.txt");
+            
+            ff.createNewFile();
+            PrintWriter ffw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ff),"utf8")));
+            
+            while (i.hasNext())
+            {
+                clef = (int)i.next();
+                valeur = (Representants)representants.get(clef);
+                
+                
+                        
+                                      
+                chaineEnregistrement= Integer.toString(valeur.getNumeroRepresentant())+";"
+                                      +valeur.getNom()+";"
+                                      +valeur.getPrenom()+";"
+                                      +Integer.toString(valeur.getNumeroVoie())+";"
+                                      +valeur.getAdresse()+";"
+                                      +valeur.getComplementAdresse()+";"
+                                      +valeur.getVille()+";"
+                                      +valeur.getCodePostal()+";"
+                                      +valeur.getPays()+";"
+                                      +valeur.getMail()+";"
+                                      +valeur.getNumerotel()+";"
+                                      +Double.toString(valeur.getSalaireBrut())+";"
+                                      +Double.toString(valeur.getTauxCommission());
+                
+                ffw.write(chaineEnregistrement+"\n");
+            }
+            ffw.close();            
+            } 
+            catch (IOException ex) 
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
+            }
     
     }
+    
 }

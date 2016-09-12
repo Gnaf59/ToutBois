@@ -17,10 +17,9 @@ import javax.swing.JOptionPane;
 public class Model_Table_Representants extends AbstractTableModel {
 
     private String[] columnNames = {
-        "Numéro client",
-        "Nom contact",
-        "Prénom contact",
-        
+        "Numéro représentants",
+        "Nom représentants",
+        "Prénom représentants",
         "Adresse",
         "Complement d'adresse",
         "Ville",
@@ -28,10 +27,10 @@ public class Model_Table_Representants extends AbstractTableModel {
         "Pays",
         "Mail",
         "Numéro de Tel",
-        "Nombre de commande",
-        "Numéro Représentant"};
+        "Salaire Brut",
+        "Taux commission"};
 
-    private HashMap<Integer, Clients> clients;
+    private HashMap<Integer, Representants> representants;
     private Object[][] tableData; 
     private GestionDonnees gd = new GestionDonnees();
     
@@ -39,25 +38,23 @@ public class Model_Table_Representants extends AbstractTableModel {
     public Model_Table_Representants() {
     
         //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
-        this.clients=this.gd.getClients();
-        this.tableData= new Object[clients.keySet().size()][getColumnCount()];
+        this.representants=this.gd.getRepresentants();
+        this.tableData= new Object[representants.keySet().size()][getColumnCount()];
         int index = 0;
-        for (int key : clients.keySet()) {
-            Clients cli = clients.get(key);
-            tableData[index][0] = cli.getNumeroClient();
-            tableData[index][1] = cli.getNom();
-            tableData[index][2] = cli.getPrenom();
-            tableData[index][3] = cli.getNomEntreprise();
-            tableData[index][4] = cli.getSiret();
-            tableData[index][5] = cli.getNumeroVoie()+" "+cli.getAdresse();
-            tableData[index][6] = cli.getComplementAdresse();
-            tableData[index][7] = cli.getVille();
-            tableData[index][8] = cli.getCodePostal();
-            tableData[index][9] = cli.getPays();
-            tableData[index][10] = cli.getMail();
-            tableData[index][11] = cli.getNumerotel();
-            tableData[index][12] = cli.getNbrCommande();
-            tableData[index][13] = cli.getNumeroRepresentant();
+        for (int key : representants.keySet()) {
+            Representants rep = representants.get(key);
+            tableData[index][0] = rep.getNumeroRepresentant();
+            tableData[index][1] = rep.getNom();
+            tableData[index][2] = rep.getPrenom();
+            tableData[index][3] = rep.getNumeroVoie()+" "+rep.getAdresse();
+            tableData[index][4] = rep.getComplementAdresse();
+            tableData[index][5] = rep.getVille();
+            tableData[index][6] = rep.getCodePostal();
+            tableData[index][7] = rep.getPays();
+            tableData[index][8] = rep.getMail();
+            tableData[index][9] = rep.getNumerotel();
+            tableData[index][10] = rep.getSalaireBrut();
+            tableData[index][11] = rep.getTauxCommission();
            
             index++;
         }
@@ -66,7 +63,7 @@ public class Model_Table_Representants extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return clients.size();
+        return representants.size();
     }
 
     @Override

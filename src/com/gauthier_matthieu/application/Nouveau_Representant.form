@@ -89,7 +89,7 @@
                               <Component id="jPanel_Adresse" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel_Entreprise" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Bt_Valider" min="-2" max="-2" attributes="0"/>
@@ -604,12 +604,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Lb_SalaireBrute" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_SalaireBrut" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Lb_TauxComission" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TF_SalaireBrute" pref="200" max="32767" attributes="0"/>
+                          <Component id="TF_SalaireBrut" pref="200" max="32767" attributes="0"/>
                           <Component id="TF_TauxComission" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -620,8 +620,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Lb_SalaireBrute" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TF_SalaireBrute" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Lb_SalaireBrut" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TF_SalaireBrut" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -634,7 +634,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="Lb_SalaireBrute">
+            <Component class="javax.swing.JLabel" name="Lb_SalaireBrut">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Gill Sans MT" size="14" style="0"/>
@@ -642,10 +642,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Salaire Brute"/>
+                <Property name="text" type="java.lang.String" value="* Salaire Brut"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TF_SalaireBrute">
+            <Component class="javax.swing.JTextField" name="TF_SalaireBrut">
             </Component>
             <Component class="javax.swing.JLabel" name="Lb_TauxComission">
               <Properties>
@@ -655,7 +655,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Taux de commission."/>
+                <Property name="text" type="java.lang.String" value="* Taux de commission."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TF_TauxComission">
