@@ -26,7 +26,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
     
     public Gestion_Representant(fenetre_applications fa) {
         this.fa=fa;
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         initComponents();
         setLocationRelativeTo(null);
         
@@ -113,7 +113,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
         });
 
         BT_Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BT_Ajouter.setIcon(new javax.swing.ImageIcon("C:\\Users\\mdeschamps\\Documents\\NetBeansProjects\\ToutBois\\src\\com\\gauthier_matthieu\\image\\plus-black-symbol.png")); // NOI18N
+        BT_Ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/plus-black-symbol.png"))); // NOI18N
         BT_Ajouter.setText("Nouveau");
         BT_Ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,9 +284,9 @@ public class Gestion_Representant extends javax.swing.JFrame {
 
     private void BT_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AjouterActionPerformed
         //Ouvre une fenêtre Nouveau client et masque la fenêtre de gestion client
-       /* Nouveau_Client nc = new Nouveau_Client(this);
-        nc.setVisible(true);
-        this.setVisible(false);*/
+       /* Nouveau_Representant nr = new Nouveau_Representant();
+        nr.setVisible(true);
+        this.setVisible(false);*/ 
     }//GEN-LAST:event_BT_AjouterActionPerformed
 
     private void BT_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AideActionPerformed

@@ -172,8 +172,26 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
     
-    
-    public void ChargerDonneesProspect()
+    private void InitialisationIncrementNumeroProspect()
+    {
+        Iterator i = this.prospects.keySet().iterator();
+        int clef;
+        Prospects valeur;
+        Prospects.setIncrement(1);
+        while (i.hasNext())
+            {
+                clef = (int)i.next();
+                valeur = (Prospects)prospects.get(clef);
+                
+                if (valeur.getIncrement()<valeur.getNumeroProspect())
+                {
+                    Prospects.setIncrement(valeur.getNumeroProspect()+1);
+                }
+            }
+        
+    }
+    //-------------------------------------------------------------------------------------------------------------------------
+     public void ChargerDonneesProspect()
     {
        
             try {
@@ -185,7 +203,7 @@ public class GestionDonnees {
                 String[] enregistrement;
                 DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
                 
-                //parcours toutes les lignes du fichier Clients.txt
+                //parcours toutes les lignes du fichier Prospect.txt
                 while ((ligne = br.readLine()) != null)
                 {
                    enregistrement=ligne.split(";");
@@ -196,8 +214,8 @@ public class GestionDonnees {
                            enregistrement[12],Integer.parseInt(enregistrement[13]),sdf.parse(enregistrement[14]));
                 }
             
-            //Met l'incrément de La classe client à la valeur du plus haut numéro de client inclus 
-            //InitialisationIncrementNumeroClient();
+            //Met l'incrément de La classe prospect à la valeur du plus haut numéro de prospect inclus 
+            InitialisationIncrementNumeroProspect();
         }     
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Chargement des données", JOptionPane.ERROR_MESSAGE);
@@ -205,9 +223,7 @@ public class GestionDonnees {
         }
         
     }
-    
-    
-    
+    //-------------------------------------------------------------------------------------------------------------------------   
     public void EnregistrerProspectsExistantCollection(int numeroProspect,String nomContact,String prenomContact,String societe,
             int siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
@@ -228,8 +244,7 @@ public class GestionDonnees {
         }
          
     }
-    
-    
+    //-------------------------------------------------------------------------------------------------------------------------   
     public void EnregistrerNouveauProspectsCollection(String nomContact,String prenomContact,String societe,
             int siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
@@ -240,7 +255,7 @@ public class GestionDonnees {
         // on prend le numero de client existant dans l'objet prospect 
         GestionDonnees.prospects.put(objetProspect.getNumeroProspect(),objetProspect);
     }
-    
+    //-------------------------------------------------------------------------------------------------------------------------
     public void EnregistrerProspectsFichier()
     {
         Iterator i = GestionDonnees.prospects.keySet().iterator();
@@ -248,13 +263,8 @@ public class GestionDonnees {
         Prospects valeur; // valeur à l'indice ou clef 
         String chaineEnregistrement;
         
-        
-        try{
-            
-            
-            
-            
-            
+         try
+         {
             File ff = new File("Prospects.txt");
             
             ff.createNewFile();
@@ -286,7 +296,6 @@ public class GestionDonnees {
                                       +dateString;
                 
                 ffw.write(chaineEnregistrement+"\n");
-                //ffw.newLine();                
             }
             ffw.close();            
             } 
@@ -294,12 +303,36 @@ public class GestionDonnees {
             {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
             }
-                
+    }
+    //-------------------------------------------------------------------------------------------------------------------------
+    public void SupprimerProspectsCollection (int numProspect)
+    {
+        this.prospects.remove(numProspect);
     }
     
+    //-------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------
     
-    
-    
+   /* private void InitialisationIncrementNumeroRepresentants()
+    {
+        Iterator i = this.representants.keySet().iterator();
+        int clef;
+        Representants valeur;
+       // Representants.setIncrement(0);
+        while (i.hasNext())
+            {
+                clef = (int)i.next();
+                valeur = (Representants)representants.get(clef);
+                
+                if (valeur.getIncrement()<valeur.getNumeroProspect())
+                {
+                    Prospects.setIncrement(valeur.getNumeroProspect()+1);
+                }
+            }
+        
+    }*/
     public void EnregistrerRepresentantsCollection()
     {
     

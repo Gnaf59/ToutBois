@@ -1,6 +1,5 @@
 1;10;10;10;10;10;10;10;10;10;Autriche;10;10;0;1
 4;41;41;41;41;41;41;41;41;41;Bulgarie;41;41;0;1
-5;10;10;10;10;10;10;10;10;10;Belgique;;10;0;1
 6;10;10;10;10;10;10;10;10;10;Allemagne;;10;0;1
 7;benjamin;boutton;10;10;10;rue des singes;10;Imaginaire;10;Chypre;;;0;1
 8;john;dupond;fdsfds;101;10;Avenue Léopold-II;;jenesaitpas;56456;Chypre;;;0;1
