@@ -12,12 +12,12 @@ import java.util.Date;
  * @author glantoine
  */
 public class Prospects extends Personnes{
-    private String nomEntreprise;
+    private String nomEntreprise,siret;
     private Date derniereVisite;
-    private int numeroProspect,siret,numeroRepresentant;
+    private int numeroProspect,numeroRepresentant;
     private static int increment=1;
 
-    public Prospects(String nomEntreprise,int siret, int numeroRepresentant, String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
+    public Prospects(String nomEntreprise,String siret, int numeroRepresentant, String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.nomEntreprise=nomEntreprise;
         this.siret = siret;
@@ -50,11 +50,11 @@ public class Prospects extends Personnes{
         this.numeroProspect = numeroProspect;
     }
 
-    public int getSiret() {
+    public String getSiret() {
         return siret;
     }
 
-    public void setSiret(int siret) {
+    public void setSiret(String siret) {
         this.siret = siret;
     }
 

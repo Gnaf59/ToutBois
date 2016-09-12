@@ -17,17 +17,18 @@ import javax.swing.JOptionPane;
  * @author glantoine
  */
 public class Gestion_Prospect extends javax.swing.JFrame {
-    private GestionDonnees gd = new GestionDonnees();
-    private fenetre_applications fa;
+    
+    private fenetre_applications fa=new fenetre_applications();
     /**
      * Creates new form Gestion_Clients
      * @param fa Nécessite La fenêtre de démarrage du programme en paramêtre Pour gérer son affichage
      */
     public Gestion_Prospect(fenetre_applications fa) {
-        initComponents();
-        
-        setLocationRelativeTo(null);
         this.fa=fa;
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
+        initComponents();
+        setLocationRelativeTo(null);
+        
         
     }
 
@@ -258,7 +259,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
     private void BT_Quitter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Quitter_PRActionPerformed
         fa.setVisible(true);
-        gd.EnregistrerProspectsFichier();
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
 
@@ -269,8 +269,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void BT_Ajouter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Ajouter_PRActionPerformed
         Nouveau_Prospect np = new Nouveau_Prospect(this);
         np.setVisible(true);
-        this.setVisible(false);
-                  
+        this.setVisible(false);           
     }//GEN-LAST:event_BT_Ajouter_PRActionPerformed
 
     private void BT_Aide_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Aide_PRActionPerformed
@@ -285,7 +284,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fa.setVisible(true);
-        gd.EnregistrerProspectsFichier();
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -302,7 +300,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_Modifier_PRActionPerformed
 
     private void BT_Supprimer_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Supprimer_PRActionPerformed
-        
         try
         {
             GestionDonnees gd=new GestionDonnees();
@@ -323,7 +320,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void BT_Consulter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Consulter_PRActionPerformed
         try
         {
-            Consultation_Prospects cp=new Consultation_Prospects(jTable1);
+            Consultation_Prospects cp=new Consultation_Prospects(jTable1,this);
             cp.setVisible(true);
         }catch (IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à consulter ", " ERREUR ", JOptionPane.ERROR_MESSAGE);

@@ -25,12 +25,14 @@ import java.util.*;
 public class Consultation_Prospects extends javax.swing.JFrame {
     private DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
     private JTable tableau;
+    private Gestion_Prospect gp;
     //transmition tableau dans constructeur
-    public Consultation_Prospects(JTable tableau) {
+    public Consultation_Prospects(JTable tableau,Gestion_Prospect gp) {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau=tableau;
+        this.gp=gp;
         
         Lb_NumeroProspect.setText("");
         Lb_Complement_Consult.setText("");
@@ -58,7 +60,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_NomContact_Consult.setText(prospectObjet.getNom());
         Lb_PrenomContact_Consult.setText(prospectObjet.getPrenom());
         Lb_Societe_Consult.setText(prospectObjet.getNomEntreprise());
-        Lb_Siret_Consult.setText(Integer.toString(prospectObjet.getSiret()));
+        Lb_Siret_Consult.setText(prospectObjet.getSiret());
         Lb_NumRue_Consult.setText(Integer.toString(prospectObjet.getNumeroVoie()));
         Lb_Rue_Consult.setText(prospectObjet.getAdresse());
         Lb_Complement_Consult.setText(prospectObjet.getComplementAdresse());
@@ -68,10 +70,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Mail_Consult.setText(prospectObjet.getMail());
         Lb_Telephone_Consult.setText(prospectObjet.getNumerotel());
         Lb_DerniereVisite_Consult.setText(sdf.format(prospectObjet.getDerniereVisite()));
-        
-        
         //Lb_RepresentantNomPrenom_Consult.setText(Integer.toString(prospectObjet.getNumeroRepresentant()));
-        //Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
     }
     
     
@@ -129,11 +128,16 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_NumeroProspect = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Consultation Clients");
+        setTitle("Consultation Prospect");
         setMinimumSize(new java.awt.Dimension(950, 530));
         setName("Consultation Clients"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel_ConsutationProspect.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_ConsutationProspect.setMaximumSize(new java.awt.Dimension(950, 530));
@@ -564,8 +568,14 @@ public class Consultation_Prospects extends javax.swing.JFrame {
     }//GEN-LAST:event_Bt_AideActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
-        this.dispose();
+    gp.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    gp.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

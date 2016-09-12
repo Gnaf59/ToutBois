@@ -11,7 +11,8 @@ import java.awt.Toolkit;
 import java.io.*;
 import java.text.DateFormat;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -28,42 +29,42 @@ public class Modification_Prospect extends javax.swing.JFrame {
     private Prospects prospectObjet; 
     private JTable tableau;
     private Gestion_Prospect gp;
+    private Pattern verifNomPrenomVilleAdresse,verifMail,verifSiret,verifNumeroTel,verifCodePostaleNumeroRue;
+    private Matcher matcherAdresse, matcherMail, matcherSiret,matcherNumeroTel,matcherCodePostale,
+            matcherNumeroRue,matcherNom,matcherPrenom,matcherVille;
+            
     
+    /**
+     * Initialise tous les composants de la fenêtre
+     * @param tableau Tableau des prospects de l'écran gestion Prospect
+     * @param gc Ecran Gestion_Prospect
+     */
     
     
     public Modification_Prospect(JTable tableau,Gestion_Prospect gp) {
-        
-        
         initComponents();
         setLocationRelativeTo(null);
         this.gp=gp;
         this.tableau=tableau;
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         this.prospectObjet= prospects.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
         TF_NomContact.setText(prospectObjet.getNom());
         TF_PrenomContact.setText(prospectObjet.getPrenom());
         TF_Societe.setText(prospectObjet.getNomEntreprise());
-        TF_Siret.setText(Integer.toString(prospectObjet.getSiret()));
+        TF_Siret.setText(prospectObjet.getSiret());
         TF_NumRue.setText(Integer.toString(prospectObjet.getNumeroVoie()));
-        TF_Rue.setText(prospectObjet.getAdresse());
+        TF_Adresse.setText(prospectObjet.getAdresse());
         TF_Complement.setText(prospectObjet.getComplementAdresse());
         TF_Ville.setText(prospectObjet.getVille());
         TF_codePostal.setText(prospectObjet.getCodePostal());
         CB_Pays.setSelectedItem(prospectObjet.getPays());
         TF_Mail.setText(prospectObjet.getMail());
         TF_Telephone.setText(prospectObjet.getNumerotel());
-        //jD_DerniereVisite.setText(sdf.format(prospectObjet.getDerniereVisite()));
-        
-        
-        
-        
         //CB_Representant.setSelectedItem(Integer.toString(prospectObjet.getNumeroRepresentant()));
     }
     
-    /* Fonction pour afficher logo*/
-    
-    
-    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +93,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         Lb_Ville = new javax.swing.JLabel();
         Lb_CodePostal = new javax.swing.JLabel();
         Lb_Pays = new javax.swing.JLabel();
-        Lb_Rue = new javax.swing.JLabel();
+        Lb_Adresse = new javax.swing.JLabel();
         Lb_NumRue = new javax.swing.JLabel();
         TF_NumRue = new javax.swing.JTextField();
         TF_Complement = new javax.swing.JTextField();
@@ -100,7 +101,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         TF_codePostal = new javax.swing.JTextField();
         Lb_Complement = new javax.swing.JLabel();
         CB_Pays = new javax.swing.JComboBox();
-        TF_Rue = new javax.swing.JTextField();
+        TF_Adresse = new javax.swing.JTextField();
         jPanel_Entreprise1 = new javax.swing.JPanel();
         Lb_Societe = new javax.swing.JLabel();
         TF_Societe = new javax.swing.JTextField();
@@ -115,7 +116,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Modification Clients");
+        setTitle("Modification Prospect");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
         setResizable(false);
@@ -273,9 +274,9 @@ public class Modification_Prospect extends javax.swing.JFrame {
         Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Pays.setText("* Pays :");
 
-        Lb_Rue.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        Lb_Rue.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Rue.setText("* Adresse :");
+        Lb_Adresse.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Adresse.setForeground(new java.awt.Color(102, 102, 102));
+        Lb_Adresse.setText("* Adresse :");
 
         Lb_NumRue.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_NumRue.setForeground(new java.awt.Color(102, 102, 102));
@@ -303,9 +304,9 @@ public class Modification_Prospect extends javax.swing.JFrame {
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addComponent(TF_NumRue, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Lb_Rue)
+                        .addComponent(Lb_Adresse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_Rue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TF_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TF_Complement)
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addComponent(TF_Ville)
@@ -322,8 +323,8 @@ public class Modification_Prospect extends javax.swing.JFrame {
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_NumRue)
                     .addComponent(TF_NumRue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lb_Rue)
-                    .addComponent(TF_Rue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lb_Adresse)
+                    .addComponent(TF_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_Complement)
@@ -516,71 +517,93 @@ public class Modification_Prospect extends javax.swing.JFrame {
             Lb_Societe.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NumRue.setForeground(new java.awt.Color(102, 102, 102));
-            Lb_Rue.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Adresse.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Ville.setForeground(new java.awt.Color(102, 102, 102));
             Lb_CodePostal.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_DerniereVisite.setForeground(new java.awt.Color(102, 102, 102));
             
-            String Verification="Veuillez remplir les champs ";
+            verifNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
+            verifMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            verifNumeroTel = Pattern.compile("[0-9]{10}");
+            verifSiret=Pattern.compile("[0-9]{14}");
+            verifCodePostaleNumeroRue=Pattern.compile("[0-9]+");
+            
+            String Verification="Veuillez remplir correctement le(s) champ(s): "+"\n";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="Société"+"\n";
+                Verification+="--> Société"+"\n";
             }
-
-            if ("".equals(TF_Siret.getText())) {
+            matcherSiret = verifSiret.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) &&! matcherSiret.matches()){
                 Lb_Siret.setForeground(Color.red);
-                Verification+="Siret"+"\n";
+                Verification+="--> Siret"+"\n";
             }
-
-            if ("".equals(TF_NumRue.getText())) {
+            matcherNumeroRue = verifCodePostaleNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText()) &&! matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="Numéro de la rue"+"\n";
+                Verification+="--> Numéro de la rue"+"\n";
             }
-
-            if ("".equals(TF_Rue.getText())) {
-                Lb_Rue.setForeground(Color.red);
-                Verification+="Adresse"+"\n";
+            matcherAdresse = verifNomPrenomVilleAdresse.matcher(TF_Adresse.getText());
+            if ("".equals(TF_Adresse.getText()) &&! matcherAdresse.matches()) {
+                Lb_Adresse.setForeground(Color.red);
+                Verification+="--> Adresse"+"\n";
             }
-
-            if ("".equals(TF_Ville.getText())) {
+            matcherVille = verifNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText()) &&! matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="Ville"+"\n";
+                Verification+="--> Ville"+"\n";
             }
-            
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays"+"\n";
+                Verification+="--> Pays"+"\n";
             }
-
-            if ("".equals(TF_codePostal.getText())) {
+            matcherCodePostale = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText()) &&! matcherCodePostale.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="code postal"+"\n";
+                Verification+="--> Code postal"+"\n";
             }
-
-
-            if ("".equals(TF_NomContact.getText())) {
+            matcherNom = verifNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
+            if ("".equals(TF_NomContact.getText())&& matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="Nom du contact"+"\n";
+                Verification+="--> Nom du contact" +"\n";
             }
-
-            if ("".equals(TF_PrenomContact.getText())) {
+            matcherPrenom = verifNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
+            if ("".equals(TF_PrenomContact.getText()) &&! matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="Prénom du contact"+"\n";
+                Verification+="--> Prénom du contact"+"\n";
+            }
+            if (jD_DerniereVisite.getDate()==null) {
+                Lb_DerniereVisite.setForeground(Color.red);
+                Verification+="--> Date"+"\n";
+            }
+            matcherMail = verifMail.matcher(TF_Mail.getText());
+            if (!"".equals(TF_Mail.getText())&& !matcherMail.matches()){
+            Lb_Mail.setForeground(Color.red);
+            Verification+="--> Mail"+"\n";
+            }
+            matcherNumeroTel = verifNumeroTel.matcher(TF_Telephone.getText());
+            if(!"".equals(TF_Telephone.getText()) &&! matcherNumeroTel.matches()){
+            Lb_Telephone.setForeground(Color.red);
+            Verification+="--> Numéro de téléphone"+"\n";
             }
 
             if ("".equals(TF_Societe.getText()) || 
-                    "".equals(TF_Siret.getText()) || 
-                    "".equals(TF_NumRue.getText()) || 
-                    "".equals(TF_Rue.getText()) || 
-                    "".equals(TF_Ville.getText()) || 
-                    "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                    "".equals(TF_codePostal.getText()) || 
-                    "".equals(TF_NomContact.getText()) ||
-                    "".equals(jD_DerniereVisite.getDate())||
-                    "".equals(TF_PrenomContact.getText())) {
+                "".equals(TF_Siret.getText()) || 
+                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() ||
+                "".equals(TF_Adresse.getText()) || !matcherAdresse.matches() ||
+                "".equals(TF_Ville.getText()) || !matcherVille.matches() ||
+                "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
+                "".equals(TF_codePostal.getText()) || !matcherCodePostale.matches() ||
+                "".equals(TF_NomContact.getText()) || !matcherNom.matches() ||
+                jD_DerniereVisite.getDate()==null ||
+                "".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) {
+                   
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
                 
@@ -588,8 +611,8 @@ public class Modification_Prospect extends javax.swing.JFrame {
               prospectObjet.setNom(TF_NomContact.getText());
               prospectObjet.setPrenom(TF_PrenomContact.getText());
               prospectObjet.setNomEntreprise(TF_Societe.getText());
-              prospectObjet.setAdresse(TF_Rue.getText());
-              prospectObjet.setSiret(Integer.parseInt(TF_Siret.getText()));
+              prospectObjet.setAdresse(TF_Adresse.getText());
+              prospectObjet.setSiret(TF_Siret.getText());
               prospectObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
               prospectObjet.setComplementAdresse(TF_Complement.getText());
               prospectObjet.setVille(TF_Ville.getText());
@@ -649,6 +672,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
     private javax.swing.JButton Bt_Valider;
     private javax.swing.JComboBox CB_Pays;
     private javax.swing.JComboBox CB_Representant;
+    private javax.swing.JLabel Lb_Adresse;
     private javax.swing.JLabel Lb_ChampsObligatoires;
     private javax.swing.JLabel Lb_CodePostal;
     private javax.swing.JLabel Lb_Complement;
@@ -660,17 +684,16 @@ public class Modification_Prospect extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_Pays;
     private javax.swing.JLabel Lb_PrenomContact;
     private javax.swing.JLabel Lb_RepresentantNomPrenom;
-    private javax.swing.JLabel Lb_Rue;
     private javax.swing.JLabel Lb_Siret;
     private javax.swing.JLabel Lb_Societe;
     private javax.swing.JLabel Lb_Telephone;
     private javax.swing.JLabel Lb_Ville;
+    private javax.swing.JTextField TF_Adresse;
     private javax.swing.JTextField TF_Complement;
     private javax.swing.JTextField TF_Mail;
     private javax.swing.JTextField TF_NomContact;
     private javax.swing.JTextField TF_NumRue;
     private javax.swing.JTextField TF_PrenomContact;
-    private javax.swing.JTextField TF_Rue;
     private javax.swing.JTextField TF_Siret;
     private javax.swing.JTextField TF_Societe;
     private javax.swing.JTextField TF_Telephone;

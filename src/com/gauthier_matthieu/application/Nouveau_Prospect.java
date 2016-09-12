@@ -6,9 +6,10 @@
 package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.entities.*;
-import java.awt.Color;
-import java.text.DateFormat;
+import java.awt.*;
+import java.text.*;
 import java.util.Locale;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,14 +17,22 @@ import javax.swing.JOptionPane;
  * @author glantoine
  */
 public class Nouveau_Prospect extends javax.swing.JFrame {
-    // initialisation 
+     
     private Gestion_Prospect gp;
-    private GestionDonnees gd=new GestionDonnees();
+    private Pattern verifNomPrenomVilleAdresse,verifMail,verifSiret,verifNumeroTel,verifCodePostaleNumeroRue;
+    private Matcher matcherAdresse, matcherMail, matcherSiret,matcherNumeroTel,matcherCodePostale,
+            matcherNumeroRue,matcherNom,matcherPrenom,matcherVille;
+            
+    /**
+     * Initialise tous les composants de la fenêtre
+     * @param gp Ecran Gestion_Prospects
+     */
     
     public Nouveau_Prospect(Gestion_Prospect gp) {
         initComponents();
         setLocationRelativeTo(null);
         this.gp=gp;
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
     }
     
     
@@ -63,7 +72,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         TF_codePostal = new javax.swing.JTextField();
         Lb_Complement = new javax.swing.JLabel();
         CB_Pays = new javax.swing.JComboBox();
-        TF_Rue = new javax.swing.JTextField();
+        TF_Adresse = new javax.swing.JTextField();
         jPanel_Entreprise = new javax.swing.JPanel();
         Lb_Societe = new javax.swing.JLabel();
         TF_Societe = new javax.swing.JTextField();
@@ -78,7 +87,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Nouveau Clients");
+        setTitle("Nouveau Prospect");
         setName("Création Client"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
@@ -267,7 +276,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(Lb_Rue)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_Rue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TF_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TF_Complement)
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addComponent(TF_Ville)
@@ -285,7 +294,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                     .addComponent(Lb_NumRue)
                     .addComponent(TF_NumRue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lb_Rue)
-                    .addComponent(TF_Rue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TF_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lb_Complement)
@@ -312,7 +321,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
 
         Lb_Siret.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Siret.setText("* Siret : ");
+        Lb_Siret.setText("Siret : ");
 
         javax.swing.GroupLayout jPanel_EntrepriseLayout = new javax.swing.GroupLayout(jPanel_Entreprise);
         jPanel_Entreprise.setLayout(jPanel_EntrepriseLayout);
@@ -491,84 +500,103 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             Lb_NomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
-            
-            String Verification="Veuillez remplir le(s) champ(s): "+"\n";
+            Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
+            //initialise les valeur de controles
+            verifNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
+            verifMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            verifNumeroTel = Pattern.compile("[0-9]{10}");
+            verifSiret=Pattern.compile("[0-9]{14}");
+            verifCodePostaleNumeroRue=Pattern.compile("[0-9]+");
+            //controle des différents champs
+            String Verification="Veuillez remplir correctement le(s) champ(s): "+"\n";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
                 Verification+="--> Société"+"\n";
             }
-
-            if ("".equals(TF_Siret.getText())) {
+            matcherSiret = verifSiret.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) &&! matcherSiret.matches()){
                 Lb_Siret.setForeground(Color.red);
                 Verification+="--> Siret"+"\n";
             }
-
-            if ("".equals(TF_NumRue.getText())) {
+            matcherNumeroRue = verifCodePostaleNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText()) &&! matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
                 Verification+="--> Numéro de la rue"+"\n";
             }
-
-            if ("".equals(TF_Rue.getText())) {
+            matcherAdresse = verifNomPrenomVilleAdresse.matcher(TF_Adresse.getText());
+            if ("".equals(TF_Adresse.getText()) &&! matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
                 Verification+="--> Adresse"+"\n";
             }
-
-            if ("".equals(TF_Ville.getText())) {
+            matcherVille = verifNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText()) &&! matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="--> Ville"+"\n";
             }
-            
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays"+"\n";
             }
-
-            if ("".equals(TF_codePostal.getText())) {
+            matcherCodePostale = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText()) &&! matcherCodePostale.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
                 Verification+="--> Code postal"+"\n";
             }
-
-            if ("".equals(TF_NomContact.getText())) {
+            matcherNom = verifNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
+            if ("".equals(TF_NomContact.getText())&& matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="--> Nom du contact" + "\n";
+                Verification+="--> Nom du contact" +"\n";
             }
-
-            if ("".equals(TF_PrenomContact.getText())) {
+            matcherPrenom = verifNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
+            if ("".equals(TF_PrenomContact.getText()) &&! matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
                 Verification+="--> Prénom du contact"+"\n";
             }
-            
             if (jDate.getDate()==null) {
                 Lb_Date.setForeground(Color.red);
-                Verification+="--> Date";
+                Verification+="--> Date"+"\n";
             }
-
+            matcherMail = verifMail.matcher(TF_Mail.getText());
+            if (!"".equals(TF_Mail.getText())&&!matcherMail.matches()){
+            Lb_Mail.setForeground(Color.red);
+            Verification+="--> Mail\n";
+            }
+            matcherNumeroTel = verifNumeroTel.matcher(TF_Telephone.getText());
+            if(!"".equals(TF_Telephone.getText()) &&! matcherNumeroTel.matches()){
+            Lb_Telephone.setForeground(Color.red);
+            Verification+="--> Numéro de téléphone"+"\n";
+            }
+            //Message erreur si Champs non correct et ou non remplis
             if ("".equals(TF_Societe.getText()) || 
-                    "".equals(TF_Siret.getText()) || 
-                    "".equals(TF_NumRue.getText()) || 
-                    "".equals(TF_Rue.getText()) || 
-                    "".equals(TF_Ville.getText()) || 
-                    "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                    "".equals(TF_codePostal.getText()) || 
-                    "".equals(TF_NomContact.getText()) ||
-                    jDate.getDate()==null ||
-                    "".equals(TF_PrenomContact.getText())) {
-                   
+                "".equals(TF_Siret.getText()) || 
+                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() ||
+                "".equals(TF_Adresse.getText()) || !matcherAdresse.matches() ||
+                "".equals(TF_Ville.getText()) || !matcherVille.matches() ||
+                "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
+                "".equals(TF_codePostal.getText()) || !matcherCodePostale.matches() ||
+                "".equals(TF_NomContact.getText()) || !matcherNom.matches() ||
+                (!"".equals(TF_Mail.getText())&&! !matcherMail.matches()) ||
+                (!"".equals(TF_Telephone.getText())&&!matcherNumeroTel.matches()) ||
+                jDate.getDate()==null ||
+                "".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) 
+            {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
                 
                 
-            DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+            DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
             sdf.format(jDate.getDate());
             sdf.parse(sdf.format(jDate.getDate()));
-              
+            GestionDonnees gd=new GestionDonnees(); 
+            
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
-            Integer.parseInt(TF_Siret.getText()),Integer.parseInt(TF_NumRue.getText()),TF_Rue.getText(),TF_Complement.getText(),TF_Ville.getText(),
+            TF_Siret.getText(),Integer.parseInt(TF_NumRue.getText()),TF_Adresse.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
             0,sdf.parse(sdf.format(jDate.getDate())));
             
-            this.dispose();
+            dispose();
             gp.setVisible(true);
             
             }
@@ -634,12 +662,12 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_Societe;
     private javax.swing.JLabel Lb_Telephone;
     private javax.swing.JLabel Lb_Ville;
+    private javax.swing.JTextField TF_Adresse;
     private javax.swing.JTextField TF_Complement;
     private javax.swing.JTextField TF_Mail;
     private javax.swing.JTextField TF_NomContact;
     private javax.swing.JTextField TF_NumRue;
     private javax.swing.JTextField TF_PrenomContact;
-    private javax.swing.JTextField TF_Rue;
     private javax.swing.JTextField TF_Siret;
     private javax.swing.JTextField TF_Societe;
     private javax.swing.JTextField TF_Telephone;

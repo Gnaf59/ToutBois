@@ -208,7 +208,7 @@ public class GestionDonnees {
                 {
                    enregistrement=ligne.split(";");
                    EnregistrerProspectsExistantCollection(Integer.parseInt(enregistrement[0]),enregistrement[1],
-                           enregistrement[2],enregistrement[3],Integer.parseInt(enregistrement[4]),
+                           enregistrement[2],enregistrement[3],enregistrement[4],
                            Integer.parseInt(enregistrement[5]),enregistrement[6],enregistrement[7],
                            enregistrement[8],enregistrement[9],enregistrement[10],enregistrement[11],
                            enregistrement[12],Integer.parseInt(enregistrement[13]),sdf.parse(enregistrement[14]));
@@ -225,7 +225,7 @@ public class GestionDonnees {
     }
     //-------------------------------------------------------------------------------------------------------------------------   
     public void EnregistrerProspectsExistantCollection(int numeroProspect,String nomContact,String prenomContact,String societe,
-            int siret,int numeroVoie,String adresse,String complementAdresse,String ville,
+            String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
     {
         try
@@ -246,7 +246,7 @@ public class GestionDonnees {
     }
     //-------------------------------------------------------------------------------------------------------------------------   
     public void EnregistrerNouveauProspectsCollection(String nomContact,String prenomContact,String societe,
-            int siret,int numeroVoie,String adresse,String complementAdresse,String ville,
+            String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
     {
         //Enregistre le Prospect dans la collection
@@ -283,7 +283,7 @@ public class GestionDonnees {
                                       +valeur.getNom()+";"
                                       +valeur.getPrenom()+";"
                                       +valeur.getNomEntreprise()+";"
-                                      +Integer.toString(valeur.getSiret())+";"
+                                      +valeur.getSiret()+";"
                                       +Integer.toString(valeur.getNumeroVoie())+";"
                                       +valeur.getAdresse()+";"
                                       +valeur.getComplementAdresse()+";"
