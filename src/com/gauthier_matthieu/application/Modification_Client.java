@@ -552,53 +552,53 @@ public class Modification_Client extends javax.swing.JFrame {
             patternSiret=Pattern.compile("[0-9]{14}");
             patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
             
-            String Verification="Veuillez remplir correctement le(s) champs ";
+            String Verification="Veuillez remplir correctement le(s) champs\n";
             
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="Société, ";
+                Verification+="--> Société\n";
             }
             matcherSiret=patternSiret.matcher(TF_Siret.getText());
             if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="Siret, ";
+                Verification+="--> Siret";
             }
             matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="numéro de la rue, ";
+                Verification+="--> Numéro de la rue\n";
             }
             matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
             if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="rue, ";
+                Verification+="--> Adresse\n";
             }
             matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
             if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="ville, ";
+                Verification+="--> Ville\n";
             }
             
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="Pays, ";
+                Verification+="--> Pays\n";
             }
             matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
             if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="code postal, ";
+                Verification+="--> Code Postal\n";
             }
 
            
             matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
             if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="nom du contact, ";
+                Verification+="--> Nom du contact\n";
             }
             matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
             if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="prenom du contact ";
+                Verification+="--> Prenom du contact\n";
             }
             
             
@@ -607,7 +607,7 @@ public class Modification_Client extends javax.swing.JFrame {
             
             if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
             {
-                Verification+="mail ";
+                Verification+="--> Email\n";
                 Lb_Mail.setForeground(Color.red);
             }
             
@@ -616,7 +616,7 @@ public class Modification_Client extends javax.swing.JFrame {
 
             if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
             {
-                Verification+="numéro de téléphone ";
+                Verification+="--> Numéro de téléphone\n";
                 Lb_Telephone.setForeground(Color.red);
             }
             

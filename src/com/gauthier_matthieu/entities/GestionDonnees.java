@@ -7,13 +7,13 @@ package com.gauthier_matthieu.entities;
 
 import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Classe permettant de s'occuper de toute la gestion des données de l'application
+ * comme le chargement et l'enregistrement des fichiers Clients.txt, Prospects.txt, Representant.txt et permet l'accés au données dans toute l'application.
  * @author glantoine
  */
 public class GestionDonnees {
@@ -24,6 +24,10 @@ public class GestionDonnees {
     private static HashMap<Integer,Representants> representants=new HashMap<>();
     private static HashMap<Integer,Prospects> prospects=new HashMap<>();
     
+    /**
+     * 
+     * @return 
+     */
     
     public HashMap<Integer, Clients> getClients() {
         return clients;

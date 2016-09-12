@@ -133,7 +133,6 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_RepresentantNomPrenom_Consult = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         Lb_copyright = new java.awt.Label();
-        Lb_ChampsObligatoires = new javax.swing.JLabel();
         Lb_NumeroClient = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -445,7 +444,7 @@ public class Consultation_Client extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_EntrepriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lb_Societe_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_EntrepriseLayout.setVerticalGroup(
@@ -500,11 +499,6 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_copyright.setForeground(new java.awt.Color(153, 153, 153));
         Lb_copyright.setText("Création Software SSII MGc all rights reserved 2016");
 
-        Lb_ChampsObligatoires.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        Lb_ChampsObligatoires.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_ChampsObligatoires.setText("Les champs précédé d'une étoile (*) sont obligatoires");
-        Lb_ChampsObligatoires.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
         Lb_NumeroClient.setFont(new java.awt.Font("Gill Sans MT", 3, 24)); // NOI18N
         Lb_NumeroClient.setForeground(new java.awt.Color(51, 51, 51));
         Lb_NumeroClient.setText("*");
@@ -531,11 +525,8 @@ public class Consultation_Client extends javax.swing.JFrame {
                                 .addComponent(Lb_NumeroClient, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Lb_ChampsObligatoires)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,15 +554,13 @@ public class Consultation_Client extends javax.swing.JFrame {
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Lb_ChampsObligatoires)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_ConsutationClientsLayout.createSequentialGroup()
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(logo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_ConsutationClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -622,7 +611,6 @@ public class Consultation_Client extends javax.swing.JFrame {
     private javax.swing.JButton Bt_Aide;
     private javax.swing.JButton Bt_Annuler;
     private javax.swing.JButton Bt_Imprimer;
-    private javax.swing.JLabel Lb_ChampsObligatoires;
     private javax.swing.JLabel Lb_CodePostal;
     private javax.swing.JLabel Lb_Complement;
     private javax.swing.JLabel Lb_Complement_Consult;

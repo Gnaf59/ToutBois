@@ -92,14 +92,10 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel_Commande" min="-2" pref="462" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Lb_ChampsObligatoires" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel_Commande" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="jPanel_Contact" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -133,8 +129,6 @@
                           <Component id="jPanel_Adresse" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_Commande" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="Lb_ChampsObligatoires" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="Lb_copyright" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -142,7 +136,7 @@
                           <Component id="jPanel_Contact" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace pref="34" max="32767" attributes="0"/>
                           <Component id="logo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" max="-2" attributes="0">
@@ -702,7 +696,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Lb_Societe_Consult" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Lb_Siret_Consult" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Lb_Siret_Consult" alignment="1" pref="368" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -856,18 +850,6 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cr&#xe9;ation Software SSII MGc all rights reserved 2016"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Lb_ChampsObligatoires">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Gill Sans MT" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Les champs pr&#xe9;c&#xe9;d&#xe9; d&apos;une &#xe9;toile (*) sont obligatoires"/>
-            <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Lb_NumeroClient">
