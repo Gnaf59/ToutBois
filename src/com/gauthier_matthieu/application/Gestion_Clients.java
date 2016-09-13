@@ -304,7 +304,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
        
         try
         {
-            Modification_Client mc = new Modification_Client(jTable1,this);
+            Modification_Clients mc = new Modification_Clients(jTable1,this);
             mc.setVisible(true);
             this.setVisible(false);
         }

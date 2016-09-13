@@ -8,9 +8,6 @@
       <Connection code="Toolkit.getDefaultToolkit().getImage(getClass().getResource(&quot;..//image//logo-02.png&quot;))" type="code"/>
     </Property>
     <Property name="name" type="java.lang.String" value="Cr&#xe9;ation Client" noResource="true"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[950, 560]"/>
-    </Property>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[0, 0]"/>
@@ -651,7 +648,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="* Siret : "/>
+                <Property name="text" type="java.lang.String" value="Siret : "/>
               </Properties>
             </Component>
           </SubComponents>
