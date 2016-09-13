@@ -551,6 +551,8 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                 GestionDonnees gd=new GestionDonnees();
                 gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
                 
+                GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
+                gBDD.insertBDDRepresentant(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
                 dispose();
                 gr.setVisible(true);
             }
