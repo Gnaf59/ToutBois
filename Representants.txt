@@ -1,2 +1,3 @@
 1;toto;tata;10;jhgfdsygfds;101;hgfdkuhfd;10;Autriche;gmapzo@gmoh.com;1045786525;101.0;10.0
 2;oifoiudsqfhiuf;yugtsqfysfgsdgt;10;ruezohfuies;;rstrqrqtqtrtr;564489;Croatie;uhisfhiudsf@mdlkfo.fr;0105641458;87489.0;88.0
+3;jo;letaxi;78;avenue des lapins crétins;;ubiville;898989;Slovénie;;;1024.0;12.0

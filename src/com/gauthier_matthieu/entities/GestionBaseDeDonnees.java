@@ -73,7 +73,7 @@ public class GestionBaseDeDonnees {
                         }   
                 }
    }
-    public ResultSet realiserRequeteLecture(String requete)
+    public ResultSet realiserRequeteSelect(String requete)
     {
         realiserRequete(requete, SELECT);
         return this.resultat;
@@ -105,22 +105,25 @@ public class GestionBaseDeDonnees {
                 + " '"+adresse+"',"
                 + " '"+complementAdresse+"',"
                 + " '"+ville+"',"
-                + " '"+codePostal+"',"
-                + " '"+pays+"',"
                 + " '"+mail+"',"
                 + " '"+numerotel+"',"
+                + " '"+pays+"',"
+                + " '"+codePostal+"',"
                 + " "+salaireBrut+","
                 + " "+tauxCommission+");";
         
         realiserRequeteInsert(requete);
         
-        
-        
-        
-                
-        
-     
+         
     }
+    public ResultSet lectureBDDrepresentant()
+    {
+        String requete;
+        requete= "SELECT * FROM representants;";
+        
+        return realiserRequeteSelect(requete);
+    }
+            
 
     
 }
