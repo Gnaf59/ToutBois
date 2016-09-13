@@ -85,7 +85,7 @@ public class GestionDonnees {
                 clef = (int)i.next();
                 valeur = (Clients)clients.get(clef);
                 
-                if (Clients.getIncrement()<valeur.getNumeroClient())
+                if (Clients.getIncrement()<=valeur.getNumeroClient())
                 {
                     Clients.setIncrement(valeur.getNumeroClient()+1);
                 }
@@ -183,7 +183,7 @@ public class GestionDonnees {
                 clef = (int)i.next();
                 valeur = (Prospects)prospects.get(clef);
                 
-                if (valeur.getIncrement()<valeur.getNumeroProspect())
+                if (valeur.getIncrement()<=valeur.getNumeroProspect())
                 {
                     Prospects.setIncrement(valeur.getNumeroProspect()+1);
                 }
@@ -326,9 +326,9 @@ public class GestionDonnees {
                 clef = (int)i.next();
                 valeur = (Representants)representants.get(clef);
                 
-                if (valeur.getIncrement()<valeur.getNumeroRepresentant())
+                if (valeur.getIncrement()<=valeur.getNumeroRepresentant())
                 {
-                    Prospects.setIncrement(valeur.getNumeroRepresentant()+1);
+                    Representants.setIncrement(valeur.getNumeroRepresentant()+1);
                 }
             }
         

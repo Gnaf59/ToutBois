@@ -20,7 +20,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
      
     private Gestion_Prospect gp;
     private Pattern verifNomPrenomVilleAdresse,verifMail,verifSiret,verifNumeroTel,verifCodePostaleNumeroRue;
-    private Matcher matcherAdresse, matcherMail, matcherSiret,matcherNumeroTel,matcherCodePostale,
+    private Matcher matcherAdresse, matcherMail, matcherSiret,matcherNumeroTel,matcherCodePostal,
             matcherNumeroRue,matcherNom,matcherPrenom,matcherVille;
             
     /**
@@ -509,6 +509,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             verifSiret=Pattern.compile("[0-9]{14}");
             verifCodePostaleNumeroRue=Pattern.compile("[0-9]+");
             //controle des différents champs
+           
             String Verification="Veuillez remplir correctement le(s) champ(s): "+"\n";
             
             if ("".equals(TF_Societe.getText())) {
@@ -539,8 +540,8 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays"+"\n";
             }
-            matcherCodePostale = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
-            if ("".equals(TF_codePostal.getText()) &&! matcherCodePostale.matches()) {
+            matcherCodePostal = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText()) &&! matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
                 Verification+="--> Code postal"+"\n";
             }
@@ -569,18 +570,19 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             Verification+="--> Numéro de téléphone"+"\n";
             }
             //Message erreur si Champs non correct et ou non remplis
-            if ("".equals(TF_Societe.getText()) || 
-                "".equals(TF_Siret.getText()) || 
-                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() ||
-                "".equals(TF_Adresse.getText()) || !matcherAdresse.matches() ||
-                "".equals(TF_Ville.getText()) || !matcherVille.matches() ||
+            if 
+                ("".equals(TF_Societe.getText()) || 
+                (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) || 
+                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || 
+                "".equals(TF_Adresse.getText()) ||!matcherAdresse.matches() || 
+                "".equals(TF_Ville.getText()) || !matcherVille.matches() || 
                 "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                "".equals(TF_codePostal.getText()) || !matcherCodePostale.matches() ||
-                "".equals(TF_NomContact.getText()) || !matcherNom.matches() ||
-                (!"".equals(TF_Mail.getText())&&! !matcherMail.matches()) ||
-                (!"".equals(TF_Telephone.getText())&&!matcherNumeroTel.matches()) ||
+                "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || 
+                "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || 
+                "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||
                 jDate.getDate()==null ||
-                "".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) 
+                (!"".equals(TF_Mail.getText()) && !matcherMail.matches())||
+                (!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))    
             {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
