@@ -1,6 +1,6 @@
 1;10;10;10;10;10;10;10;10;10;Autriche;10;10;0;1
 4;41;41;41;41;41;41;41;41;41;Bulgarie;41;41;0;1
-6;10;10;10;10;10;10;10;10;10;Allemagne;;10;0;1
-7;benjamin;boutton;10;;10;rue des singes;10;Imaginaire;10;Chypre;vfdwsqbgds@casta.fr;;0;1
+6;poto;poutou;10;;10;ruefdgds;10;gfdgfds;10;Allemagne;;;0;1
+7;benjamin;boutton;10;10;10;rue des singes;10;Imaginaire;10;Chypre;;;0;1
 8;john;dupond;fdsfds;101;10;Avenue Léopold-II;;jenesaitpas;56456;Chypre;;;0;1
 9;Lantoine;Gauthier;GauthierMatthieuINC;12345678912345;12;rue des perdu;;Lille;59000;France;;;0;1

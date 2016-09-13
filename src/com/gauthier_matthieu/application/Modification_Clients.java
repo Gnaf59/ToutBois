@@ -21,7 +21,7 @@ import javax.swing.JTable;
  * avant d'enregistrer la modification dans la Collection
  * @author glantoine
  */
-public class Modification_Client extends javax.swing.JFrame {
+public class Modification_Clients extends javax.swing.JFrame {
 
     
     GestionDonnees gd = new GestionDonnees();
@@ -38,7 +38,7 @@ public class Modification_Client extends javax.swing.JFrame {
      * @param tableau Tableau des clients de l'écran gestion Client
      * @param gc Ecran Gestion_Clients
      */
-    public Modification_Client(JTable tableau,Gestion_Clients gc) {
+    public Modification_Clients(JTable tableau,Gestion_Clients gc) {
         initComponents();
         setLocationRelativeTo(null);
         this.gc=gc;
@@ -120,7 +120,6 @@ public class Modification_Client extends javax.swing.JFrame {
         setTitle("Modification Clients");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(950, 560));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -353,7 +352,7 @@ public class Modification_Client extends javax.swing.JFrame {
 
         Lb_Siret.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Siret.setText("* Siret : ");
+        Lb_Siret.setText("Siret : ");
 
         javax.swing.GroupLayout jPanel_Entreprise1Layout = new javax.swing.GroupLayout(jPanel_Entreprise1);
         jPanel_Entreprise1.setLayout(jPanel_Entreprise1Layout);
@@ -468,7 +467,7 @@ public class Modification_Client extends javax.swing.JFrame {
                             .addComponent(jPanel_Commande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
@@ -561,7 +560,7 @@ public class Modification_Client extends javax.swing.JFrame {
             matcherSiret=patternSiret.matcher(TF_Siret.getText());
             if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="--> Siret";
+                Verification+="--> Siret\n";
             }
             matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
