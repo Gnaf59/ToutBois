@@ -298,7 +298,14 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        
+        try
+        {
+        Modification_Representant mr=new Modification_Representant(this, jTable1);
+        mr.setVisible(true);
+        this.setVisible(false);
+        }catch (IndexOutOfBoundsException iobe){
+            JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à modifier ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
