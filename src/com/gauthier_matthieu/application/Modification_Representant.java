@@ -113,7 +113,7 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_TauxComission = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Nouveau Clients");
+        setTitle("Modification Représentant");
         setName("Création Client"); // NOI18N
         setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {

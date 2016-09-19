@@ -325,8 +325,16 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
-        //Consultation_Client cc = new Consultation_Client(jTable1);
-        //cc.setVisible(true);       
+         try
+        {
+            Consultation_Representant cr = new Consultation_Representant(jTable1,this);
+            cr.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à consulter", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }      
     }//GEN-LAST:event_BT_ConsulterActionPerformed
 
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
