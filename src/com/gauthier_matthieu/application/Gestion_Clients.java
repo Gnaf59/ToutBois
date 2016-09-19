@@ -340,8 +340,15 @@ public class Gestion_Clients extends javax.swing.JFrame {
         {
             GestionDonnees gd=new GestionDonnees();
             int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            gd.SupprimerClientsCollection(numeroClient);
-            jTable1.setModel(new Model_Table_Client());     
+            
+            int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Client ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
+            if (selectedOption == JOptionPane.YES_OPTION) 
+            {
+                gd.SupprimerClientsCollection(numeroClient);
+                jTable1.setModel(new Model_Table_Client());
+            }
+            
+                 
         }
         catch(IndexOutOfBoundsException iobe)
         {

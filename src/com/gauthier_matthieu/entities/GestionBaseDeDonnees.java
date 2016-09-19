@@ -134,8 +134,8 @@ public class GestionBaseDeDonnees {
     /**
     * Méthode s'occupant d'exécuter la requête SQL UPDATE
     * 
-     * @param requete requête SQL d'insertion dans la base de donnée (INSERT) à traiter
-     * @return le statut d'éxécution de la requête
+    * @param requete requête SQL d'insertion dans la base de donnée (INSERT) à traiter
+    * @return le statut d'éxécution de la requête
     */
     public int realiserRequeteUpdate(String requete)
     {
@@ -180,7 +180,7 @@ public class GestionBaseDeDonnees {
     public Representants rechercheRepresentant(int numeroRepresentant)
     {
         String requete;
-        requete= "SELECT * FROM representants WHERE 'numeroRepresentant'= "+numeroRepresentant+";";
+        requete= "SELECT * FROM representants WHERE 'numeroRepresentant' = "+numeroRepresentant+";";
         
         objetResultat=realiserRequeteSelect(requete);
         

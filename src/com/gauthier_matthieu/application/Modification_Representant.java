@@ -8,6 +8,7 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.util.HashMap;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -19,9 +20,11 @@ import javax.swing.JTable;
 public class Modification_Representant extends javax.swing.JFrame {
 
     private Gestion_Representant gr;
-    private GestionBaseDeDonnees gBDD;
-    //private JTable tableau;
-    Representants representant;
+    private GestionDonnees gd=new GestionDonnees();
+    //private GestionBaseDeDonnees gBDD;
+    private JTable tableau;
+    private HashMap<Integer,Representants> representant;
+    Representants representantObjet;
     private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternDouble,patternCodePostalNumeroRue;
     private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherTauxCommission,matcherSalaireBrut,matcherCodePostal,matcherNumeroRue;
 
@@ -29,8 +32,25 @@ public class Modification_Representant extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.gr = gr;
-        //this.tableau=tableau;
-        gBDD=new GestionBaseDeDonnees();
+        this.tableau=tableau;
+        this.representant= gd.getRepresentants();
+        this.representantObjet= representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        
+        TF_NomContact.setText(representantObjet.getNom());
+        TF_PrenomContact.setText(representantObjet.getPrenom());
+        TF_NumRue.setText(Integer.toString(representantObjet.getNumeroVoie()));
+        TF_Rue.setText(representantObjet.getAdresse());
+        TF_Complement.setText(representantObjet.getComplementAdresse());
+        TF_Ville.setText(representantObjet.getVille());
+        TF_codePostal.setText(representantObjet.getCodePostal());
+        CB_Pays.setSelectedItem(representantObjet.getPays());
+        TF_Mail.setText(representantObjet.getMail());
+        TF_Telephone.setText(representantObjet.getNumerotel());
+        TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
+        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));
+        
+        
+        /*gBDD=new GestionBaseDeDonnees();
         this.representant=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         TF_NomContact.setText(representant.getNom());
         TF_PrenomContact.setText(representant.getPrenom());
@@ -43,7 +63,9 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_Mail.setText(representant.getMail());
         TF_Telephone.setText(representant.getNumerotel());
         TF_SalaireBrut.setText(Double.toString(representant.getSalaireBrut()));
-        TF_TauxComission.setText(Double.toString(representant.getTauxCommission()));
+        TF_TauxComission.setText(Double.toString(representant.getTauxCommission()));*/
+        
+        
     }
 
     /**
@@ -566,13 +588,21 @@ public class Modification_Representant extends javax.swing.JFrame {
             }
             else 
             {
-                GestionDonnees gd=new GestionDonnees();
-                gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
+                representantObjet.setNom(TF_NomContact.getText());
+                representantObjet.setPrenom(TF_PrenomContact.getText());
+                representantObjet.setNumerotel(TF_Telephone.getText());
+                representantObjet.setMail(TF_Mail.getText());
+                representantObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
+                representantObjet.setAdresse(TF_Rue.getText());
+                representantObjet.setComplementAdresse(TF_Complement.getText());
+                representantObjet.setVille(TF_Ville.getText());
+                representantObjet.setCodePostal(TF_codePostal.getText());
+                representantObjet.setPays(CB_Pays.getSelectedItem().toString());
+                representantObjet.setSalaireBrut(Double.parseDouble(TF_SalaireBrut.getText()));
+                representantObjet.setTauxCommission(Double.parseDouble(TF_TauxComission.getText()));
                 
-                GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
-                gBDD.insertBDDRepresentant(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
-                dispose();
                 gr.setVisible(true);
+                this.dispose();
             }
 
         } catch (Exception ex) {

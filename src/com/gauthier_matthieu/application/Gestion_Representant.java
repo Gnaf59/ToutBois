@@ -298,13 +298,23 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        try
+        /*try
         {
-        Modification_Representant mr=new Modification_Representant(this, jTable1);
-        mr.setVisible(true);
-        this.setVisible(false);
+            Modification_Representant mr=new Modification_Representant(this, jTable1);
+            mr.setVisible(true);
+            this.setVisible(false);
         }catch (IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à modifier ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }*/
+        try
+        {
+            Modification_Representant mr = new Modification_Representant(this,jTable1);
+            mr.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
@@ -320,7 +330,23 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_ConsulterActionPerformed
 
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
-       
+        try
+        {
+            GestionDonnees gd=new GestionDonnees();
+            int numeroRepresentant=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            
+            int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Représentant ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
+            if (selectedOption == JOptionPane.YES_OPTION) 
+            {
+                gd.SupprimerRepresentantsCollection(numeroRepresentant);
+                jTable1.setModel(new Model_Table_Representants());
+            }
+                 
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BT_SupprimerActionPerformed
 
     

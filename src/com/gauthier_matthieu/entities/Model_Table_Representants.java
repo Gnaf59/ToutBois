@@ -41,9 +41,9 @@ public class Model_Table_Representants extends AbstractTableModel {
 
     public Model_Table_Representants() {
     
-        GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
+        /*GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
         resultatRequete=gBDD.lectureBDDrepresentant();
-        tableData=new Object[resultatRequete.length][12];
+        tableData=new Object[resultatRequete.length][getColumnCount()];
         try
         {    
             int index=0;
@@ -68,12 +68,12 @@ public class Model_Table_Representants extends AbstractTableModel {
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
         
         
         
-        //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
-        /*this.representants=this.gd.getRepresentants();
+        //Charge le contenu du Hashmap Representants pour remplir un objet tableData pour l'affichage.
+        this.representants=this.gd.getRepresentants();
         this.tableData= new Object[representants.keySet().size()][getColumnCount()];
         int index = 0;
         for (int key : representants.keySet()) {
@@ -92,14 +92,14 @@ public class Model_Table_Representants extends AbstractTableModel {
             tableData[index][11] = rep.getTauxCommission();
            
             index++;
-        }*/
+        }
     
     }
 
     @Override
     public int getRowCount() {
-        /*return representants.size();*/
-        return resultatRequete.length;
+        return representants.size();
+        /*return resultatRequete.length;*/
     }
 
     @Override

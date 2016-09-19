@@ -307,7 +307,7 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     public void SupprimerProspectsCollection (int numProspect)
     {
-        this.prospects.remove(numProspect);
+        GestionDonnees.prospects.remove(numProspect);
     }
     
     //-------------------------------------------------------------------------------------------------------------------------
@@ -317,7 +317,7 @@ public class GestionDonnees {
     
     private void InitialisationIncrementNumeroRepresentants()
     {
-        Iterator i = this.representants.keySet().iterator();
+        Iterator i = GestionDonnees.representants.keySet().iterator();
         int clef;
         Representants valeur;
         Representants.setIncrement(1);
@@ -326,7 +326,7 @@ public class GestionDonnees {
                 clef = (int)i.next();
                 valeur = (Representants)representants.get(clef);
                 
-                if (valeur.getIncrement()<=valeur.getNumeroRepresentant())
+                if (Representants.getIncrement()<=valeur.getNumeroRepresentant())
                 {
                     Representants.setIncrement(valeur.getNumeroRepresentant()+1);
                 }
@@ -428,6 +428,10 @@ public class GestionDonnees {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
             }
     
+    }
+    public void SupprimerRepresentantsCollection (int numRepresentants)
+    {
+        GestionDonnees.representants.remove(numRepresentants);
     }
     
 }
