@@ -49,6 +49,8 @@ public class Modification_Prospect extends javax.swing.JFrame {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         this.prospectObjet= prospects.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
+        gd.ChargementComboBoxRepresentant(CB_Representant);
+        
         TF_NomContact.setText(prospectObjet.getNom());
         TF_PrenomContact.setText(prospectObjet.getPrenom());
         TF_Societe.setText(prospectObjet.getNomEntreprise());
@@ -61,7 +63,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         CB_Pays.setSelectedItem(prospectObjet.getPays());
         TF_Mail.setText(prospectObjet.getMail());
         TF_Telephone.setText(prospectObjet.getNumerotel());
-        //CB_Representant.setSelectedItem(Integer.toString(prospectObjet.getNumeroRepresentant()));
+        CB_Representant.setSelectedItem(gd.getRepresentants().get(prospectObjet.getNumeroRepresentant()).toString());
     }
     
      
@@ -286,7 +288,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         Lb_Complement.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Complement.setText("Complement :");
 
-        CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
+        CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sélection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
 
         javax.swing.GroupLayout jPanel_AdresseLayout = new javax.swing.GroupLayout(jPanel_Adresse);
         jPanel_Adresse.setLayout(jPanel_AdresseLayout);
@@ -351,7 +353,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
 
         Lb_Siret.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_Siret.setText("* Siret : ");
+        Lb_Siret.setText("Siret : ");
 
         javax.swing.GroupLayout jPanel_Entreprise1Layout = new javax.swing.GroupLayout(jPanel_Entreprise1);
         jPanel_Entreprise1.setLayout(jPanel_Entreprise1Layout);
@@ -386,13 +388,13 @@ public class Modification_Prospect extends javax.swing.JFrame {
 
         Lb_RepresentantNomPrenom.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_RepresentantNomPrenom.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_RepresentantNomPrenom.setText("Nom, Prénom :");
+        Lb_RepresentantNomPrenom.setText("* Nom, Prénom :");
 
         CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
 
         Lb_DerniereVisite.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_DerniereVisite.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_DerniereVisite.setText("Dernière visite :");
+        Lb_DerniereVisite.setText("* Dernière visite :");
 
         javax.swing.GroupLayout jPanel_Entreprise2Layout = new javax.swing.GroupLayout(jPanel_Entreprise2);
         jPanel_Entreprise2.setLayout(jPanel_Entreprise2Layout);
@@ -452,7 +454,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
                             .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
@@ -481,7 +483,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
                         .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Lb_ChampsObligatoires)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -539,10 +541,10 @@ public class Modification_Prospect extends javax.swing.JFrame {
                 Lb_Societe.setForeground(Color.red);
                 Verification+="--> Société"+"\n";
             }
-            matcherSiret = verifSiret.matcher(TF_Siret.getText());
-            if (!"".equals(TF_Siret.getText()) &&! matcherSiret.matches()){
+            matcherSiret=verifMail.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="--> Siret"+"\n";
+                Verification+="--> Siret\n";
             }
             matcherNumeroRue = verifCodePostaleNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText()) &&! matcherNumeroRue.matches()) {
@@ -559,9 +561,13 @@ public class Modification_Prospect extends javax.swing.JFrame {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="--> Ville"+"\n";
             }
-            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
+            if ("Sélection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays"+"\n";
+            }
+            if ("Sélection".equals(CB_Representant.getSelectedItem().toString())) {
+                Lb_RepresentantNomPrenom.setForeground(Color.red);
+                Verification+="--> Représentant"+"\n";
             }
             matcherCodePostale = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
             if ("".equals(TF_codePostal.getText()) &&! matcherCodePostale.matches()) {
@@ -569,7 +575,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
                 Verification+="--> Code postal"+"\n";
             }
             matcherNom = verifNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
-            if ("".equals(TF_NomContact.getText())&& matcherNom.matches()) {
+            if ("".equals(TF_NomContact.getText())&&! matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
                 Verification+="--> Nom du contact" +"\n";
             }
@@ -593,39 +599,44 @@ public class Modification_Prospect extends javax.swing.JFrame {
             Verification+="--> Numéro de téléphone"+"\n";
             }
 
-            if ("".equals(TF_Societe.getText()) || 
-                "".equals(TF_Siret.getText()) || 
-                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() ||
-                "".equals(TF_Adresse.getText()) || !matcherAdresse.matches() ||
-                "".equals(TF_Ville.getText()) || !matcherVille.matches() ||
-                "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                "".equals(TF_codePostal.getText()) || !matcherCodePostale.matches() ||
-                "".equals(TF_NomContact.getText()) || !matcherNom.matches() ||
-                jD_DerniereVisite.getDate()==null ||
-                "".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) {
-                   
+            if ("".equals(TF_Societe.getText()) 
+                    ||(!"".equals(TF_Siret.getText())  && !matcherSiret.matches())
+                    ||"".equals(TF_NumRue.getText()) 
+                    ||!matcherNumeroRue.matches()
+                    ||"".equals(TF_Adresse.getText()) 
+                    || !matcherAdresse.matches() 
+                    ||"".equals(TF_Ville.getText()) 
+                    || !matcherVille.matches() 
+                    ||"Selection".equals(CB_Pays.getSelectedItem().toString()) 
+                    ||"".equals(TF_codePostal.getText()) 
+                    || !matcherCodePostale.matches() 
+                    ||"".equals(TF_NomContact.getText()) 
+                    || !matcherNom.matches() 
+                    ||jD_DerniereVisite.getDate()==null 
+                    ||"".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) 
+            {                   
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
-                
-                                
-              prospectObjet.setNom(TF_NomContact.getText());
-              prospectObjet.setPrenom(TF_PrenomContact.getText());
-              prospectObjet.setNomEntreprise(TF_Societe.getText());
-              prospectObjet.setAdresse(TF_Adresse.getText());
-              prospectObjet.setSiret(TF_Siret.getText());
-              prospectObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
-              prospectObjet.setComplementAdresse(TF_Complement.getText());
-              prospectObjet.setVille(TF_Ville.getText());
-              prospectObjet.setCodePostal(TF_codePostal.getText());
-              prospectObjet.setPays(CB_Pays.getSelectedItem().toString());
-              prospectObjet.setMail(TF_Mail.getText());
-              prospectObjet.setNumerotel(TF_Telephone.getText());
-              prospectObjet.setDerniereVisite(jD_DerniereVisite.getDate());
-              //prospectObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
+            prospectObjet.setNom(TF_NomContact.getText());
+            prospectObjet.setPrenom(TF_PrenomContact.getText());
+            prospectObjet.setNomEntreprise(TF_Societe.getText());
+            prospectObjet.setAdresse(TF_Adresse.getText());
+            prospectObjet.setSiret(TF_Siret.getText());
+            prospectObjet.setNumeroVoie(Integer.parseInt(TF_NumRue.getText()));
+            prospectObjet.setComplementAdresse(TF_Complement.getText());
+            prospectObjet.setVille(TF_Ville.getText());
+            prospectObjet.setCodePostal(TF_codePostal.getText());
+            prospectObjet.setPays(CB_Pays.getSelectedItem().toString());
+            prospectObjet.setMail(TF_Mail.getText());
+            prospectObjet.setNumerotel(TF_Telephone.getText());
+            prospectObjet.setDerniereVisite(jD_DerniereVisite.getDate());
+          //prospectObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
               
                 dispose();
                 gp.setVisible(true);
+                JOptionPane.showMessageDialog(null, " Modification du prospect effectuée.", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
+             
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);

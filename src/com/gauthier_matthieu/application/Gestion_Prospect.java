@@ -78,8 +78,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(980, 580));
-        jPanel1.setPreferredSize(new java.awt.Dimension(945, 600));
+        jPanel1.setMaximumSize(new java.awt.Dimension(960, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(960, 600));
 
         BT_Modifier_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Modifier_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/edit.png"))); // NOI18N
@@ -226,24 +226,24 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(image_PR)
                     .addComponent(image_2_PR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(BT_Aide_PR)
                         .addComponent(BT_Quitter_PR))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -311,6 +311,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                 gd.SupprimerProspectsCollection(numeroProspect);
                 jTable1.setModel(new Model_Table_Prospect());
             }
+            JOptionPane.showMessageDialog(null, " Suppression du prospect effectuée.", "Information", JOptionPane.INFORMATION_MESSAGE);
         }catch(IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à supprimer ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
         }
@@ -322,6 +323,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         {
             Consultation_Prospects cp=new Consultation_Prospects(jTable1,this);
             cp.setVisible(true);
+            this.setVisible(false);
         }catch (IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à consulter ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
         }
