@@ -26,22 +26,29 @@ public class GestionDonnees {
     private static HashMap<Integer,Prospects> prospects=new HashMap<>();
     
     /**
-     * 
-     * @return 
+     * Methode retournant le Hashmap contenant les Clients
+     * @return la liste des Clients
      */
-    
     public HashMap<Integer, Clients> getClients() {
         return clients;
     }
-
+    /**
+     * Methode retournant le Hashmap contenant les Representants
+     * @return la liste des Representants
+     */
     public HashMap<Integer, Representants> getRepresentants() {
         return representants;
     }
-
+    /**
+     * Methode retournant le Hashmap contenant les Prospects
+     * @return la liste des Prospects
+     */
     public HashMap<Integer, Prospects> getProspects() {
         return prospects;
     }
-
+    /**
+     * Methode Permettant de charger le fichier texte Clients.txt dans le hashmap clients
+     */
     public void ChargerDonneesClients()
     {
     //File ff = new File("Clients.txt");    
@@ -74,7 +81,9 @@ public class GestionDonnees {
         }
         
     }
-    
+    /**
+     * Methode Permettant d'initialiser l'incrément du numéro de Client.
+     */
    private void InitialisationIncrementNumeroClient()
     {
         Iterator i = GestionDonnees.clients.keySet().iterator();
@@ -93,11 +102,33 @@ public class GestionDonnees {
             }
         
     }
+    /**
+     * Methode Permettant de supprimer un Client à partir de son numéro de client
+     * @param numClient
+     */
     public void SupprimerClientsCollection (int numClient)
     {
         GestionDonnees.clients.remove(numClient);
         
     }
+    /**
+     * Methode Permettant d'enregistrer un client dans la collection clients en associant le numéro de client avec l'objet client
+     * 
+     * @param nomContact
+     * @param prenomContact
+     * @param societe
+     * @param siret
+     * @param numeroVoie
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param telephone
+     * @param nbrCommande
+     * @param numeroRepresentant
+     */
     public void EnregistrerClientsCollection(String nomContact,String prenomContact,String societe,String siret,int numeroVoie,
             String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String telephone,
             int nbrCommande,int numeroRepresentant)
@@ -107,7 +138,25 @@ public class GestionDonnees {
         GestionDonnees.clients.put(objetClient.getNumeroClient(), objetClient);
     
     }
-    //Sert pour charger les données du fichier Clients.txt
+    /**
+     * Methode Permettant d'enregistrer un client dans la collection clients lors du chargement du fichier clients.txt
+     * 
+     * @param numeroClient
+     * @param nomContact
+     * @param prenomContact
+     * @param societe
+     * @param siret
+     * @param numeroVoie
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param telephone
+     * @param nbrCommande
+     * @param numeroRepresentant
+     */
     public void EnregistrerClientsCollection(int numeroClient,String nomContact,String prenomContact,String societe,String siret,
             int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,
             String telephone,int nbrCommande,int numeroRepresentant)
@@ -118,7 +167,9 @@ public class GestionDonnees {
         objetClient.setNbrCommande(nbrCommande);
         GestionDonnees.clients.put(numeroClient, objetClient);
     }
-    
+    /**
+     * Methode Permettant d'enregistrer un client dans le fichier clients.txt
+     */
     public void EnregistrerClientsFichier()
     {
         Iterator i = GestionDonnees.clients.keySet().iterator();
@@ -172,7 +223,9 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
-    
+    /**
+     * Methode Permettant d'initialiser l'incrément du numéro de Prospect.
+     */
     private void InitialisationIncrementNumeroProspect()
     {
         Iterator i = this.prospects.keySet().iterator();
@@ -192,7 +245,10 @@ public class GestionDonnees {
         
     }
     //-------------------------------------------------------------------------------------------------------------------------
-     public void ChargerDonneesProspect()
+    /**
+     * Methode Permettant de charger le fichier texte Prospects.txt dans le hashmap prospects
+     */
+    public void ChargerDonneesProspect()
     {
        
             try {
@@ -225,6 +281,25 @@ public class GestionDonnees {
         
     }
     //-------------------------------------------------------------------------------------------------------------------------   
+    /**
+     * Methode Permettant d'enregistrer un Prospect dans la collection prospects en associant le numéro de prospect avec l'objet prospect sert pour charger le fichier prospects.txt
+     * 
+     * @param numeroProspect
+     * @param nomContact
+     * @param prenomContact
+     * @param societe
+     * @param siret
+     * @param numeroVoie
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param telephone
+     * @param numeroRepresentant
+     * @param derniereVisite
+     */
     public void EnregistrerProspectsExistantCollection(int numeroProspect,String nomContact,String prenomContact,String societe,
             String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
@@ -245,7 +320,25 @@ public class GestionDonnees {
         }
          
     }
-    //-------------------------------------------------------------------------------------------------------------------------   
+    //-------------------------------------------------------------------------------------------------------------------------
+     /**
+     * Methode Permettant d'enregistrer un Prospect dans la collection prospects en associant le numéro de prospect avec l'objet prospect pour l'ajout d'un nouveau prospect
+     * 
+     * @param nomContact
+     * @param prenomContact
+     * @param societe
+     * @param siret
+     * @param numeroVoie
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param telephone
+     * @param numeroRepresentant
+     * @param derniereVisite
+     */
     public void EnregistrerNouveauProspectsCollection(String nomContact,String prenomContact,String societe,
             String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
@@ -257,6 +350,9 @@ public class GestionDonnees {
         GestionDonnees.prospects.put(objetProspect.getNumeroProspect(),objetProspect);
     }
     //-------------------------------------------------------------------------------------------------------------------------
+    /**
+     * Methode Permettant d'enregistrer les prospects de la collection dans le fichier prospects.txt
+     */
     public void EnregistrerProspectsFichier()
     {
         Iterator i = GestionDonnees.prospects.keySet().iterator();
@@ -306,6 +402,10 @@ public class GestionDonnees {
             }
     }
     //-------------------------------------------------------------------------------------------------------------------------
+    /**
+     * Methode Permettant de supprimer un Prospect à partir de son numéro de prospect
+     * @param numProspect
+     */
     public void SupprimerProspectsCollection (int numProspect)
     {
         GestionDonnees.prospects.remove(numProspect);
@@ -315,7 +415,9 @@ public class GestionDonnees {
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------------
-    
+    /**
+     * Methode Permettant d'initialiser l'incrément du numéro de Représentant.
+     */
     private void InitialisationIncrementNumeroRepresentants()
     {
         Iterator i = GestionDonnees.representants.keySet().iterator();
@@ -334,6 +436,9 @@ public class GestionDonnees {
             }
         
     }
+    /**
+     * Methode Permettant de charger le fichier texte Representants.txt dans le hashmap representants
+     */
     public void ChargerDonneesRepresentants()
     {
        
@@ -365,6 +470,22 @@ public class GestionDonnees {
         }
         
     }
+    /**
+     * Methode Permettant d'enregistrer un Representant dans la collection representants en associant le numéro de Representant avec l'objet Representant pour l'ajout d'un nouveau prospect
+     * 
+     * @param nomRepresentant
+     * @param numeroVoie
+     * @param prenomRepresentant
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param numerotel
+     * @param salaireBrut
+     * @param tauxCommission
+     */
     public void EnregistrerRepresentantsCollection(String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
     {
         //Enregistre le Prospect dans la collection
@@ -374,6 +495,23 @@ public class GestionDonnees {
         GestionDonnees.representants.put(objetRepresentants.getNumeroRepresentant(),objetRepresentants);
     
     }
+    /**
+     * Methode Permettant d'enregistrer un Representant dans la collection representants en associant le numéro de Representant avec l'objet Representant pour l'ajout des prospects dans la collection
+     * 
+     * @param numeroRepresentant
+     * @param nomRepresentant
+     * @param numeroVoie
+     * @param prenomRepresentant
+     * @param adresse
+     * @param complementAdresse
+     * @param ville
+     * @param pays
+     * @param codePostal
+     * @param mail
+     * @param numerotel
+     * @param salaireBrut
+     * @param tauxCommission
+     */
     public void EnregistrerRepresentantsCollection(int numeroRepresentant,String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
     {
         //Enregistre le Prospect dans la collection
@@ -383,7 +521,9 @@ public class GestionDonnees {
         GestionDonnees.representants.put(objetRepresentants.getNumeroRepresentant(),objetRepresentants);
     
     }
-    
+    /**
+     * Methode Permettant d'enregistrer les Representant de la collection dans le fichier Representant.txt
+     */
     public void EnregistrerRepresentantsFichier()
     {
         Iterator i = GestionDonnees.representants.keySet().iterator();
@@ -430,11 +570,18 @@ public class GestionDonnees {
             }
     
     }
+    /**
+     * Methode Permettant de supprimer un Representants à partir de son numéro de Representants 
+     * @param numRepresentants
+     */
     public void SupprimerRepresentantsCollection (int numRepresentants)
     {
         GestionDonnees.representants.remove(numRepresentants);
     }
-    
+    /**
+     * Methode Permettant de Charger les représentants dans la JcomboBox
+     * @param combobox
+     */
     public void ChargementComboBoxRepresentant(JComboBox combobox)
     {
         

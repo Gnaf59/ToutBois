@@ -584,6 +584,12 @@ public class Modification_Clients extends javax.swing.JFrame {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays\n";
             }
+            
+            if ("Sélection".equals(CB_Representant.getSelectedItem().toString())) {
+                Lb_RepresentantNomPrenom.setForeground(Color.red);
+                Verification+="--> Représentant\n";
+            }
+            
             matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
             if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
@@ -622,7 +628,7 @@ public class Modification_Clients extends javax.swing.JFrame {
             }
             
             
-            if ("".equals(TF_Societe.getText()) || (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  {
+            if ("".equals(TF_Societe.getText()) || (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString())|| "Sélection".equals(CB_Representant.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } 
             else {
@@ -639,7 +645,10 @@ public class Modification_Clients extends javax.swing.JFrame {
               clientObjet.setMail(TF_Mail.getText());
               clientObjet.setNumerotel(TF_Telephone.getText());
               clientObjet.setNbrCommande(Integer.parseInt(TF_NombreCommande.getText()));
-              //clientObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString()));
+              
+              String[] numeroRepresentant;
+              numeroRepresentant=CB_Representant.getSelectedItem().toString().split("\\.");
+              clientObjet.setNumeroRepresentant(Integer.parseInt(numeroRepresentant[0]));
               
                 dispose();
                 gc.setVisible(true);
