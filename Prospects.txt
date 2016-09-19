@@ -1,5 +1,5 @@
-1;Pierre;Jean;ouioui;12345678901234;54;rue duPond;;Berlin;64564;Allemagne;;;0;08/00/1987
-2;Porchinet;Paul;Castorama;12345678901271;78;rue de la paille;;Lille;59000;France;;;0;15/00/1985
-3;Bill;Aristote;auchan;12345678901234;78;rue de la gloire;;Tournai;7500;Belgique;bill@auchan.fr;;0;15/00/1991
-4;michel;pierre;baboo;12345678910241;12;rue du pain;;fiou;457;Autriche;;;0;15/00/1987
-5;bim;Pierre;LOL;;78;rue de la paie;;bourseland;45996;Lituanie;bim@lol.fr;;0;22/00/1988
+1;Pierre;Jean;ouioui;12345678901234;54;rue duPond;;Berlin;64564;Allemagne;;;0;08/00/1985
+2;Porchinet;Paul;Castorama;12345678901271;78;rue de la paille;;Lille;59000;France;;;0;15/00/1983
+3;Bill;Aristote;auchan;12345678901234;78;rue de la gloire;;Tournai;7500;Belgique;bill@auchan.fr;;0;15/00/1989
+4;michel;pierre;baboo;12345678910241;12;rue du pain;;fiou;457;Autriche;;;0;15/00/1985
+5;bim;Pierre;LOL;;78;rue de la paie;;bourseland;45996;Lituanie;bim@lol.fr;;0;22/00/1986
