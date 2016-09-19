@@ -26,6 +26,7 @@ public class Consultation_Client extends javax.swing.JFrame {
 
     private JTable tableau;
     private Gestion_Clients gc;
+    private GestionDonnees gd= new GestionDonnees();
     
      /**
      * Initialise tous les composants de la fenêtre
@@ -76,7 +77,10 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_Mail_Consult.setText(clientObjet.getMail());
         Lb_Telephone_Consult.setText(clientObjet.getNumerotel());
         Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
-        //Lb_RepresentantNomPrenom_Consult.setText(Integer.toString(clientObjet.getNumeroRepresentant()));
+        
+        String nomPrenomRepresentant[];
+        nomPrenomRepresentant=gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString().split("\\.");
+        Lb_RepresentantNomPrenom_Consult.setText(nomPrenomRepresentant[1]);
         //Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
     }
     

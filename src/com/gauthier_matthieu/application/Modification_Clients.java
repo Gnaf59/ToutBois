@@ -7,10 +7,12 @@ package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.entities.Clients;
 import com.gauthier_matthieu.entities.GestionDonnees;
+import com.gauthier_matthieu.entities.Representants;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -45,6 +47,8 @@ public class Modification_Clients extends javax.swing.JFrame {
         this.tableau=tableau;
         this.clientObjet= client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
+        gd.ChargementComboBoxRepresentant(CB_Representant);
+        
         TF_NomContact.setText(clientObjet.getNom());
         TF_PrenomContact.setText(clientObjet.getPrenom());
         TF_Societe.setText(clientObjet.getNomEntreprise());
@@ -58,10 +62,8 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Mail.setText(clientObjet.getMail());
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        //CB_Representant.setSelectedItem(Integer.toString(clientObjet.getNumeroRepresentant()));
+        CB_Representant.setSelectedItem(gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString());
     }
-    
-    /* Fonction pour afficher logo*/
     
     
     

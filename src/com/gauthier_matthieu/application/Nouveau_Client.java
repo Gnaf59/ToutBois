@@ -9,6 +9,8 @@ import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -32,6 +34,10 @@ public class Nouveau_Client extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.gc=gc;
+        
+        GestionDonnees gd=new GestionDonnees();
+        gd.ChargementComboBoxRepresentant(CB_Representant);
+        
     }
     
     
@@ -562,10 +568,13 @@ public class Nouveau_Client extends javax.swing.JFrame {
             } 
             else {   
                 
+                String[] numeroRepresentant;
+                numeroRepresentant=CB_Representant.getSelectedItem().toString().split("\\.");
+                
                 GestionDonnees gd=new GestionDonnees();
                 gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), 
                         TF_Siret.getText(), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
-                        TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,1);
+                        TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,Integer.parseInt(numeroRepresentant[0]));
                 
                 
                 //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client

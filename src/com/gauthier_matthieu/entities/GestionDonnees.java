@@ -9,6 +9,7 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -434,4 +435,29 @@ public class GestionDonnees {
         GestionDonnees.representants.remove(numRepresentants);
     }
     
+    public void ChargementComboBoxRepresentant(JComboBox combobox)
+    {
+        
+        
+       
+        
+        Iterator i = getRepresentants().keySet().iterator();
+        int clef,index=0;
+        Representants valeur;
+        String[] representantCombobox = new String[representants.size()+1];
+        representantCombobox[0]="Sélection";
+        
+        while (i.hasNext())
+            {
+                clef = (int)i.next();
+                valeur = (Representants)representants.get(clef);
+                
+                representantCombobox[index+1]=valeur.toString();
+                //tableauRepresentant[index]=valeur;
+                index++;
+            }
+        
+        combobox.setModel(new javax.swing.DefaultComboBoxModel(representantCombobox));
+    }
+            
 }

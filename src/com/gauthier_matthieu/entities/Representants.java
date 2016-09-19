@@ -72,5 +72,9 @@ public class Representants extends Personnes{
         this.tauxCommission = tauxCommission;
     }
     
-   
+    @Override
+    public String toString()
+    {
+        return getNumeroRepresentant()+". "+getPrenom()+" "+getNom();
+    }
 }
