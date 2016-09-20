@@ -1,8 +1,8 @@
 1;10;10;10;10;10;10;10;10;10;Autriche;10;10;0;1
 4;41;41;41;41;41;41;41;41;41;Bulgarie;41;41;0;1
-6;poto;poutou;10;;10;ruefdgds;10;gfdgfds;10;Allemagne;;;0;1
+6;poto;poutou;10;;10;ruefdgds;10;gfdgfds;10;Allemagne;;;0;2
 7;benjamin;boutton;10;10;10;rue des singes;10;Imaginaire;10;Chypre;;;0;1
 8;john;dupond;fdsfds;10158218965412;10;Avenue Léopold-II;;jenesaiSpas;56456;Chypre;;;0;1
-9;Lantoine;Gauthier;GauthierMatthieuINC;12345678912345;12;rue des perdu;;Lille;59000;France;;;0;1
+9;Lantoine;Gauthier;GauthierMatthieuINC;12345678912345;12;rue des perdu;;Lille;59000;France;;;0;3
 10;ttrtert;ertertter;fdsfdsfds;;75;tfdgfdgfdg;;dfgfdgfdg;25454;Bulgarie;;;0;5
 11;Marine;Coquelle;Méli-Mélangues;80415287590485;99;Grande Rue;1er étage;ROUBAIX;59100;France;m.coquelle@gmail.com;0781785380;0;1
