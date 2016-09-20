@@ -373,7 +373,7 @@ public class GestionDonnees {
                 valeur = (Prospects)prospects.get(clef);
                 
                 
-                        SimpleDateFormat df=new SimpleDateFormat("dd/mm/yyyy");
+                        SimpleDateFormat df=new SimpleDateFormat();
                         String dateString= df.format(valeur.getDerniereVisite());
                                       
                 chaineEnregistrement= Integer.toString(valeur.getNumeroProspect())+";"

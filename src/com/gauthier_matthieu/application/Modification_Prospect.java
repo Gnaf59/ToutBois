@@ -541,10 +541,10 @@ public class Modification_Prospect extends javax.swing.JFrame {
                 Lb_Societe.setForeground(Color.red);
                 Verification+="--> Société"+"\n";
             }
-            matcherSiret=verifMail.matcher(TF_Siret.getText());
-            if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
+            matcherSiret = verifSiret.matcher(TF_Siret.getText());
+            if (!"".equals(TF_Siret.getText()) &&! matcherSiret.matches()){
                 Lb_Siret.setForeground(Color.red);
-                Verification+="--> Siret\n";
+                Verification+="--> Siret"+"\n";
             }
             matcherNumeroRue = verifCodePostaleNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText()) &&! matcherNumeroRue.matches()) {
@@ -600,7 +600,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
             }
 
             if ("".equals(TF_Societe.getText()) 
-                    ||(!"".equals(TF_Siret.getText())  && !matcherSiret.matches())
+                    ||(!"".equals(TF_Siret.getText()) && !matcherSiret.matches())
                     ||"".equals(TF_NumRue.getText()) 
                     ||!matcherNumeroRue.matches()
                     ||"".equals(TF_Adresse.getText()) 

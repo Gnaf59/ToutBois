@@ -17,6 +17,7 @@ public class Prospects extends Personnes{
     private int numeroProspect,numeroRepresentant;
     private static int increment=1;
 
+    
     public Prospects(String nomEntreprise,String siret, int numeroRepresentant, String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.nomEntreprise=nomEntreprise;
@@ -25,6 +26,7 @@ public class Prospects extends Personnes{
         numeroProspect= increment;
         increment ++;
     }
+    
 
     public String getNomEntreprise() {
         return nomEntreprise;
@@ -73,5 +75,6 @@ public class Prospects extends Personnes{
     public static void setIncrement(int increment) {
         Prospects.increment = increment;
     }
+    
     
 }
