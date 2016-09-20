@@ -187,6 +187,39 @@ public class GestionBaseDeDonnees {
         return new Representants(Integer.parseInt(objetResultat[0][0].toString()), objetResultat[0][1].toString(), objetResultat[0][2].toString(), Integer.parseInt(objetResultat[0][3].toString()), objetResultat[0][4].toString(), objetResultat[0][5].toString(), objetResultat[0][6].toString(), objetResultat[0][7].toString(), objetResultat[0][8].toString(), objetResultat[0][9].toString(), objetResultat[0][10].toString(), Double.parseDouble(objetResultat[0][11].toString()),Double.parseDouble(objetResultat[0][12].toString()));
     }
             
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
+    public Object[][] lectureBDDarticle()
+    {
+        String requete;
+        requete= "SELECT * FROM article;";
+        
+        return realiserRequeteSelect(requete);
+    }
+    
+    public void insertBDDArticle(Articles article)
+    {
+        String requete;
+        requete="INSERT INTO `article` (`numeroArticle`, `nomArticle`, `typeArticle`, `genreArticle`, `referenceArticle`, `couleurArticle`, `stockArticle`, `hauteurArticle`, `largeurArticle`, `longueurArticle`, `prixHtArticle`, `tvaArticle`, `poids`)"
+                + "VALUES ('"+article.getNom()+"',"
+                + " '"+article.getType()+"',"
+                + " '"+article.getGenre()+"',"
+                + " '"+article.getReference()+"',"
+                + " '"+article.getCouleur()+"',"
+                + " "+article.getStock()+","
+                + " "+article.getHauteur()+","
+                + " "+article.getLargeur()+","
+                + " "+article.getLongueur()+","
+                + " "+article.getPrixHt()+","
+                + " "+article.getTva()+","
+                + " "+article.getPoids()+");";
+        
+        realiserRequeteInsert(requete);
+        
+         
+    }
     
 }

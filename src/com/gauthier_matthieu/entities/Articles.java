@@ -11,16 +11,19 @@ package com.gauthier_matthieu.entities;
  */
 public class Articles {
     private String nom,type,genre,reference,couleur;
-    private int numeroArticle;
+    private int numeroArticle,stock;
     private double hauteur,longueur,largeur,prixHt,tva,poids;
 
-    public Articles(String nom, String type, String genre, String reference, String couleur, int numeroArticle, double hauteur, double longueur, double largeur, double prixHt, double tva, double poids) {
+    public Articles(int numeroArticle,String nom, String type, String genre, String reference, 
+            String couleur,  int stock, double hauteur, double longueur, double largeur, 
+            double prixHt, double tva, double poids) {
+        this.numeroArticle = numeroArticle;
         this.nom = nom;
         this.type = type;
         this.genre = genre;
         this.reference = reference;
         this.couleur = couleur;
-        this.numeroArticle = numeroArticle;
+        this.stock = stock;
         this.hauteur = hauteur;
         this.longueur = longueur;
         this.largeur = largeur;
@@ -124,6 +127,15 @@ public class Articles {
     public void setPoids(double poids) {
         this.poids = poids;
     }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
     
     
 

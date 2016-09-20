@@ -163,7 +163,8 @@ public class Gestion_Article extends javax.swing.JFrame {
         copyright.setText("Création Software SSII MGc all rights reserved 2016");
 
         jT_Article.setAutoCreateRowSorter(true);
-        jT_Article.setModel(new Model_Table_Client());
+        jT_Article.setModel(new Model_Table_Articles());
+        jT_Article.setToolTipText("");
         jT_Article.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPaneArticle.setViewportView(jT_Article);
 
@@ -324,7 +325,9 @@ public class Gestion_Article extends javax.swing.JFrame {
     
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         //Actualise la jTable
-        jT_Article.setModel(new Model_Table_Client());
+        jT_Article.setModel(new Model_Table_Articles());
+        jT_Article.getColumn("Numéro Article").setPreferredWidth(80);
+        
     }//GEN-LAST:event_formComponentShown
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
