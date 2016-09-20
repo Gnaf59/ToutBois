@@ -51,6 +51,7 @@ public class fenetre_applications extends javax.swing.JFrame {
         menuClients = new javax.swing.JMenuItem();
         menuProspects = new javax.swing.JMenuItem();
         menuRepresentants = new javax.swing.JMenuItem();
+        menuArticles = new javax.swing.JMenuItem();
         commande = new javax.swing.JMenu();
         menuConsult = new javax.swing.JMenuItem();
         menuModif = new javax.swing.JMenuItem();
@@ -134,6 +135,14 @@ public class fenetre_applications extends javax.swing.JFrame {
             }
         });
         gestion.add(menuRepresentants);
+
+        menuArticles.setText("Articles");
+        menuArticles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuArticlesActionPerformed(evt);
+            }
+        });
+        gestion.add(menuArticles);
 
         jMenuBar1.add(gestion);
 
@@ -238,6 +247,12 @@ public class fenetre_applications extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menuRepresentantsActionPerformed
 
+    private void menuArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuArticlesActionPerformed
+       Gestion_Article ga=new Gestion_Article(this);
+       ga.setVisible(true);
+               // TODO add your handling code here:
+    }//GEN-LAST:event_menuArticlesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +303,7 @@ public class fenetre_applications extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem menuArticles;
     private javax.swing.JMenuItem menuClients;
     private javax.swing.JMenuItem menuConsult;
     private javax.swing.JMenuItem menuConsult1;
