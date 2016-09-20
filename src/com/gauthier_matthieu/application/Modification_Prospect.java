@@ -64,6 +64,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         TF_Mail.setText(prospectObjet.getMail());
         TF_Telephone.setText(prospectObjet.getNumerotel());
         CB_Representant.setSelectedItem(gd.getRepresentants().get(prospectObjet.getNumeroRepresentant()).toString());
+        jD_DerniereVisite.setDate(prospectObjet.getDerniereVisite());
     }
     
      
