@@ -75,7 +75,6 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nouveau Représentant");
         setName("Création Client"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -244,6 +243,11 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         Lb_Complement.setText("Complement :");
 
         CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
+        CB_Pays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_PaysActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_AdresseLayout = new javax.swing.GroupLayout(jPanel_Adresse);
         jPanel_Adresse.setLayout(jPanel_AdresseLayout);
@@ -365,7 +369,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                                 .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel_Entreprise1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(Lb_ChampsObligatoires, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                         .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_RepresentantLayout.createSequentialGroup()
                                 .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,7 +396,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(Lb_ChampsObligatoires))
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_RepresentantLayout.createSequentialGroup()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +486,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
             if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
                 Lb_TauxComission.setForeground(Color.red);
-                Verification += "--> Siret\n";
+                Verification += "--> Taux de comission\n";
             }
             matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
@@ -563,6 +567,10 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_Bt_ValiderActionPerformed
+
+    private void CB_PaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_PaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CB_PaysActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

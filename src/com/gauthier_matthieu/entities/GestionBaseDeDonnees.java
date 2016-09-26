@@ -148,7 +148,10 @@ public class GestionBaseDeDonnees {
         return this.statut;
     }
 
-   
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------   
     public void insertBDDRepresentant(String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
     {
         String requete;
@@ -191,8 +194,78 @@ public class GestionBaseDeDonnees {
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
-
-    public Object[][] lectureBDDarticle()
+    public  Object[][] lectureBDDprospect()
+    {
+        String requete;
+        requete = "SELECT *FROM prospect;";
+        return realiserRequeteSelect(requete);
+    }
+//-------------------------------------------------------------------------------   
+    public void insertBDDprospect(Prospects prospect)
+    {
+        String requete;
+        requete = "INSERT INTO `prospect`(`numeroProspect`, `nomEntrepriseProspect`, `siretProspect`, "
+                + "`numeroRepresProspect`, `nomProspect`, `prenomProspect`, `numVoieProspect`, `adresseProspect`, "
+                + "`complementProspect`, `villeProspect`, `maiProspect`, `numerotelProspect`, `paysProspect`, `codePostaleProspect`, "
+                + "`derniereVisiteProspect`)"
+                +"VALUES('"+prospect.getNomEntreprise()+"',"
+                +"'"+prospect.getSiret()+"',"
+                +"" +prospect.getNumeroProspect()+","
+                +"'"+prospect.getNom()+"',"
+                +"'"+prospect.getPrenom()+"',"
+                +"" +prospect.getNumeroVoie()+","
+                +"'"+prospect.getAdresse()+"',"
+                +"'"+prospect.getComplementAdresse()+"',"
+                +"'"+prospect.getVille()+"',"
+                +"'"+prospect.getMail()+"',"
+                +"'"+prospect.getNumerotel()+"',"
+                +"'"+prospect.getPays()+"',"
+                +"'"+prospect.getCodePostal()+"',"
+                +"'"+prospect.getDerniereVisite()+");";
+        realiserRequete(requete,INSERT);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*public Object[][] lectureBDDarticle()
     {
         String requete;
         requete= "SELECT * FROM article;";
@@ -220,6 +293,6 @@ public class GestionBaseDeDonnees {
         realiserRequeteInsert(requete);
         
          
-    }
+    }*/
     
 }

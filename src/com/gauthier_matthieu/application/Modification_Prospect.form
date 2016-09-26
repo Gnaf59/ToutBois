@@ -36,17 +36,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jP_ModificationProspects" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="1" max="-2" attributes="0"/>
+          <Component id="jP_ModificationProspects" alignment="1" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jP_ModificationProspects">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -77,8 +77,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Lb_ChampsObligatoires" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                               <Component id="jPanel_Adresse" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel_Entreprise1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel_Entreprise2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jPanel_Entreprise" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel_Representant" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -87,7 +87,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-                                  <Component id="jPanel_Entreprise" max="32767" attributes="0"/>
+                                  <Component id="jPanel_Contact" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -112,17 +112,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel_Entreprise1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel_Entreprise" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Component id="jPanel_Adresse" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel_Representant" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Lb_ChampsObligatoires" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel_Entreprise" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel_Contact" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="logo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
             <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel_Entreprise">
+        <Container class="javax.swing.JPanel" name="jPanel_Contact">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -540,7 +540,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel_Entreprise1">
+        <Container class="javax.swing.JPanel" name="jPanel_Entreprise">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -619,7 +619,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel_Entreprise2">
+        <Container class="javax.swing.JPanel" name="jPanel_Representant">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

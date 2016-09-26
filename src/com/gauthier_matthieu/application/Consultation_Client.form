@@ -95,7 +95,7 @@
                           <Component id="jPanel_Commande" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="jPanel_Contact" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -136,7 +136,7 @@
                           <Component id="jPanel_Contact" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_Entreprise2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                           <Component id="logo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" max="-2" attributes="0">
@@ -696,7 +696,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Lb_Societe_Consult" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Lb_Siret_Consult" alignment="1" pref="366" max="32767" attributes="0"/>
+                          <Component id="Lb_Siret_Consult" alignment="1" pref="368" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

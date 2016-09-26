@@ -527,7 +527,7 @@ public class Modification_Representant extends javax.swing.JFrame {
             matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
             if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
                 Lb_TauxComission.setForeground(Color.red);
-                Verification += "--> Siret\n";
+                Verification += "--> Taux de comission\n";
             }
             matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {

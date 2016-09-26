@@ -70,6 +70,9 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Mail_Consult.setText(prospectObjet.getMail());
         Lb_Telephone_Consult.setText(prospectObjet.getNumerotel());
         Lb_DerniereVisite_Consult.setText(sdf.format(prospectObjet.getDerniereVisite()));
+        String nomPrenomRepresentant[];
+        nomPrenomRepresentant=gd.getRepresentants().get(prospectObjet.getNumeroRepresentant()).toString().split("\\.");
+        Lb_RepresentantNomPrenom_Consult.setText(nomPrenomRepresentant[1]);
         //Lb_RepresentantNomPrenom_Consult.setText(Integer.toString(prospectObjet.getNumeroRepresentant()));
     }
     

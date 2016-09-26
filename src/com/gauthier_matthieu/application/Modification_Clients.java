@@ -389,7 +389,7 @@ public class Modification_Clients extends javax.swing.JFrame {
 
         Lb_RepresentantNomPrenom.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_RepresentantNomPrenom.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_RepresentantNomPrenom.setText("Nom, Prénom :");
+        Lb_RepresentantNomPrenom.setText("* Nom, Prénom :");
 
         CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
 
@@ -503,7 +503,7 @@ public class Modification_Clients extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel_Commande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Lb_ChampsObligatoires)))
                 .addGap(7, 7, 7)
