@@ -243,6 +243,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
         Lb_Complement.setText("Complement :");
 
         CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
+        CB_Pays.setSelectedItem("France");
         CB_Pays.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CB_PaysActionPerformed(evt);
@@ -369,7 +370,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                                 .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel_Entreprise1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(Lb_ChampsObligatoires, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_RepresentantLayout.createSequentialGroup()
                                 .addComponent(Bt_Valider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,7 +397,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(Lb_ChampsObligatoires))
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(Jp_RepresentantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_RepresentantLayout.createSequentialGroup()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,56 +478,41 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
             
             String Verification = "Veuillez remplir correctement le(s) champs\n";
-
-            matcherSalaireBrut=patternDouble.matcher(TF_SalaireBrut.getText());
-            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches()) {
-                Lb_SalaireBrut.setForeground(Color.red);
-                Verification += "--> Salaire Brut\n";
-            }
-            matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
-            if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
-                Lb_TauxComission.setForeground(Color.red);
-                Verification += "--> Taux de comission\n";
-            }
-            matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
-            if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
-                Lb_NumRue.setForeground(Color.red);
-                Verification += "--> Numéro de la rue\n";
-            }
-
-            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
-            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
-                Lb_Rue.setForeground(Color.red);
-                Verification+="--> Adresse\n";
-            }
-
-            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
-            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
-                Lb_Ville.setForeground(Color.red);
-                Verification+="--> Ville\n";
-            }
-
-            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
-                Lb_Pays.setForeground(Color.red);
-                Verification+="--> Pays\n";
-            }
-
-            matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
-            if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
-                Lb_CodePostal.setForeground(Color.red);
-                Verification+="--> Code postal\n";
-            }
+            Boolean champsIncomplet=false;
 
             matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
             if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
                 Verification+="--> Nom du contact\n";
+                if(champsIncomplet==false)
+                {
+                    TF_NomContact.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
             }
 
             matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
             if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
                 Verification+="--> Prénom du contact\n";
+                 if(champsIncomplet==false)
+                {
+                    TF_PrenomContact.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            
+            matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
+
+            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
+            {
+                Verification+="--> Numéro de téléphone\n";
+                Lb_Telephone.setForeground(Color.red);
+                 if(champsIncomplet==false)
+                {
+                    TF_Telephone.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
             }
             
             matcherMail = patternMail.matcher(TF_Mail.getText());
@@ -535,15 +521,86 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             {
                 Verification+="--> Email\n";
                 Lb_Mail.setForeground(Color.red);
+                 if(champsIncomplet==false)
+                {
+                    TF_Mail.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
             }
             
+            matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
+                Lb_NumRue.setForeground(Color.red);
+                Verification += "--> Numéro de la rue\n";
+                 if(champsIncomplet==false)
+                {
+                    TF_NumRue.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
             
-            matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
-
-            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
-            {
-                Verification+="--> Numéro de téléphone\n";
-                Lb_Telephone.setForeground(Color.red);
+            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
+            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
+                Lb_Rue.setForeground(Color.red);
+                Verification+="--> Adresse\n";
+                 if(champsIncomplet==false)
+                {
+                    TF_Rue.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            
+            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
+                Lb_Ville.setForeground(Color.red);
+                Verification+="--> Ville\n";
+                if(champsIncomplet==false)
+                {
+                    TF_Ville.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            
+            matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
+                Lb_CodePostal.setForeground(Color.red);
+                Verification+="--> Code postal\n";
+                if(champsIncomplet==false)
+                {
+                    TF_codePostal.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            
+            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
+                Lb_Pays.setForeground(Color.red);
+                Verification+="--> Pays\n";
+                if(champsIncomplet==false)
+                {
+                    CB_Pays.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            
+            matcherSalaireBrut=patternDouble.matcher(TF_SalaireBrut.getText());
+            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches()) {
+                Lb_SalaireBrut.setForeground(Color.red);
+                Verification += "--> Salaire Brut\n";
+                if(champsIncomplet==false)
+                {
+                    TF_SalaireBrut.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
+            }
+            matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
+            if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
+                Lb_TauxComission.setForeground(Color.red);
+                Verification += "--> Taux de comission\n";
+                if(champsIncomplet==false)
+                {
+                    TF_TauxComission.requestFocusInWindow();
+                    champsIncomplet=true;
+                }
             }
 
             if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches() || "".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches() || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  
