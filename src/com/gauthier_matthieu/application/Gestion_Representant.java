@@ -341,13 +341,15 @@ public class Gestion_Representant extends javax.swing.JFrame {
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
         try
         {
-            GestionDonnees gd=new GestionDonnees();
+            GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
+            //GestionDonnees gd=new GestionDonnees();
             int numeroRepresentant=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Représentant ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
-                gd.SupprimerRepresentantsCollection(numeroRepresentant);
+                gBDD.deleteBDDRepresentants(numeroRepresentant);
+                //gd.SupprimerRepresentantsCollection(numeroRepresentant);
                 jTable1.setModel(new Model_Table_Representants());
             }
                  

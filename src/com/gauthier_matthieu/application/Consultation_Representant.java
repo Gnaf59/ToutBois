@@ -39,7 +39,7 @@ public class Consultation_Representant extends javax.swing.JFrame {
         this.tableau=tableau;
         this.gr=gr;
         
-        Lb_NumeroClient.setText("");
+        /*Lb_NumeroClient.setText("");
         Lb_Complement_Consult.setText("");
         Lb_Mail_Consult.setText("");
         Lb_NomContact_Consult.setText("");
@@ -51,14 +51,16 @@ public class Consultation_Representant extends javax.swing.JFrame {
         Lb_TauxComission_Consult.setText("");
         Lb_Telephone_Consult.setText("");
         Lb_Ville_Consult.setText("");
-        Lb_codePostal_Consult.setText("");
+        Lb_codePostal_Consult.setText("");*/
         
         
-        GestionDonnees gd = new GestionDonnees();
+        //GestionDonnees gd = new GestionDonnees();
         /*appel du hashMap client avec les clients*/
-        HashMap<Integer,Representants> representant= gd.getRepresentants();
+        //HashMap<Integer,Representants> representant= gd.getRepresentants();
         /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
-        Representants representantObjet = representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        GestionBaseDeDonnees gBDD= new GestionBaseDeDonnees();
+        Representants representantObjet=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        //Representants representantObjet = representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         Lb_NumeroClient.setText(Integer.toString(representantObjet.getNumeroRepresentant()));
         Lb_NomContact_Consult.setText(representantObjet.getNom());
         Lb_PrenomContact_Consult.setText(representantObjet.getPrenom());

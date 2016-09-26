@@ -30,7 +30,17 @@ public class Representants extends Personnes{
         numeroRepresentant=increment;
         increment++;
     }
-     public Representants(int numeroRepresentant, String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal,double salaireBrut, double tauxCommission) {
+    /* public Representants(int numeroRepresentant, String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal,double salaireBrut, double tauxCommission) {
+        super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
+        this.salaireBrut = salaireBrut;
+        this.tauxCommission = tauxCommission;
+        //this.numeroClient = numeroClient;
+        //this.numeroProspect = numeroProspect;
+        this.numeroRepresentant=numeroRepresentant;
+        
+    }*/
+    
+    public Representants(int numeroRepresentant, String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville,String codePostal,String pays, String mail, String numerotel, double salaireBrut, double tauxCommission) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.salaireBrut = salaireBrut;
         this.tauxCommission = tauxCommission;

@@ -21,7 +21,7 @@ public class Modification_Representant extends javax.swing.JFrame {
 
     private Gestion_Representant gr;
     private GestionDonnees gd=new GestionDonnees();
-    //private GestionBaseDeDonnees gBDD;
+    private GestionBaseDeDonnees gBDD;
     private JTable tableau;
     private HashMap<Integer,Representants> representant;
     Representants representantObjet;
@@ -33,7 +33,7 @@ public class Modification_Representant extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.gr = gr;
         this.tableau=tableau;
-        this.representant= gd.getRepresentants();
+        /*this.representant= gd.getRepresentants();
         this.representantObjet= representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
         TF_NomContact.setText(representantObjet.getNom());
@@ -47,23 +47,23 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_Mail.setText(representantObjet.getMail());
         TF_Telephone.setText(representantObjet.getNumerotel());
         TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
+        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));*/
+        
+        
+        gBDD=new GestionBaseDeDonnees();
+        representantObjet=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        TF_NomContact.setText(representantObjet.getNom());
+        TF_PrenomContact.setText(representantObjet.getPrenom());
+        TF_NumRue.setText(Integer.toString(representantObjet.getNumeroVoie()));
+        TF_Rue.setText(representantObjet.getAdresse());
+        TF_Complement.setText(representantObjet.getComplementAdresse());
+        TF_Ville.setText(representantObjet.getVille());
+        TF_codePostal.setText(representantObjet.getCodePostal());
+        CB_Pays.setSelectedItem(representantObjet.getPays());
+        TF_Mail.setText(representantObjet.getMail());
+        TF_Telephone.setText(representantObjet.getNumerotel());
+        TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
         TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));
-        
-        
-        /*gBDD=new GestionBaseDeDonnees();
-        this.representant=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
-        TF_NomContact.setText(representant.getNom());
-        TF_PrenomContact.setText(representant.getPrenom());
-        TF_NumRue.setText(Integer.toString(representant.getNumeroVoie()));
-        TF_Rue.setText(representant.getAdresse());
-        TF_Complement.setText(representant.getComplementAdresse());
-        TF_Ville.setText(representant.getVille());
-        TF_codePostal.setText(representant.getCodePostal());
-        CB_Pays.setSelectedItem(representant.getPays());
-        TF_Mail.setText(representant.getMail());
-        TF_Telephone.setText(representant.getNumerotel());
-        TF_SalaireBrut.setText(Double.toString(representant.getSalaireBrut()));
-        TF_TauxComission.setText(Double.toString(representant.getTauxCommission()));*/
         
         
     }
@@ -605,6 +605,8 @@ public class Modification_Representant extends javax.swing.JFrame {
                 representantObjet.setPays(CB_Pays.getSelectedItem().toString());
                 representantObjet.setSalaireBrut(Double.parseDouble(TF_SalaireBrut.getText()));
                 representantObjet.setTauxCommission(Double.parseDouble(TF_TauxComission.getText()));
+                
+                gBDD.updateBDDRepresentants(representantObjet);
                 
                 gr.setVisible(true);
                 this.dispose();
