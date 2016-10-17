@@ -5,9 +5,9 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.entities.Clients;
-import com.gauthier_matthieu.entities.GestionDonnees;
-import com.gauthier_matthieu.entities.Representants;
+import com.gauthier_matthieu.metier.Clients;
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;

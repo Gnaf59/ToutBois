@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gauthier_matthieu.entities;
+package com.gauthier_matthieu.old;
 
+import com.gauthier_matthieu.metier.Representants;
+import com.gauthier_matthieu.metier.Prospects;
+import com.gauthier_matthieu.metier.Clients;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

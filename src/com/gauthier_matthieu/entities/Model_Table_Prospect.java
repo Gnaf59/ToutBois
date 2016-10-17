@@ -5,6 +5,8 @@
  */
 package com.gauthier_matthieu.entities;
 
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.metier.Prospects;
 import java.text.DateFormat;
 import java.util.HashMap;
 import java.util.Locale;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gauthier_matthieu.entities;
+package com.gauthier_matthieu.metier;
 
 /**
  * Contient toutes les données relative aux Clients et fourni les accesseurs et mutateurs pour chacune de ses données.

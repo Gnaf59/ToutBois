@@ -5,6 +5,9 @@
  */
 package com.gauthier_matthieu.application;
 
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.interBDD.*;
+import com.gauthier_matthieu.metier.Representants;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
@@ -21,7 +24,7 @@ public class Modification_Representant extends javax.swing.JFrame {
 
     private Gestion_Representant gr;
     private GestionDonnees gd=new GestionDonnees();
-    private GestionBaseDeDonnees gBDD;
+    private RequeteRepresentant bddRepresentant;
     private JTable tableau;
     private HashMap<Integer,Representants> representant;
     Representants representantObjet;
@@ -50,8 +53,8 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));*/
         
         
-        gBDD=new GestionBaseDeDonnees();
-        representantObjet=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        bddRepresentant=new RequeteRepresentant();
+        representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         TF_NomContact.setText(representantObjet.getNom());
         TF_PrenomContact.setText(representantObjet.getPrenom());
         TF_NumRue.setText(Integer.toString(representantObjet.getNumeroVoie()));
@@ -606,7 +609,7 @@ public class Modification_Representant extends javax.swing.JFrame {
                 representantObjet.setSalaireBrut(Double.parseDouble(TF_SalaireBrut.getText()));
                 representantObjet.setTauxCommission(Double.parseDouble(TF_TauxComission.getText()));
                 
-                gBDD.updateBDDRepresentants(representantObjet);
+                bddRepresentant.updateBDDRepresentants(representantObjet);
                 
                 gr.setVisible(true);
                 this.dispose();

@@ -6,10 +6,13 @@
 package com.gauthier_matthieu.application;
 
 
+import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
+import com.gauthier_matthieu.metier.Representants;
 import com.gauthier_matthieu.fonctions.MPanelPrinter;
 
 import java.awt.*;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
@@ -58,8 +61,8 @@ public class Consultation_Representant extends javax.swing.JFrame {
         /*appel du hashMap client avec les clients*/
         //HashMap<Integer,Representants> representant= gd.getRepresentants();
         /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
-        GestionBaseDeDonnees gBDD= new GestionBaseDeDonnees();
-        Representants representantObjet=gBDD.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        RequeteRepresentant bddRepresentant= new RequeteRepresentant();
+        Representants representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         //Representants representantObjet = representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         Lb_NumeroClient.setText(Integer.toString(representantObjet.getNumeroRepresentant()));
         Lb_NomContact_Consult.setText(representantObjet.getNom());

@@ -5,6 +5,8 @@
  */
 package com.gauthier_matthieu.entities;
 
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.metier.Clients;
 import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.util.HashMap;

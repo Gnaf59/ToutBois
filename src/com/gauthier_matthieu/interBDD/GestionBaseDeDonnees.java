@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gauthier_matthieu.entities;
+package com.gauthier_matthieu.interBDD;
+import com.gauthier_matthieu.metier.Representants;
+import com.gauthier_matthieu.metier.Prospects;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +28,7 @@ public class GestionBaseDeDonnees {
    private Connection connection=null;
    //Résultat de la requête SQL SELECT
    private ResultSet resultat;
-   private Object[][] objetResultat;
+   protected Object[][] objetResultat;
    //private ArrayList listeResultat;
    private int statut;
    
@@ -147,112 +149,7 @@ public class GestionBaseDeDonnees {
         realiserRequete(requete, DELETE);
         return this.statut;
     }
-
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------   
-    public void insertBDDRepresentant(String nomRepresentant,String prenomRepresentant,int numeroVoie,String adresse,String complementAdresse,String ville,String codePostal,String pays,String mail,String numerotel,double salaireBrut,double tauxCommission)
-    {
-        String requete;
-        requete="INSERT INTO representants (nomRepresentant, prenomRepresentant, numeroVoieRepresentant, adresseRepresentant, complementAdresseRepresentant, villeRepresentant, mailRepresentant, numerotelRepresentant, paysRepresentant, codePostalRepresentant, salaireBrutRepresentant, tauxComissionRepresentant) "
-                + "VALUES ('"+nomRepresentant+"',"
-                + " '"+prenomRepresentant+"',"
-                + " "+numeroVoie+","
-                + " '"+adresse+"',"
-                + " '"+complementAdresse+"',"
-                + " '"+ville+"',"
-                + " '"+mail+"',"
-                + " '"+numerotel+"',"
-                + " '"+pays+"',"
-                + " '"+codePostal+"',"
-                + " "+salaireBrut+","
-                + " "+tauxCommission+");";
-        
-        realiserRequeteInsert(requete);
-        
-         
-    }
-    public Object[][] lectureBDDrepresentant()
-    {
-        String requete;
-        requete= "SELECT * FROM representants;";
-        
-        return realiserRequeteSelect(requete);
-    }
-    public Representants rechercheRepresentant(int numeroRepresentant)
-    {
-        String requete;
-        requete= "SELECT * FROM representants WHERE `numeroRepresentant` = "+numeroRepresentant+";";
-        
-        objetResultat=realiserRequeteSelect(requete);
-        
-        return new Representants(Integer.parseInt(objetResultat[0][0].toString()), objetResultat[0][1].toString(), objetResultat[0][2].toString(), Integer.parseInt(objetResultat[0][3].toString()), objetResultat[0][4].toString(), objetResultat[0][5].toString(), objetResultat[0][6].toString(), objetResultat[0][7].toString(), objetResultat[0][8].toString(), objetResultat[0][9].toString(), objetResultat[0][10].toString(), Double.parseDouble(objetResultat[0][11].toString()),Double.parseDouble(objetResultat[0][12].toString()));
-    }
     
-    public void updateBDDRepresentants(Representants representant)
-    {
-        String requete;
-        
-        
-        requete="UPDATE `representants` "
-                + "SET `nomRepresentant`=\""+representant.getNom()+"\","
-                + "`prenomRepresentant`=\""+representant.getPrenom()+"\","
-                + "`numeroVoieRepresentant`="+representant.getNumeroVoie()+","
-                + "`adresseRepresentant`=\""+representant.getAdresse()+"\","
-                + "`complementAdresseRepresentant`=\""+representant.getComplementAdresse()+"\","
-                + "`villeRepresentant`=\""+representant.getVille()+"\","
-                + "`mailRepresentant`=\""+representant.getMail()+"\","
-                + "`numerotelRepresentant`=\""+representant.getNumerotel()+"\","
-                + "`paysRepresentant`=\""+representant.getPays()+"\","
-                + "`codePostalRepresentant`=\""+representant.getCodePostal()+"\","
-                + "`salaireBrutRepresentant`="+representant.getSalaireBrut()+","
-                + "`tauxComissionRepresentant`="+representant.getTauxCommission()+" "
-                + "WHERE `numeroRepresentant`= "+representant.getNumeroRepresentant()+";";
-        
-      
-        realiserRequeteUpdate(requete);
-    }
-    public void deleteBDDRepresentants(int numeroRepresentant)
-    {
-        String requete="DELETE FROM `representants` WHERE `numeroRepresentant`="+numeroRepresentant+";";
-        realiserRequeteDelete(requete);
-    }
-            
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-    public  Object[][] lectureBDDprospect()
-    {
-        String requete;
-        requete = "SELECT *FROM prospect;";
-        return realiserRequeteSelect(requete);
-    }
-//-------------------------------------------------------------------------------   
-    public void insertBDDprospect(Prospects prospect)
-    {
-        String requete;
-        requete = "INSERT INTO `prospect`(`numeroProspect`, `nomEntrepriseProspect`, `siretProspect`, "
-                + "`numeroRepresProspect`, `nomProspect`, `prenomProspect`, `numVoieProspect`, `adresseProspect`, "
-                + "`complementProspect`, `villeProspect`, `maiProspect`, `numerotelProspect`, `paysProspect`, `codePostaleProspect`, "
-                + "`derniereVisiteProspect`)"
-                +"VALUES('"+prospect.getNomEntreprise()+"',"
-                +"'"+prospect.getSiret()+"',"
-                +"" +prospect.getNumeroProspect()+","
-                +"'"+prospect.getNom()+"',"
-                +"'"+prospect.getPrenom()+"',"
-                +"" +prospect.getNumeroVoie()+","
-                +"'"+prospect.getAdresse()+"',"
-                +"'"+prospect.getComplementAdresse()+"',"
-                +"'"+prospect.getVille()+"',"
-                +"'"+prospect.getMail()+"',"
-                +"'"+prospect.getNumerotel()+"',"
-                +"'"+prospect.getPays()+"',"
-                +"'"+prospect.getCodePostal()+"',"
-                +"'"+prospect.getDerniereVisite()+");";
-        realiserRequete(requete,INSERT);
-    }
     
     
     

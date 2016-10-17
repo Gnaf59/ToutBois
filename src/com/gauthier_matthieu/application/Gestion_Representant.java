@@ -5,8 +5,10 @@
  */
 package com.gauthier_matthieu.application;
 
+import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -341,14 +343,14 @@ public class Gestion_Representant extends javax.swing.JFrame {
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
         try
         {
-            GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
+            RequeteRepresentant bddRepresentant=new RequeteRepresentant();
             //GestionDonnees gd=new GestionDonnees();
             int numeroRepresentant=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Représentant ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
-                gBDD.deleteBDDRepresentants(numeroRepresentant);
+                bddRepresentant.deleteBDDRepresentants(numeroRepresentant);
                 //gd.SupprimerRepresentantsCollection(numeroRepresentant);
                 jTable1.setModel(new Model_Table_Representants());
             }

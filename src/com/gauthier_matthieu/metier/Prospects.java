@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gauthier_matthieu.entities;
+package com.gauthier_matthieu.metier;
 
+import com.gauthier_matthieu.metier.Personnes;
 import java.util.Date;
 
 /**

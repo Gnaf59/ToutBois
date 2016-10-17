@@ -5,6 +5,9 @@
  */
 package com.gauthier_matthieu.entities;
 
+import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
+import com.gauthier_matthieu.metier.Representants;
 import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.sql.ResultSet;
@@ -41,8 +44,8 @@ public class Model_Table_Representants extends AbstractTableModel {
 
     public Model_Table_Representants() {
     
-        GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
-        resultatRequete=gBDD.lectureBDDrepresentant();
+        RequeteRepresentant bddRepresentant=new RequeteRepresentant();
+        resultatRequete=bddRepresentant.lectureBDDrepresentant();
         tableData=new Object[resultatRequete.length][getColumnCount()];
         try
         {    

@@ -5,7 +5,11 @@
  */
 package com.gauthier_matthieu.application;
 
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
+import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.io.*;
 import java.util.regex.*;
@@ -609,11 +613,13 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             }
             else 
             {
-                GestionDonnees gd=new GestionDonnees();
-                gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
+                //GestionDonnees gd=new GestionDonnees();
+                //gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
                 
-                GestionBaseDeDonnees gBDD=new GestionBaseDeDonnees();
-                gBDD.insertBDDRepresentant(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
+                RequeteRepresentant bddRepresentant=new RequeteRepresentant();
+                Representants representant;
+                representant=new Representants(Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()), TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText());
+                bddRepresentant.insertBDDRepresentant(representant);
                 dispose();
                 gr.setVisible(true);
             }

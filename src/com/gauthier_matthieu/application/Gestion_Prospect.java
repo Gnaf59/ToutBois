@@ -5,6 +5,7 @@
  */
 package com.gauthier_matthieu.application;
 
+import com.gauthier_matthieu.old.GestionDonnees;
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Toolkit;
