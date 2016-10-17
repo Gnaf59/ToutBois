@@ -522,7 +522,7 @@ public class GestionDonnees {
         objetRepresentants.setNumeroRepresentant(numeroRepresentant);
         // on prend le numero de Representant existant dans l'objet prospect 
         GestionDonnees.representants.put(objetRepresentants.getNumeroRepresentant(),objetRepresentants);
-    
+   
     }
     /**
      * Methode Permettant d'enregistrer les Representant de la collection dans le fichier Representant.txt
@@ -586,11 +586,7 @@ public class GestionDonnees {
      * @param combobox
      */
     public void ChargementComboBoxRepresentant(JComboBox combobox)
-    {
-        
-        
-       
-        
+    {      
         Iterator i = getRepresentants().keySet().iterator();
         int clef,index=0;
         Representants valeur;

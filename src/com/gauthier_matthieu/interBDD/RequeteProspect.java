@@ -50,7 +50,7 @@ public class RequeteProspect extends GestionBaseDeDonnees{
         String requete;
         
         
-        requete="UPDATE `representants` "
+        requete="UPDATE `prospect` "
                 + "SET `nomEntrepriseProspect`=\""+prospect.getNomEntreprise()+"\","
                 + "`siretProspect`=\""+prospect.getSiret()+"\","
                 + "`numeroRepresProspect`="+prospect.getNumeroRepresentant()+","
@@ -63,12 +63,18 @@ public class RequeteProspect extends GestionBaseDeDonnees{
                 + "`mailProspect`=\""+prospect.getMail()+"\","
                 + "`numeroTelProspect`="+prospect.getNumerotel()+","
                 + "`paysProspect`="+prospect.getPays()+","
-                + "`codePostaleProspect`="+prospect.getCodePostal()+","
+                + "`codePostalProspect`="+prospect.getCodePostal()+","
                 + "`derniereVisiteProspect`="+prospect.getDerniereVisite()+" "
                 + "WHERE `numeroProspect`= "+prospect.getNumeroProspect()+";";
         
       
         realiserRequeteUpdate(requete);
+    }
+    
+    public void deleteBDDProspect(int numeroProspect)
+    {
+        String requete="DELETE FROM `prospect` WHERE `numeroProspect`="+numeroProspect+";";
+        realiserRequeteDelete(requete);
     }
     
 }

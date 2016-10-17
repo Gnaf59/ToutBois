@@ -5,13 +5,9 @@
  */
 package com.gauthier_matthieu.entities;
 
-import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
 import javax.swing.table.AbstractTableModel;
-import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 

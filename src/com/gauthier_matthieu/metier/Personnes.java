@@ -38,6 +38,10 @@ public class Personnes {
         this.mail=mail;
         this.numerotel=numerotel;
     }
+
+    public Personnes() {
+    }
+    
     /**
     * Permet d'obtenir le complément d'adresse de la personne
      * @return le complément d'adresse

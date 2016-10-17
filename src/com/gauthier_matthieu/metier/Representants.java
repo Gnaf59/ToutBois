@@ -15,14 +15,14 @@ import java.util.HashMap;
  */
 public class Representants extends Personnes{
     
-    private int numeroRepresentant;
+    private int numeroRepresentant=0;
     private static int increment=1;
-    private double salaireBrut,tauxCommission;
+    private double salaireBrut=0,tauxCommission=0;
     //private HashMap<Integer,Clients> numeroClient;
     //private HashMap<Integer,Prospects> numeroProspect;
     
 
-    public Representants(double salaireBrut, double tauxCommission,/* HashMap numeroClient, HashMap numeroProspect,*/ String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
+    public Representants(double salaireBrut, double tauxCommission, String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.salaireBrut = salaireBrut;
         this.tauxCommission = tauxCommission;
@@ -41,6 +41,7 @@ public class Representants extends Personnes{
         
     }*/
     
+    
     public Representants(int numeroRepresentant, String nom, String prenom, int numeroVoie, String adresse,String complementAdresse, String ville,String codePostal,String pays, String mail, String numerotel, double salaireBrut, double tauxCommission) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.salaireBrut = salaireBrut;
@@ -50,6 +51,7 @@ public class Representants extends Personnes{
         this.numeroRepresentant=numeroRepresentant;
         
     }
+    
 
     public int getNumeroRepresentant() {
         return numeroRepresentant;

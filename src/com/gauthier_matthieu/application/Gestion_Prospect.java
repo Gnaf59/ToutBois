@@ -254,8 +254,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         
         
-        TableColumn titre = jTable1.getColumnModel().getColumn(4+5+2+0+6+10+11);
-        titre.setPreferredWidth(100);
+        //TableColumn titre = jTable1.getColumnModel().getColumn(4+5+2+0+6+10+11);
+        //titre.setPreferredWidth(100);
     }//GEN-LAST:event_formComponentShown
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained

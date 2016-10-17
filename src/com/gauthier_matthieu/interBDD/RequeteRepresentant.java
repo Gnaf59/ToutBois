@@ -6,6 +6,8 @@
 package com.gauthier_matthieu.interBDD;
 
 import com.gauthier_matthieu.metier.Representants;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -78,6 +80,24 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
     {
         String requete="DELETE FROM `representants` WHERE `numeroRepresentant`="+numeroRepresentant+";";
         realiserRequeteDelete(requete);
+    }
+    
+    public void ChargementComboBoxRepresentant(JComboBox combobox)
+    {  
+        
+        
+        objetResultat=lectureBDDrepresentant();
+        String[] representantCombobox=new String[objetResultat.length +1];
+        representantCombobox[0]="Sélection";
+        
+        for(int i=0;i< objetResultat.length;i++){
+        Representants representant=new Representants(Integer.parseInt(objetResultat[i][0].toString()), objetResultat[i][1].toString(), objetResultat[i][2].toString(), Integer.parseInt(objetResultat[i][3].toString()), objetResultat[i][4].toString(), objetResultat[i][5].toString(), objetResultat[i][6].toString(), objetResultat[i][7].toString(), objetResultat[i][8].toString(), objetResultat[i][9].toString(), objetResultat[i][10].toString(), Double.parseDouble(objetResultat[i][11].toString()),Double.parseDouble(objetResultat[i][12].toString()));
+        
+        representantCombobox[i+1]=representant.toString();
+        }
+       
+        
+        combobox.setModel(new javax.swing.DefaultComboBoxModel(representantCombobox));
     }
     
 }

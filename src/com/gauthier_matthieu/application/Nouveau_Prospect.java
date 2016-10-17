@@ -7,6 +7,7 @@ package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.*;
 import java.text.*;
 import java.util.Locale;
@@ -36,8 +37,10 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.gp=gp;
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
-        GestionDonnees gd = new GestionDonnees();
-        gd.ChargementComboBoxRepresentant(CB_Representant);
+        /*GestionDonnees gd = new GestionDonnees();
+        gd.ChargementComboBoxRepresentant(CB_Representant);*/
+        RequeteRepresentant bddRepresentant=new RequeteRepresentant();
+        bddRepresentant.ChargementComboBoxRepresentant(CB_Representant);
 
 
     }
