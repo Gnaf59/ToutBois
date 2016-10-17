@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import com.gauthier_matthieu.interBDD.*;
 
 /**
  * Cette fenêtre s'occupe de la gestion du fichier client.
@@ -303,7 +304,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
        
-        try
+       /* try
         {
             Modification_Clients mc = new Modification_Clients(jTable1,this);
             mc.setVisible(true);
@@ -311,6 +312,16 @@ public class Gestion_Clients extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException iobe)
         {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+        }*/
+        
+        
+        try
+        {
+            Modification_Clients mc = new Modification_Clients(jTable1,this);
+            mc.setVisible(true);
+            this.setVisible(false);
+        }catch(IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
         }
     
@@ -339,13 +350,15 @@ public class Gestion_Clients extends javax.swing.JFrame {
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
         try
         {
-            GestionDonnees gd=new GestionDonnees();
+            RequeteClient bddClient = new RequeteClient();
+            //GestionDonnees gd=new GestionDonnees();
             int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Client ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
-                gd.SupprimerClientsCollection(numeroClient);
+                bddClient.deleteBDDClients(numeroClient);
+                //gd.SupprimerClientsCollection(numeroClient);
                 jTable1.setModel(new Model_Table_Client());
             }
             

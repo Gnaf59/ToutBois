@@ -618,7 +618,12 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                 
                 RequeteRepresentant bddRepresentant=new RequeteRepresentant();
                 Representants representant;
-                representant=new Representants(Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()), TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText());
+                representant=new Representants(Double.parseDouble(TF_SalaireBrut.getText()), 
+                        Double.parseDouble(TF_TauxComission.getText()), TF_NomContact.getText(),
+                        TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), 
+                        TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), 
+                        TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), 
+                        TF_Mail.getText(), TF_Telephone.getText());
                 bddRepresentant.insertBDDRepresentant(representant);
                 dispose();
                 gr.setVisible(true);

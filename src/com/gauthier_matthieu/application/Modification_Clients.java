@@ -5,6 +5,8 @@
  */
 package com.gauthier_matthieu.application;
 
+import com.gauthier_matthieu.interBDD.RequeteClient;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Clients;
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.metier.Representants;
@@ -26,15 +28,19 @@ import javax.swing.JTable;
 public class Modification_Clients extends javax.swing.JFrame {
 
     
-    GestionDonnees gd = new GestionDonnees();
+    //GestionDonnees gd = new GestionDonnees();
+    RequeteRepresentant rr=new RequeteRepresentant();
     
-    private HashMap<Integer,Clients> client= gd.getClients();
-    private Clients clientObjet; 
+    //private HashMap<Integer,Clients> client= gd.getClients();
+    //private Clients clientObjet; 
     private JTable tableau;
     private Gestion_Clients gc;
     private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternSiret,patternCodePostalNumeroRue;
     private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherSiret,matcherCodePostal,matcherNumeroRue;
     
+    
+    private RequeteClient bddClient;
+    Clients clientObjet;
      /**
      * Initialise tous les composants de la fenêtre
      * @param tableau Tableau des clients de l'écran gestion Client
@@ -45,7 +51,7 @@ public class Modification_Clients extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.gc=gc;
         this.tableau=tableau;
-        this.clientObjet= client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        /*this.clientObjet= client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
         gd.ChargementComboBoxRepresentant(CB_Representant);
         
@@ -62,7 +68,27 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Mail.setText(clientObjet.getMail());
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        CB_Representant.setSelectedItem(gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString());
+        CB_Representant.setSelectedItem(gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString());*/
+        
+        bddClient = new RequeteClient();
+        clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        rr.ChargementComboBoxRepresentant(CB_Representant);
+        
+        TF_NomContact.setText(clientObjet.getNom());
+        TF_PrenomContact.setText(clientObjet.getPrenom());
+        TF_Societe.setText(clientObjet.getNomEntreprise());
+        TF_Siret.setText(clientObjet.getSiret());
+        TF_NumRue.setText(Integer.toString(clientObjet.getNumeroVoie()));
+        TF_Rue.setText(clientObjet.getAdresse());
+        TF_Complement.setText(clientObjet.getComplementAdresse());
+        TF_Ville.setText(clientObjet.getVille());
+        TF_codePostal.setText(clientObjet.getCodePostal());
+        CB_Pays.setSelectedItem(clientObjet.getPays());
+        TF_Mail.setText(clientObjet.getMail());
+        TF_Telephone.setText(clientObjet.getNumerotel());
+        TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
+        CB_Representant.setSelectedItem(rr.ChargementComboBoxRepresentant().toString());
+        
     }
     
     

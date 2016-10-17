@@ -79,7 +79,7 @@
                               </Group>
                               <Component id="Lb_ChampsObligatoires" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="101" max="32767" attributes="0"/>
+                          <EmptySpace pref="111" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Bt_Valider" min="-2" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                       </Group>
                       <Component id="logo" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="label1" min="-2" max="-2" attributes="0"/>

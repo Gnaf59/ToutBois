@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import com.gauthier_matthieu.interBDD.*;
+import com.gauthier_matthieu.metier.Clients;
 
 /**
  * Cette Fenêtre s'occupe de l'ajout de nouveau Clients
@@ -35,10 +37,8 @@ public class Nouveau_Client extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.gc=gc;
-        
-        GestionDonnees gd=new GestionDonnees();
-        gd.ChargementComboBoxRepresentant(CB_Representant);
-        
+        RequeteRepresentant bddrepresentant = new RequeteRepresentant();
+        bddrepresentant.ChargementComboBoxRepresentant(CB_Representant);
     }
     
     
@@ -167,12 +167,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
         Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
         Lb_PrenomContact.setText("* Prénom :");
 
-        TF_Mail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_MailActionPerformed(evt);
-            }
-        });
-
         Lb_Mail.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Mail.setText("Mail :");
@@ -180,12 +174,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
         Lb_Telephone.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Telephone.setText("Téléphone :");
-
-        TF_Telephone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_TelephoneActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel_EntrepriseLayout = new javax.swing.GroupLayout(jPanel_Entreprise);
         jPanel_Entreprise.setLayout(jPanel_EntrepriseLayout);
@@ -577,18 +565,19 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 String[] numeroRepresentant;
                 numeroRepresentant=CB_Representant.getSelectedItem().toString().split("\\.");
                 
-                GestionDonnees gd=new GestionDonnees();
-                gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), 
-                        TF_Siret.getText(), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
-                        TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,Integer.parseInt(numeroRepresentant[0]));
-                
-                
-                //ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
-                dispose();
+                //GestionDonnees gd=new GestionDonnees();
+                //gd.EnregistrerClientsCollection(TF_NomContact.getText(), TF_PrenomContact.getText(), TF_Societe.getText(), 
+                //        TF_Siret.getText(), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
+                //        TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),TF_Mail.getText(), TF_Telephone.getText(), 0,Integer.parseInt(numeroRepresentant[0]));
+                RequeteClient bddClient = new RequeteClient();
+                Clients client;
+                client = new Clients(TF_Societe.getText(), TF_Siret.getText(), CB_Representant.getSelectedIndex()+1,
+                        TF_NomContact.getText(), TF_PrenomContact.getText(), Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(), 
+                        TF_Complement.getText(), TF_Ville.getText(), TF_Mail.getText(), TF_Telephone.getText(), 
+                        CB_Pays.getSelectedItem().toString(),TF_codePostal.getText());
+                bddClient.insertBDDClients(client);
+                dispose();//ferme la fenêtre Nouveau client et réaffiche la fenêtre gestion client
                 gc.setVisible(true);
-                
-                
-            
             }
 
         } catch (Exception ex) {
@@ -611,14 +600,6 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_Bt_AideActionPerformed
 
-    private void TF_MailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_MailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_MailActionPerformed
-
-    private void TF_TelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_TelephoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_TelephoneActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
         gc.setVisible(true);
@@ -626,7 +607,8 @@ public class Nouveau_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        
+        gc.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_formWindowClosed
 
 

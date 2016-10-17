@@ -12,6 +12,7 @@ import com.gauthier_matthieu.fonctions.MPanelPrinter;
 
 import java.awt.*;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteClient;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
@@ -42,7 +43,7 @@ public class Consultation_Client extends javax.swing.JFrame {
         this.tableau=tableau;
         this.gc=gc;
         
-        Lb_NumeroClient.setText("");
+        /*Lb_NumeroClient.setText("");
         Lb_Complement_Consult.setText("");
         //Lb_DerniereCommande_Consult.setText("");
         Lb_Mail_Consult.setText("");
@@ -57,14 +58,16 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_Societe_Consult.setText("");
         Lb_Telephone_Consult.setText("");
         Lb_Ville_Consult.setText("");
-        Lb_codePostal_Consult.setText("");
+        Lb_codePostal_Consult.setText("");*/
         
         /*appel de la méthode Gestion Client*/
-        GestionDonnees gd = new GestionDonnees();
+        //GestionDonnees gd = new GestionDonnees();
         /*appel du hashMap client avec les clients*/
-        HashMap<Integer,Clients> client= gd.getClients();
+        //HashMap<Integer,Clients> client= gd.getClients();
         /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
-        Clients clientObjet = client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        
+        RequeteClient bddclient=new RequeteClient();
+        Clients clientObjet = bddclient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
         Lb_NomContact_Consult.setText(clientObjet.getNom());
         Lb_PrenomContact_Consult.setText(clientObjet.getPrenom());
@@ -81,6 +84,7 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
         
         String nomPrenomRepresentant[];
+        
         nomPrenomRepresentant=gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString().split("\\.");
         Lb_RepresentantNomPrenom_Consult.setText(nomPrenomRepresentant[1]);
         //Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
