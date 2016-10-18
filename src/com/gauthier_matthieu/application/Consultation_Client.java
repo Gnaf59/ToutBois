@@ -18,6 +18,7 @@ import com.gauthier_matthieu.metier.Representants;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 
 

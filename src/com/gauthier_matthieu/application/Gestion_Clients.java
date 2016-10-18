@@ -11,7 +11,7 @@ import com.gauthier_matthieu.entities.*;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import com.gauthier_matthieu.interBDD.*;
-import javax.swing.table.TableColumn;
+import java.sql.SQLException;
 
 /**
  * Cette fenêtre s'occupe de la gestion du fichier client.
@@ -345,7 +345,11 @@ public class Gestion_Clients extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Suppresion client effectuée", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        catch(IndexOutOfBoundsException iobe) 
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException iobe)
         {
             JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "Attention", JOptionPane.ERROR_MESSAGE);
         }

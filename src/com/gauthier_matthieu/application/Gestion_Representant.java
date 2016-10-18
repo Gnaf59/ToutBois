@@ -12,6 +12,7 @@ import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -359,6 +360,10 @@ public class Gestion_Representant extends javax.swing.JFrame {
         catch(IndexOutOfBoundsException iobe)
         {
             JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "Attention", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BT_SupprimerActionPerformed
 

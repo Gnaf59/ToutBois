@@ -5,10 +5,17 @@
  */
 package com.gauthier_matthieu.application;
 
-
-import com.gauthier_matthieu.interBDD.*;
-import com.gauthier_matthieu.metier.*;
-import java.awt.*;
+import com.gauthier_matthieu.interBDD.RequeteClient;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
+import com.gauthier_matthieu.metier.Clients;
+import com.gauthier_matthieu.old.GestionDonnees;
+import com.gauthier_matthieu.metier.Representants;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.io.*;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.regex.*;
 import javax.swing.*;
 

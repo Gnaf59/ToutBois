@@ -12,6 +12,7 @@ import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 
@@ -607,7 +608,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                 }
             }
 
-            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches() || "".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches() || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  
+            if (champsIncomplet)  
             {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             }
@@ -629,7 +630,12 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                 gr.setVisible(true);
             }
 
-        } catch (Exception ex) {
+        } 
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
 
         }

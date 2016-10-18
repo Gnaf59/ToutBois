@@ -7,6 +7,7 @@ package com.gauthier_matthieu.entities;
 
 import com.gauthier_matthieu.interBDD.RequeteClient;
 import com.gauthier_matthieu.metier.Clients;
+import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -31,8 +32,7 @@ public class Model_Table_Client extends AbstractTableModel {
         "Code postal",
         "Pays",
         "Mail",
-        "Numéro de Tel",
-        /*"Nombre de commande"*/};
+        "Numéro de Tel", /*"Nombre de commande"*/};
 
     
     private Object[][] tableData; 
@@ -89,7 +89,7 @@ public class Model_Table_Client extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {      
+    public Object getValueAt(int rowIndex, int columnIndex) {
         return tableData[rowIndex][columnIndex];
     }
 

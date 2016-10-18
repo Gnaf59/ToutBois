@@ -11,6 +11,7 @@ import com.gauthier_matthieu.metier.Representants;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
@@ -52,7 +53,7 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
         TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));*/
         
-        
+        try{
         bddRepresentant=new RequeteRepresentant();
         representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         TF_NomContact.setText(representantObjet.getNom());
@@ -66,7 +67,11 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_Mail.setText(representantObjet.getMail());
         TF_Telephone.setText(representantObjet.getNumerotel());
         TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
-        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));
+        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));}
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
         
         
     }
@@ -521,56 +526,66 @@ public class Modification_Representant extends javax.swing.JFrame {
             patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
             
             String Verification = "Veuillez remplir correctement le(s) champs\n";
-
+            boolean formulaireMalRempli = false;
+            
             matcherSalaireBrut=patternDouble.matcher(TF_SalaireBrut.getText());
             if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches()) {
                 Lb_SalaireBrut.setForeground(Color.red);
                 Verification += "--> Salaire Brut\n";
+                formulaireMalRempli = true;
             }
             matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
             if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
                 Lb_TauxComission.setForeground(Color.red);
                 Verification += "--> Taux de comission\n";
+                formulaireMalRempli = true;
             }
             matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
             if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
                 Verification += "--> Numéro de la rue\n";
+                formulaireMalRempli = true;
             }
 
             matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
             if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
                 Verification+="--> Adresse\n";
+                formulaireMalRempli = true;
             }
 
             matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
             if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="--> Ville\n";
+                formulaireMalRempli = true;
             }
 
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays\n";
+                formulaireMalRempli = true;
             }
 
             matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
             if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
                 Verification+="--> Code postal\n";
+                formulaireMalRempli = true;
             }
 
             matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
             if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
                 Verification+="--> Nom du contact\n";
+                formulaireMalRempli = true;
             }
 
             matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
             if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
                 Verification+="--> Prénom du contact\n";
+                formulaireMalRempli = true;
             }
             
             matcherMail = patternMail.matcher(TF_Mail.getText());
@@ -579,6 +594,7 @@ public class Modification_Representant extends javax.swing.JFrame {
             {
                 Verification+="--> Email\n";
                 Lb_Mail.setForeground(Color.red);
+                formulaireMalRempli = true;
             }
             
             
@@ -588,9 +604,10 @@ public class Modification_Representant extends javax.swing.JFrame {
             {
                 Verification+="--> Numéro de téléphone\n";
                 Lb_Telephone.setForeground(Color.red);
+                formulaireMalRempli = true;
             }
 
-            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches() || "".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches() || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  
+            if (formulaireMalRempli)  
             {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             }
