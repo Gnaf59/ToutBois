@@ -13,6 +13,7 @@ import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.*;
@@ -69,7 +70,7 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
         CB_Representant.setSelectedItem(gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString());*/
-        
+        try{
         bddClient = new RequeteClient();
         clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         rr.ChargementComboBoxRepresentant(CB_Representant);
@@ -87,7 +88,12 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Mail.setText(clientObjet.getMail());
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        CB_Representant.setSelectedItem(rr.ChargementComboBoxRepresentant().toString());
+        //CB_Representant.setSelectedItem(rr.ChargementComboBoxRepresentant().toString());
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     

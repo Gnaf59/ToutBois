@@ -11,6 +11,7 @@ import com.gauthier_matthieu.entities.*;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import com.gauthier_matthieu.interBDD.*;
+import java.sql.SQLException;
 
 /**
  * Cette fenêtre s'occupe de la gestion du fichier client.
@@ -363,6 +364,10 @@ public class Gestion_Clients extends javax.swing.JFrame {
             }
             
                  
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
         catch(IndexOutOfBoundsException iobe)
         {

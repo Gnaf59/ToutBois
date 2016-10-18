@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import com.gauthier_matthieu.interBDD.*;
 import com.gauthier_matthieu.metier.Clients;
+import java.sql.SQLException;
 
 /**
  * Cette Fenêtre s'occupe de l'ajout de nouveau Clients
@@ -580,7 +581,12 @@ public class Nouveau_Client extends javax.swing.JFrame {
                 gc.setVisible(true);
             }
 
-        } catch (Exception ex) {
+        } 
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
 
         }

@@ -6,6 +6,7 @@
 package com.gauthier_matthieu.interBDD;
 
 import com.gauthier_matthieu.metier.Clients;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,14 +14,14 @@ import com.gauthier_matthieu.metier.Clients;
  */
 public class RequeteClient extends GestionBaseDeDonnees{
     
-    public Object[][] lectureBDDClients()
+    public Object[][] lectureBDDClients() throws SQLException
     {
         String requete;
         requete= "SELECT * FROM clients;";
         return realiserRequeteSelect(requete);
     }
 //------------------------------------------------------------------------------    
-    public void insertBDDClients(Clients client)
+    public void insertBDDClients(Clients client) throws SQLException
     {
         String requete;
         requete="INSERT INTO clients (nomEntrepriseClient, siretClient, numeroRepresClient, nomClient, prenomClient, "
@@ -43,7 +44,7 @@ public class RequeteClient extends GestionBaseDeDonnees{
         realiserRequeteInsert(requete);
     }
 //------------------------------------------------------------------------------      
-    public Clients rechercheClients(int numeroClient)
+    public Clients rechercheClients(int numeroClient) throws SQLException
     {
         String requete;
         requete= "SELECT * FROM clients WHERE `numeroClient` = "+numeroClient+";";
@@ -66,7 +67,7 @@ public class RequeteClient extends GestionBaseDeDonnees{
                 objetResultat[0][13].toString());
     }
 //------------------------------------------------------------------------------     
-    public void updateBDDClients(Clients client)
+    public void updateBDDClients(Clients client) throws SQLException
     {
         String requete;
         requete="UPDATE `clients` "
@@ -87,7 +88,7 @@ public class RequeteClient extends GestionBaseDeDonnees{
         realiserRequeteUpdate(requete);
     }
 //------------------------------------------------------------------------------     
-    public void deleteBDDClients(int numeroClient)
+    public void deleteBDDClients(int numeroClient) throws SQLException
     {
         String requete="DELETE FROM `clients` WHERE `numeroClient`="+numeroClient+";";
         realiserRequeteDelete(requete);

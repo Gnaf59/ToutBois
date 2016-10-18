@@ -13,7 +13,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
- *  
+ *
  * @author glantoine
  */
 public class Model_Table_Representants extends AbstractTableModel {
@@ -34,51 +34,43 @@ public class Model_Table_Representants extends AbstractTableModel {
 
     private HashMap<Integer, Representants> representants;
     private Object[][] tableData;
-    private Object[][] resultatRequete; 
+    private Object[][] resultatRequete;
     //private GestionDonnees gd = new GestionDonnees();
     //ResultSet rs;
-    
 
     public Model_Table_Representants() {
-    
-        try{
-        RequeteRepresentant bddRepresentant=new RequeteRepresentant();
-        resultatRequete=bddRepresentant.lectureBDDrepresentant();
-        tableData=new Object[resultatRequete.length][getColumnCount()];
-        try
-        {    
-            int index=0;
-            while(index<resultatRequete.length)
-            {   
-                tableData[index][0] = resultatRequete[index][0]; //rep.getNumeroRepresentant();
-                tableData[index][1] = resultatRequete[index][1];//rep.getNom();
-                tableData[index][2] = resultatRequete[index][2];//rep.getPrenom();
-                tableData[index][3] = resultatRequete[index][3]+" "+resultatRequete[index][4];//rep.getNumeroVoie()+" "+rep.getAdresse();
-                tableData[index][4] = resultatRequete[index][5];//rep.getComplementAdresse();
-                tableData[index][5] = resultatRequete[index][6];//rep.getVille();
-                tableData[index][6] = resultatRequete[index][7];//rep.getCodePostal();
-                tableData[index][7] = resultatRequete[index][8];//rep.getPays();
-                tableData[index][8] = resultatRequete[index][9];//rep.getMail();
-                tableData[index][9] = resultatRequete[index][10];//rep.getNumerotel();
-                tableData[index][10] = resultatRequete[index][11];//rep.getSalaireBrut();
-                tableData[index][11] = resultatRequete[index][12];//rep.getTauxCommission();
-            
-                index++;
+
+        try {
+            RequeteRepresentant bddRepresentant = new RequeteRepresentant();
+            resultatRequete = bddRepresentant.lectureBDDrepresentant();
+            tableData = new Object[resultatRequete.length][getColumnCount()];
+            try {
+                int index = 0;
+                while (index < resultatRequete.length) {
+                    tableData[index][0] = resultatRequete[index][0]; //rep.getNumeroRepresentant();
+                    tableData[index][1] = resultatRequete[index][1];//rep.getNom();
+                    tableData[index][2] = resultatRequete[index][2];//rep.getPrenom();
+                    tableData[index][3] = resultatRequete[index][3] + " " + resultatRequete[index][4];//rep.getNumeroVoie()+" "+rep.getAdresse();
+                    tableData[index][4] = resultatRequete[index][5];//rep.getComplementAdresse();
+                    tableData[index][5] = resultatRequete[index][6];//rep.getVille();
+                    tableData[index][6] = resultatRequete[index][7];//rep.getCodePostal();
+                    tableData[index][7] = resultatRequete[index][8];//rep.getPays();
+                    tableData[index][8] = resultatRequete[index][9];//rep.getMail();
+                    tableData[index][9] = resultatRequete[index][10];//rep.getNumerotel();
+                    tableData[index][10] = resultatRequete[index][11];//rep.getSalaireBrut();
+                    tableData[index][11] = resultatRequete[index][12];//rep.getTauxCommission();
+
+                    index++;
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
-        }
-        }
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
         //Charge le contenu du Hashmap Representants pour remplir un objet tableData pour l'affichage.
-       /* this.representants=this.gd.getRepresentants();
+        /* this.representants=this.gd.getRepresentants();
         this.tableData= new Object[representants.keySet().size()][getColumnCount()];
         int index = 0;
         for (int key : representants.keySet()) {
@@ -98,7 +90,6 @@ public class Model_Table_Representants extends AbstractTableModel {
            
             index++;
         }*/
-    
     }
 
     @Override
@@ -113,12 +104,12 @@ public class Model_Table_Representants extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {      
-        return tableData[rowIndex][columnIndex];    
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        return tableData[rowIndex][columnIndex];
     }
 
     public String getColumnName(int col) {
         return columnNames[col];
     }
-    
+
 }

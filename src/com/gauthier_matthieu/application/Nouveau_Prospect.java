@@ -11,6 +11,7 @@ import com.gauthier_matthieu.interBDD.RequeteProspect;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Prospects;
 import java.awt.*;
+import java.sql.SQLException;
 import java.text.*;
 import java.util.Locale;
 import java.util.regex.*;
@@ -632,9 +633,14 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             
             }
 
-        } catch (Exception ex) {
+        } 
+        catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
-
+        }
+        catch(ParseException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR DE CONVERSION", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_Bt_ValiderActionPerformed

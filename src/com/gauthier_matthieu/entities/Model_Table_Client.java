@@ -7,12 +7,13 @@ package com.gauthier_matthieu.entities;
 
 import com.gauthier_matthieu.interBDD.RequeteClient;
 import com.gauthier_matthieu.metier.Clients;
+import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
- *  
+ *
  * @author glantoine
  */
 public class Model_Table_Client extends AbstractTableModel {
@@ -30,52 +31,49 @@ public class Model_Table_Client extends AbstractTableModel {
         "Code postal",
         "Pays",
         "Mail",
-        "Numéro de Tel",
-        /*"Nombre de commande"*/};
+        "Numéro de Tel", /*"Nombre de commande"*/};
 
     private HashMap<Integer, Clients> clients;
-    private Object[][] tableData; 
+    private Object[][] tableData;
     private Object[][] resultatRequete;
     //private GestionDonnees gd = new GestionDonnees();
-    
 
     public Model_Table_Client() {
-    
-        //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
-        
-        RequeteClient bddClient = new RequeteClient();
-        resultatRequete=bddClient.lectureBDDClients();
-        tableData=new Object[resultatRequete.length][getColumnCount()];
-        
-        try
-        {
-            int index = 0;
-            while (index<resultatRequete.length)
-            {
-            tableData[index][0] = resultatRequete[index][0]; // num Client
-            tableData[index][1] = resultatRequete[index][1]; // raison sociale
-            tableData[index][2] = resultatRequete[index][2]; // siret
-            tableData[index][3] = resultatRequete[index][3]; // numrepré
-            tableData[index][4] = resultatRequete[index][4]; // nomclient
-            tableData[index][5] = resultatRequete[index][5]; // prénom
-            tableData[index][6] = resultatRequete[index][6] + " "+resultatRequete[index][7]; // numéro voie + adresse
-            tableData[index][7] = resultatRequete[index][8]; // complement
-            tableData[index][8] = resultatRequete[index][9]; // ville
-            tableData[index][9] = resultatRequete[index][13]; // ville
-            tableData[index][10] = resultatRequete[index][12]; // mail
-            tableData[index][11] = resultatRequete[index][10]; // mail
-            tableData[index][12] = resultatRequete[index][11]; // pays
-            //tableData[index][12] = resultatRequete[index][]; // commande
-            
-            index++;
-            }
 
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
+        //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
+        try {
+            RequeteClient bddClient = new RequeteClient();
+            resultatRequete = bddClient.lectureBDDClients();
+            tableData = new Object[resultatRequete.length][getColumnCount()];
+
+            try {
+                int index = 0;
+                while (index < resultatRequete.length) {
+                    tableData[index][0] = resultatRequete[index][0]; // num Client
+                    tableData[index][1] = resultatRequete[index][1]; // raison sociale
+                    tableData[index][2] = resultatRequete[index][2]; // siret
+                    tableData[index][3] = resultatRequete[index][3]; // numrepré
+                    tableData[index][4] = resultatRequete[index][4]; // nomclient
+                    tableData[index][5] = resultatRequete[index][5]; // prénom
+                    tableData[index][6] = resultatRequete[index][6] + " " + resultatRequete[index][7]; // numéro voie + adresse
+                    tableData[index][7] = resultatRequete[index][8]; // complement
+                    tableData[index][8] = resultatRequete[index][9]; // ville
+                    tableData[index][9] = resultatRequete[index][13]; // ville
+                    tableData[index][10] = resultatRequete[index][12]; // mail
+                    tableData[index][11] = resultatRequete[index][10]; // mail
+                    tableData[index][12] = resultatRequete[index][11]; // pays
+                    //tableData[index][12] = resultatRequete[index][]; // commande
+
+                    index++;
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
         /*this.clients=this.gd.getClients();
         this.tableData= new Object[clients.keySet().size()][getColumnCount()];
         int index = 0;
@@ -98,7 +96,6 @@ public class Model_Table_Client extends AbstractTableModel {
            
             index++;
         }*/
-    
     }
 
     @Override
@@ -113,12 +110,12 @@ public class Model_Table_Client extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {      
+    public Object getValueAt(int rowIndex, int columnIndex) {
         return tableData[rowIndex][columnIndex];
     }
 
     public String getColumnName(int col) {
         return columnNames[col];
     }
-    
+
 }

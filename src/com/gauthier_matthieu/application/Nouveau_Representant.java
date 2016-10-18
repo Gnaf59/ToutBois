@@ -12,6 +12,7 @@ import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 
@@ -629,7 +630,12 @@ public class Nouveau_Representant extends javax.swing.JFrame {
                 gr.setVisible(true);
             }
 
-        } catch (Exception ex) {
+        } 
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
 
         }

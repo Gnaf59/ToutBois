@@ -16,6 +16,7 @@ import com.gauthier_matthieu.interBDD.RequeteClient;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 
 
@@ -65,7 +66,7 @@ public class Consultation_Client extends javax.swing.JFrame {
         /*appel du hashMap client avec les clients*/
         //HashMap<Integer,Clients> client= gd.getClients();
         /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
-        
+        try{
         RequeteClient bddclient=new RequeteClient();
         Clients clientObjet = bddclient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
@@ -88,6 +89,11 @@ public class Consultation_Client extends javax.swing.JFrame {
         nomPrenomRepresentant=gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString().split("\\.");
         Lb_RepresentantNomPrenom_Consult.setText(nomPrenomRepresentant[1]);
         //Lb_DerniereCommande_Consult.setText(tableau.getValueAt(tableau.getSelectedRow(), 8).toString());
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     
