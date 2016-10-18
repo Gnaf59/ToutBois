@@ -7,6 +7,7 @@ package com.gauthier_matthieu.entities;
 
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
+import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -40,6 +41,7 @@ public class Model_Table_Representants extends AbstractTableModel {
 
     public Model_Table_Representants() {
     
+        try{
         RequeteRepresentant bddRepresentant=new RequeteRepresentant();
         resultatRequete=bddRepresentant.lectureBDDrepresentant();
         tableData=new Object[resultatRequete.length][getColumnCount()];
@@ -68,7 +70,11 @@ public class Model_Table_Representants extends AbstractTableModel {
         {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
         }
-        
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
         
         
         //Charge le contenu du Hashmap Representants pour remplir un objet tableData pour l'affichage.

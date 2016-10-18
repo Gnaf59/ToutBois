@@ -16,6 +16,7 @@ import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 
 
@@ -61,6 +62,8 @@ public class Consultation_Representant extends javax.swing.JFrame {
         /*appel du hashMap client avec les clients*/
         //HashMap<Integer,Representants> representant= gd.getRepresentants();
         /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
+        
+        try{
         RequeteRepresentant bddRepresentant= new RequeteRepresentant();
         Representants representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         //Representants representantObjet = representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
@@ -76,7 +79,11 @@ public class Consultation_Representant extends javax.swing.JFrame {
         Lb_Pays_Consult.setText(representantObjet.getPays());
         Lb_Mail_Consult.setText(representantObjet.getMail());
         Lb_Telephone_Consult.setText(representantObjet.getNumerotel());
-        Lb_SalaireBrut_Consult.setText(Double.toString(representantObjet.getSalaireBrut()));
+        Lb_SalaireBrut_Consult.setText(Double.toString(representantObjet.getSalaireBrut()));}
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur SQL", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     

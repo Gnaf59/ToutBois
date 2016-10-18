@@ -11,6 +11,7 @@ import com.gauthier_matthieu.metier.Representants;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
@@ -52,7 +53,7 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
         TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));*/
         
-        
+        try{
         bddRepresentant=new RequeteRepresentant();
         representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         TF_NomContact.setText(representantObjet.getNom());
@@ -66,7 +67,11 @@ public class Modification_Representant extends javax.swing.JFrame {
         TF_Mail.setText(representantObjet.getMail());
         TF_Telephone.setText(representantObjet.getNumerotel());
         TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
-        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));
+        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));}
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
         
         
     }

@@ -19,13 +19,15 @@ public class Prospects extends Personnes{
     private static int increment=1;
 
     
-    public Prospects(String nomEntreprise,String siret, int numeroRepresentant, String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal) {
+    public Prospects(String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville, String mail, String numerotel, String pays, String codePostal, String nomEntreprise,String siret, int numeroRepresentant,Date derniereVisite ) {
         super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
         this.nomEntreprise=nomEntreprise;
         this.siret = siret;
         this.numeroRepresentant = numeroRepresentant;
-        numeroProspect= increment;
-        increment ++;
+        this.derniereVisite=derniereVisite;
+        
+        /*numeroProspect= increment;
+        increment ++;*/
     }
     
 

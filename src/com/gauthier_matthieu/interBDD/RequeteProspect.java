@@ -7,26 +7,29 @@ package com.gauthier_matthieu.interBDD;
 
 import static com.gauthier_matthieu.interBDD.GestionBaseDeDonnees.INSERT;
 import com.gauthier_matthieu.metier.Prospects;
+import java.sql.SQLException;
 
 /**
  *
  * @author Dev
  */
-public class RequeteProspect extends GestionBaseDeDonnees{
+public class RequeteProspect extends GestionBaseDeDonnees {
     
-    public  Object[][] lectureBDDprospect()
+    public  Object[][] lectureBDDprospect() throws SQLException
     {
         String requete;
         requete = "SELECT *FROM prospect;";
         return realiserRequeteSelect(requete);
     }
 //-------------------------------------------------------------------------------   
-    public void insertBDDprospect(Prospects prospect)
+    public void insertBDDprospect(Prospects prospect) throws SQLException
     {
+        java.sql.Date sqlDate = new java.sql.Date(prospect.getDerniereVisite().getTime());
+        
         String requete;
         requete = "INSERT INTO `prospect`(`nomEntrepriseProspect`, `siretProspect`, "
                 + "`numeroRepresProspect`, `nomProspect`, `prenomProspect`, `numVoieProspect`, `adresseProspect`, "
-                + "`complementProspect`, `villeProspect`, `mailProspect`, `numerotelProspect`, `paysProspect`, `codePostaleProspect`, "
+                + "`complementProspect`, `villeProspect`, `mailProspect`, `numerotelProspect`, `paysProspect`, `codePostalProspect`, "
                 + "`derniereVisiteProspect`)"
                 +"VALUES('"+prospect.getNomEntreprise()+"',"
                 +"'"+prospect.getSiret()+"',"
@@ -41,11 +44,11 @@ public class RequeteProspect extends GestionBaseDeDonnees{
                 +"'"+prospect.getNumerotel()+"',"
                 +"'"+prospect.getPays()+"',"
                 +"'"+prospect.getCodePostal()+"',"
-                +"'"+prospect.getDerniereVisite()+");";
+                +"'"+sqlDate+"');";
         realiserRequeteInsert(requete);
     }
     
-    public void updateBDDProspect(Prospects prospect)
+    public void updateBDDProspect(Prospects prospect) throws SQLException
     {
         String requete;
         
@@ -71,7 +74,7 @@ public class RequeteProspect extends GestionBaseDeDonnees{
         realiserRequeteUpdate(requete);
     }
     
-    public void deleteBDDProspect(int numeroProspect)
+    public void deleteBDDProspect(int numeroProspect) throws SQLException
     {
         String requete="DELETE FROM `prospect` WHERE `numeroProspect`="+numeroProspect+";";
         realiserRequeteDelete(requete);

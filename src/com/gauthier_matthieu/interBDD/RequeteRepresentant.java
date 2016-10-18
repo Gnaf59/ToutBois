@@ -6,8 +6,10 @@
 package com.gauthier_matthieu.interBDD;
 
 import com.gauthier_matthieu.metier.Representants;
+import java.sql.SQLException;
 import java.util.Iterator;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +17,7 @@ import javax.swing.JComboBox;
  */
 public class RequeteRepresentant extends GestionBaseDeDonnees{
     
-    public void insertBDDRepresentant(Representants representant)
+    public void insertBDDRepresentant(Representants representant) throws SQLException
     {
         String requete;
         requete="INSERT INTO representants (nomRepresentant, prenomRepresentant, numeroVoieRepresentant, adresseRepresentant, complementAdresseRepresentant, villeRepresentant, mailRepresentant, numerotelRepresentant, paysRepresentant, codePostalRepresentant, salaireBrutRepresentant, tauxComissionRepresentant) "
@@ -36,14 +38,14 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
         
          
     }
-    public Object[][] lectureBDDrepresentant()
+    public Object[][] lectureBDDrepresentant() throws SQLException
     {
         String requete;
         requete= "SELECT * FROM representants;";
         
         return realiserRequeteSelect(requete);
     }
-    public Representants rechercheRepresentant(int numeroRepresentant)
+    public Representants rechercheRepresentant(int numeroRepresentant) throws SQLException
     {
         String requete;
         requete= "SELECT * FROM representants WHERE `numeroRepresentant` = "+numeroRepresentant+";";
@@ -53,7 +55,7 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
         return new Representants(Integer.parseInt(objetResultat[0][0].toString()), objetResultat[0][1].toString(), objetResultat[0][2].toString(), Integer.parseInt(objetResultat[0][3].toString()), objetResultat[0][4].toString(), objetResultat[0][5].toString(), objetResultat[0][6].toString(), objetResultat[0][7].toString(), objetResultat[0][8].toString(), objetResultat[0][9].toString(), objetResultat[0][10].toString(), Double.parseDouble(objetResultat[0][11].toString()),Double.parseDouble(objetResultat[0][12].toString()));
     }
     
-    public void updateBDDRepresentants(Representants representant)
+    public void updateBDDRepresentants(Representants representant) throws SQLException
     {
         String requete;
         
@@ -76,7 +78,7 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
       
         realiserRequeteUpdate(requete);
     }
-    public void deleteBDDRepresentants(int numeroRepresentant)
+    public void deleteBDDRepresentants(int numeroRepresentant) throws SQLException
     {
         String requete="DELETE FROM `representants` WHERE `numeroRepresentant`="+numeroRepresentant+";";
         realiserRequeteDelete(requete);
@@ -85,7 +87,7 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
     public void ChargementComboBoxRepresentant(JComboBox combobox)
     {  
         
-        
+        try{
         objetResultat=lectureBDDrepresentant();
         String[] representantCombobox=new String[objetResultat.length +1];
         representantCombobox[0]="Sélection";
@@ -98,6 +100,11 @@ public class RequeteRepresentant extends GestionBaseDeDonnees{
        
         
         combobox.setModel(new javax.swing.DefaultComboBoxModel(representantCombobox));
+        }
+        catch (SQLException sqlex)
+        {
+            JOptionPane.showMessageDialog(null, sqlex.getMessage(), "Erreur de chargement des données du représentant", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
 }

@@ -8,6 +8,7 @@ package com.gauthier_matthieu.entities;
 import com.gauthier_matthieu.interBDD.*;
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.metier.Prospects;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.HashMap;
 import java.util.Locale;
@@ -44,6 +45,7 @@ public class Model_Table_Prospect extends AbstractTableModel {
 
     public Model_Table_Prospect() {
 
+        try{
         RequeteProspect bddProspect = new RequeteProspect();
         resultatRequete = bddProspect.lectureBDDprospect();
         tableData = new Object[resultatRequete.length][getColumnCount()];
@@ -71,6 +73,11 @@ public class Model_Table_Prospect extends AbstractTableModel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur affichage de la jTable", JOptionPane.ERROR_MESSAGE);
 
+        }
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
 
         /*

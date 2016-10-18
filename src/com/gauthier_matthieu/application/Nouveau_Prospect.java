@@ -7,7 +7,9 @@ package com.gauthier_matthieu.application;
 
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteProspect;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
+import com.gauthier_matthieu.metier.Prospects;
 import java.awt.*;
 import java.text.*;
 import java.util.Locale;
@@ -600,25 +602,38 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
                 
                         String[] numeroRepProspect;
             numeroRepProspect=CB_Representant.getSelectedItem().toString().split("\\.");
-                
+             
+            
             DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
             sdf.format(jDate.getDate());
             sdf.parse(sdf.format(jDate.getDate()));
-            GestionDonnees gd=new GestionDonnees(); 
+            
+            
+            
+            /*GestionDonnees gd=new GestionDonnees(); 
             
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
             TF_Siret.getText(),Integer.parseInt(TF_NumRue.getText()),TF_Adresse.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
-            Integer.parseInt(numeroRepProspect[0]),sdf.parse(sdf.format(jDate.getDate())));
+            Integer.parseInt(numeroRepProspect[0]),sdf.parse(sdf.format(jDate.getDate())));*/
             
-            dispose();
+            Prospects prospect=new Prospects(TF_NomContact.getText(),TF_PrenomContact.getText(),Integer.parseInt(TF_NumRue.getText()),
+                    TF_Adresse.getText(),TF_Complement.getText(),TF_Ville.getText(),TF_Mail.getText(),
+                    TF_Telephone.getText(),CB_Pays.getSelectedItem().toString(),TF_codePostal.getText(),
+                    TF_Societe.getText(),TF_Siret.getText(),Integer.parseInt(numeroRepProspect[0]),sdf.parse(sdf.format(jDate.getDate())));
+            
+            RequeteProspect bddProspect=new RequeteProspect();
+            bddProspect.insertBDDprospect(prospect);
+            
+            
+            this.dispose();
             gp.setVisible(true);
             JOptionPane.showMessageDialog(null, " Enregistrement du prospect effectué.", "Information", JOptionPane.INFORMATION_MESSAGE);
             
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
 
         }
         

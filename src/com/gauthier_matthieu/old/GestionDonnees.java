@@ -307,7 +307,7 @@ public class GestionDonnees {
             String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
     {
-        try
+        /*try
         {
          
         //Enregistre le Prospect dans la collection
@@ -320,7 +320,7 @@ public class GestionDonnees {
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur conversion date", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
          
     }
     //-------------------------------------------------------------------------------------------------------------------------
@@ -346,11 +346,11 @@ public class GestionDonnees {
             String siret,int numeroVoie,String adresse,String complementAdresse,String ville,
             String codePostal,String pays,String mail,String telephone,int numeroRepresentant,Date derniereVisite)
     {
-        //Enregistre le Prospect dans la collection
+       /* //Enregistre le Prospect dans la collection
         Prospects objetProspect=new Prospects(societe,siret,numeroRepresentant,nomContact,prenomContact, numeroVoie, adresse, complementAdresse, ville, mail, telephone, pays, codePostal);
         objetProspect.setDerniereVisite(derniereVisite);
         // on prend le numero de client existant dans l'objet prospect 
-        GestionDonnees.prospects.put(objetProspect.getNumeroProspect(),objetProspect);
+        GestionDonnees.prospects.put(objetProspect.getNumeroProspect(),objetProspect);*/
     }
     //-------------------------------------------------------------------------------------------------------------------------
     /**
