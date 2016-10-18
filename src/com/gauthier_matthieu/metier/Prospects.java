@@ -29,6 +29,16 @@ public class Prospects extends Personnes{
         /*numeroProspect= increment;
         increment ++;*/
     }
+    public Prospects(int numeroProspect,String nom, String prenom,String nomEntreprise,String siret,int numeroVoie, String adresse,String complementAdresse, String ville, String codePostal, String pays, String mail, String numerotel,  int numeroRepresentant,Date derniereVisite ) {
+        super(nom, prenom, numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
+        this.nomEntreprise=nomEntreprise;
+        this.siret = siret;
+        this.numeroRepresentant = numeroRepresentant;
+        this.derniereVisite=derniereVisite;
+        
+        this.numeroProspect= numeroProspect;
+        
+    }
     
 
     public String getNomEntreprise() {

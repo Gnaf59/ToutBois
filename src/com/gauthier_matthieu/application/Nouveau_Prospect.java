@@ -24,31 +24,29 @@ import java.util.HashMap;
  * @author glantoine
  */
 public class Nouveau_Prospect extends javax.swing.JFrame {
-     
+
     private Gestion_Prospect gp;
-    private Pattern verifNomPrenomVilleAdresse,verifMail,verifSiret,verifNumeroTel,verifCodePostaleNumeroRue;
-    private Matcher matcherAdresse, matcherMail, matcherSiret,matcherNumeroTel,matcherCodePostal,
-            matcherNumeroRue,matcherNom,matcherPrenom,matcherVille;
-            
+    private Pattern verifNomPrenomVilleAdresse, verifMail, verifSiret, verifNumeroTel, verifCodePostaleNumeroRue;
+    private Matcher matcherAdresse, matcherMail, matcherSiret, matcherNumeroTel, matcherCodePostal,
+            matcherNumeroRue, matcherNom, matcherPrenom, matcherVille;
+
     /**
      * Initialise tous les composants de la fenêtre
+     *
      * @param gp Ecran Gestion_Prospects
      */
-    
     public Nouveau_Prospect(Gestion_Prospect gp) {
         initComponents();
         setLocationRelativeTo(null);
-        this.gp=gp;
+        this.gp = gp;
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         /*GestionDonnees gd = new GestionDonnees();
         gd.ChargementComboBoxRepresentant(CB_Representant);*/
-        RequeteRepresentant bddRepresentant=new RequeteRepresentant();
+        RequeteRepresentant bddRepresentant = new RequeteRepresentant();
         bddRepresentant.ChargementComboBoxRepresentant(CB_Representant);
 
-
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,7 +268,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
         Lb_Complement.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Complement.setText("Complement :");
 
-        CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
+        CB_Pays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sélection", "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Pays-Bas", "Pologne", "Portugal", "République tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède" }));
 
         javax.swing.GroupLayout jPanel_AdresseLayout = new javax.swing.GroupLayout(jPanel_Adresse);
         jPanel_Adresse.setLayout(jPanel_AdresseLayout);
@@ -512,141 +510,134 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
             Lb_Date.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
+            Lb_RepresentantNomPrenom.setForeground(new java.awt.Color(102, 102, 102));
             //initialise les valeur de controles
             verifNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
             verifMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
             verifNumeroTel = Pattern.compile("[0-9]{10}");
-            verifSiret=Pattern.compile("[0-9]{14}");
-            verifCodePostaleNumeroRue=Pattern.compile("[0-9]+");
+            verifSiret = Pattern.compile("[0-9]{14}");
+            verifCodePostaleNumeroRue = Pattern.compile("[0-9]+");
             //controle des différents champs
-           
-            String Verification="Veuillez remplir correctement le(s) champ(s): "+"\n";
-            
+
+            String Verification = "Veuillez remplir correctement le(s) champ(s): " + "\n";
+            boolean formulaireMalRempli = false;
+
             if ("".equals(TF_Societe.getText())) {
                 Lb_Societe.setForeground(Color.red);
-                Verification+="--> Société"+"\n";
+                Verification += "--> Société" + "\n";
+                formulaireMalRempli = true;
             }
             matcherSiret = verifSiret.matcher(TF_Siret.getText());
-            if (!"".equals(TF_Siret.getText()) &&! matcherSiret.matches()){
+            if (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) {
                 Lb_Siret.setForeground(Color.red);
-                Verification+="--> Siret"+"\n";
+                Verification += "--> Siret" + "\n";
+                formulaireMalRempli = true;
             }
             matcherNumeroRue = verifCodePostaleNumeroRue.matcher(TF_NumRue.getText());
-            if ("".equals(TF_NumRue.getText()) &&! matcherNumeroRue.matches()) {
+            if ("".equals(TF_NumRue.getText()) && !matcherNumeroRue.matches()) {
                 Lb_NumRue.setForeground(Color.red);
-                Verification+="--> Numéro de la rue"+"\n";
+                Verification += "--> Numéro de la rue" + "\n";
+                formulaireMalRempli = true;
             }
             matcherAdresse = verifNomPrenomVilleAdresse.matcher(TF_Adresse.getText());
-            if ("".equals(TF_Adresse.getText()) &&! matcherAdresse.matches()) {
+            if ("".equals(TF_Adresse.getText()) && !matcherAdresse.matches()) {
                 Lb_Rue.setForeground(Color.red);
-                Verification+="--> Adresse"+"\n";
+                Verification += "--> Adresse" + "\n";
+                formulaireMalRempli = true;
             }
             matcherVille = verifNomPrenomVilleAdresse.matcher(TF_Ville.getText());
-            if ("".equals(TF_Ville.getText()) &&! matcherVille.matches()) {
+            if ("".equals(TF_Ville.getText()) && !matcherVille.matches()) {
                 Lb_Ville.setForeground(Color.red);
-                Verification+="--> Ville"+"\n";
+                Verification += "--> Ville" + "\n";
+                formulaireMalRempli = true;
             }
-            if ("Sélection".equals(CB_Pays.getSelectedItem().toString())) {
+            if ("Sélection".equals(CB_Pays.getSelectedItem())) {
                 Lb_Pays.setForeground(Color.red);
-                Verification+="--> Pays"+"\n";
+                Verification += "--> Pays" + "\n";
+                formulaireMalRempli = true;
             }
-            if ("Sélection".equals(CB_Representant.getSelectedItem().toString())) {
+            if ("Sélection".equals(CB_Representant.getSelectedItem())) {
                 Lb_RepresentantNomPrenom.setForeground(Color.red);
-                Verification+="--> Représentant"+"\n";
+                Verification += "--> Représentant" + "\n";
+                formulaireMalRempli = true;
             }
             matcherCodePostal = verifCodePostaleNumeroRue.matcher(TF_codePostal.getText());
-            if ("".equals(TF_codePostal.getText()) &&! matcherCodePostal.matches()) {
+            if ("".equals(TF_codePostal.getText()) && !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
-                Verification+="--> Code postal"+"\n";
+                Verification += "--> Code postal" + "\n";
+                formulaireMalRempli = true;
             }
             matcherNom = verifNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
-            if ("".equals(TF_NomContact.getText())&&! matcherNom.matches()) {
+            if ("".equals(TF_NomContact.getText()) && !matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="--> Nom du contact" +"\n";
+                Verification += "--> Nom du contact" + "\n";
+                formulaireMalRempli = true;
             }
             matcherPrenom = verifNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
-            if ("".equals(TF_PrenomContact.getText()) &&! matcherPrenom.matches()) {
+            if ("".equals(TF_PrenomContact.getText()) && !matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="--> Prénom du contact"+"\n";
+                Verification += "--> Prénom du contact" + "\n";
+                formulaireMalRempli = true;
             }
-            if (jDate.getDate()==null) {
+            if (jDate.getDate() == null) {
                 Lb_Date.setForeground(Color.red);
-                Verification+="--> Date"+"\n";
+                Verification += "--> Date" + "\n";
+                formulaireMalRempli = true;
             }
             matcherMail = verifMail.matcher(TF_Mail.getText());
-            if (!"".equals(TF_Mail.getText())&&!matcherMail.matches()){
-            Lb_Mail.setForeground(Color.red);
-            Verification+="--> Mail\n";
+            if (!"".equals(TF_Mail.getText()) && !matcherMail.matches()) {
+                Lb_Mail.setForeground(Color.red);
+                Verification += "--> Mail\n";
+                formulaireMalRempli = true;
             }
             matcherNumeroTel = verifNumeroTel.matcher(TF_Telephone.getText());
-            if(!"".equals(TF_Telephone.getText()) &&! matcherNumeroTel.matches()){
-            Lb_Telephone.setForeground(Color.red);
-            Verification+="--> Numéro de téléphone"+"\n";
+            if (!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()) {
+                Lb_Telephone.setForeground(Color.red);
+                Verification += "--> Numéro de téléphone" + "\n";
+                formulaireMalRempli = true;
             }
             //Message erreur si Champs non correct et ou non remplis
-            if 
-                ("".equals(TF_Societe.getText()) || 
-                (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) || 
-                "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || 
-                "".equals(TF_Adresse.getText()) ||!matcherAdresse.matches() || 
-                "".equals(TF_Ville.getText()) || !matcherVille.matches() || 
-                "Selection".equals(CB_Pays.getSelectedItem().toString()) || 
-                "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || 
-                "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || 
-                "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||
-                jDate.getDate()==null ||
-                (!"".equals(TF_Mail.getText()) && !matcherMail.matches())||
-                (!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))    
-            {
+            if (formulaireMalRempli) {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } else {
-                
-                        String[] numeroRepProspect;
-            numeroRepProspect=CB_Representant.getSelectedItem().toString().split("\\.");
-             
-            
-            DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
-            sdf.format(jDate.getDate());
-            sdf.parse(sdf.format(jDate.getDate()));
-            
-            
-            
-            /*GestionDonnees gd=new GestionDonnees(); 
+
+                String[] numeroRepProspect;
+                numeroRepProspect = CB_Representant.getSelectedItem().toString().split("\\.");
+
+                DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
+                sdf.format(jDate.getDate());
+                sdf.parse(sdf.format(jDate.getDate()));
+
+                /*GestionDonnees gd=new GestionDonnees(); 
             
             gd.EnregistrerNouveauProspectsCollection(TF_NomContact.getText(),TF_PrenomContact.getText(),TF_Societe.getText(),
             TF_Siret.getText(),Integer.parseInt(TF_NumRue.getText()),TF_Adresse.getText(),TF_Complement.getText(),TF_Ville.getText(),
             TF_codePostal.getText(),CB_Pays.getSelectedItem().toString(), TF_Mail.getText(),TF_Telephone.getText(),
             Integer.parseInt(numeroRepProspect[0]),sdf.parse(sdf.format(jDate.getDate())));*/
-            
-            Prospects prospect=new Prospects(TF_NomContact.getText(),TF_PrenomContact.getText(),Integer.parseInt(TF_NumRue.getText()),
-                    TF_Adresse.getText(),TF_Complement.getText(),TF_Ville.getText(),TF_Mail.getText(),
-                    TF_Telephone.getText(),CB_Pays.getSelectedItem().toString(),TF_codePostal.getText(),
-                    TF_Societe.getText(),TF_Siret.getText(),Integer.parseInt(numeroRepProspect[0]),sdf.parse(sdf.format(jDate.getDate())));
-            
-            RequeteProspect bddProspect=new RequeteProspect();
-            bddProspect.insertBDDprospect(prospect);
-            
-            
-            this.dispose();
-            gp.setVisible(true);
-            JOptionPane.showMessageDialog(null, " Enregistrement du prospect effectué.", "Information", JOptionPane.INFORMATION_MESSAGE);
-            
+                Prospects prospect = new Prospects(TF_NomContact.getText(), TF_PrenomContact.getText(), Integer.parseInt(TF_NumRue.getText()),
+                        TF_Adresse.getText(), TF_Complement.getText(), TF_Ville.getText(), TF_Mail.getText(),
+                        TF_Telephone.getText(), CB_Pays.getSelectedItem().toString(), TF_codePostal.getText(),
+                        TF_Societe.getText(), TF_Siret.getText(), Integer.parseInt(numeroRepProspect[0]), sdf.parse(sdf.format(jDate.getDate())));
+
+                RequeteProspect bddProspect = new RequeteProspect();
+                bddProspect.insertBDDprospect(prospect);
+
+                this.dispose();
+                gp.setVisible(true);
+                JOptionPane.showMessageDialog(null, " Enregistrement du prospect effectué.", "Information", JOptionPane.INFORMATION_MESSAGE);
+
             }
 
-        } 
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(ParseException ex)
-        {
+        } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR DE CONVERSION", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_Bt_ValiderActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
-         //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
+        //Réaffiche la fenêtre Gestion Client lorsque l'on quitte l'application
         gp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
@@ -673,7 +664,7 @@ public class Nouveau_Prospect extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        
+
     }//GEN-LAST:event_formWindowClosed
 
 

@@ -8,9 +8,11 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.old.GestionDonnees;
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteProspect;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -252,10 +254,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
-        
-        //TableColumn titre = jTable1.getColumnModel().getColumn(4+5+2+0+6+10+11);
-        //titre.setPreferredWidth(100);
+
+        jTable1.setModel(new Model_Table_Prospect());
     }//GEN-LAST:event_formComponentShown
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -307,18 +307,24 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private void BT_Supprimer_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Supprimer_PRActionPerformed
         try
         {
-            GestionDonnees gd=new GestionDonnees();
+            RequeteProspect bddProspect= new RequeteProspect();
+            //GestionDonnees gd=new GestionDonnees();
             int numeroProspect=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Prospect?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
-                gd.SupprimerProspectsCollection(numeroProspect);
+                bddProspect.deleteBDDProspect(numeroProspect);
+                //gd.SupprimerProspectsCollection(numeroProspect);
                 jTable1.setModel(new Model_Table_Prospect());
             }
             JOptionPane.showMessageDialog(null, " Suppression du prospect effectuée.", "Information", JOptionPane.INFORMATION_MESSAGE);
         }catch(IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à supprimer ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_BT_Supprimer_PRActionPerformed

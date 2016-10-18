@@ -58,8 +58,8 @@ public class Model_Table_Prospect extends AbstractTableModel {
                     tableData[index][2] = resultatRequete[index][2];
                     tableData[index][3] = resultatRequete[index][3];
                     tableData[index][4] = resultatRequete[index][4];
-                    tableData[index][5] = resultatRequete[index][5];
-                    tableData[index][6] = resultatRequete[index][6] + " " + resultatRequete[index][7];
+                    tableData[index][5] = resultatRequete[index][5] + " " + resultatRequete[index][6];
+                    tableData[index][6] = resultatRequete[index][7];
                     tableData[index][7] = resultatRequete[index][8];
                     tableData[index][8] = resultatRequete[index][9];
                     tableData[index][9] = resultatRequete[index][10];
