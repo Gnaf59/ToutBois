@@ -43,7 +43,8 @@ public class Model_Table_Client extends AbstractTableModel {
     public Model_Table_Client() {
     
         
-        
+        try
+        {
         RequeteClient bddClient = new RequeteClient();
         resultatRequete=bddClient.lectureBDDClients();
         tableData=new Object[resultatRequete.length][getColumnCount()];
@@ -70,8 +71,12 @@ public class Model_Table_Client extends AbstractTableModel {
             
             index++;
             }
-        }catch(Exception e){
+        } catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
         
         

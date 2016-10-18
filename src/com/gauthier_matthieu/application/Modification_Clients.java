@@ -16,6 +16,8 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
 import javax.swing.*;
 
@@ -55,6 +57,10 @@ public class Modification_Clients extends javax.swing.JFrame {
         bddClient = new RequeteClient();
         rr=new RequeteRepresentant();
         rr.ChargementComboBoxRepresentant(CB_Representant);
+        
+        try{
+            
+        
         clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
         
@@ -72,15 +78,19 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
         
-        try{
         representantObjet=rr.rechercheRepresentant(clientObjet.getNumeroRepresentant());
         CB_Representant.setSelectedItem(clientObjet.getNumeroRepresentant()+ ". " +representantObjet.getPrenom()+" "+representantObjet.getNom());
+        
+        
+        }catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
+        
         catch(IndexOutOfBoundsException ex)
         {
             CB_Representant.setSelectedItem("Selection");
-        }
-        
+        } 
     }
     
     

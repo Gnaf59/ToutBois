@@ -47,10 +47,11 @@ public class Consultation_Client extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.tableau=tableau;
         this.gc=gc;
-        
+       try
+       {
         clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         // Chargement de l'objet représentant --> récupération des données
-        representantObjet = new RequeteRepresentant().rechercheRepresentant(clientObjet.getNumeroRepresentant());
+        
         
         Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
         Lb_NomContact_Consult.setText(clientObjet.getNom());
@@ -66,7 +67,17 @@ public class Consultation_Client extends javax.swing.JFrame {
         Lb_Mail_Consult.setText(clientObjet.getMail());
         Lb_Telephone_Consult.setText(clientObjet.getNumerotel());
         Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
+        
+        representantObjet = new RequeteRepresentant().rechercheRepresentant(clientObjet.getNumeroRepresentant());
         Lb_RepresentantNomPrenom_Consult.setText(representantObjet.getNom()+" "+representantObjet.getPrenom());
+        
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException ex)
+        {
+            Lb_RepresentantNomPrenom_Consult.setText("Pas de représentant assigné");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,7 +135,6 @@ public class Consultation_Client extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(870, 585));
         setMinimumSize(new java.awt.Dimension(870, 585));
         setName("Consultation Clients"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(870, 585));
         setResizable(false);
         setSize(new java.awt.Dimension(870, 585));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -453,7 +463,7 @@ public class Consultation_Client extends javax.swing.JFrame {
 
         Lb_RepresentantNomPrenom_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_RepresentantNomPrenom_Consult.setForeground(new java.awt.Color(102, 102, 102));
-        Lb_RepresentantNomPrenom_Consult.setText("zzzzz");
+        Lb_RepresentantNomPrenom_Consult.setText("Pas de représentant assigné");
 
         javax.swing.GroupLayout jPanel_Entreprise2Layout = new javax.swing.GroupLayout(jPanel_Entreprise2);
         jPanel_Entreprise2.setLayout(jPanel_Entreprise2Layout);
