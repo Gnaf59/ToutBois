@@ -11,6 +11,7 @@ import com.gauthier_matthieu.entities.*;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import com.gauthier_matthieu.interBDD.*;
+import javax.swing.table.TableColumn;
 
 /**
  * Cette fenêtre s'occupe de la gestion du fichier client.
@@ -66,7 +67,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fichier Clients");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
-        setPreferredSize(new java.awt.Dimension(970, 570));
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -173,7 +173,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
         label1.setText("Création Software SSII MGc all rights reserved 2016");
 
         jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new Model_Table_Client());
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jTable1);
 
@@ -303,28 +302,14 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-       
-       /* try
+       try
         {
-            Modification_Clients mc = new Modification_Clients(jTable1,this);
-            mc.setVisible(true);
-            this.setVisible(false);
-        }
-        catch(IndexOutOfBoundsException iobe)
-        {
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
-        }*/
-        
-        
-        try
-        {
-            Modification_Clients mc = new Modification_Clients(jTable1,this);
+            Modification_Clients mc = new Modification_Clients(this,jTable1);
             mc.setVisible(true);
             this.setVisible(false);
         }catch(IndexOutOfBoundsException iobe){
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "Attention", JOptionPane.ERROR_MESSAGE);
         }
-    
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -333,7 +318,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
-       
         try
         {
             Consultation_Client cc = new Consultation_Client(jTable1,this);
@@ -342,7 +326,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException iobe)
         {
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à consulter", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à consulter", "Attention", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_BT_ConsulterActionPerformed
@@ -351,22 +335,19 @@ public class Gestion_Clients extends javax.swing.JFrame {
         try
         {
             RequeteClient bddClient = new RequeteClient();
-            //GestionDonnees gd=new GestionDonnees();
             int numeroClient=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Client ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
+            
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
                 bddClient.deleteBDDClients(numeroClient);
-                //gd.SupprimerClientsCollection(numeroClient);
                 jTable1.setModel(new Model_Table_Client());
+                JOptionPane.showMessageDialog(null, "Suppresion client effectuée", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
-            
-                 
         }
-        catch(IndexOutOfBoundsException iobe)
+        catch(IndexOutOfBoundsException iobe) 
         {
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "IndexOutOfBoundsException", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à supprimer", "Attention", JOptionPane.ERROR_MESSAGE);
         }
     
     }//GEN-LAST:event_BT_SupprimerActionPerformed

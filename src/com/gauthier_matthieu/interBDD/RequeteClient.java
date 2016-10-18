@@ -50,7 +50,7 @@ public class RequeteClient extends GestionBaseDeDonnees{
         
         objetResultat=realiserRequeteSelect(requete);
         return new Clients(
-                 
+                Integer.parseInt(objetResultat[0][0].toString()), 
                 objetResultat[0][1].toString(), 
                 objetResultat[0][2].toString(), 
                 Integer.parseInt(objetResultat[0][3].toString()), 
@@ -82,7 +82,7 @@ public class RequeteClient extends GestionBaseDeDonnees{
                 + "`mailClient`=\""+client.getMail()+"\","
                 + "`numerotelClient`=\""+client.getNumerotel()+"\","
                 + "`paysClient`=\""+client.getPays()+"\","
-                + "`codePostalClient`=\""+client.getCodePostal()+" "
+                + "`codePostalClient`=\""+client.getCodePostal()+"\" "
                 + "WHERE `numeroClient`= "+client.getNumeroClient()+";";
         realiserRequeteUpdate(requete);
     }

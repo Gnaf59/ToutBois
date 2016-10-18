@@ -705,11 +705,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="CB_Representant">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Jean-Marc Delapaie&quot;, &quot;Paul Savoure&quot;, &quot;Marc Laville&quot;, &quot;Paul Personne&quot; })" type="code"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

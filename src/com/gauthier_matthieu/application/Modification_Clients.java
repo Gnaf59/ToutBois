@@ -5,19 +5,12 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.interBDD.RequeteClient;
-import com.gauthier_matthieu.interBDD.RequeteRepresentant;
-import com.gauthier_matthieu.metier.Clients;
-import com.gauthier_matthieu.old.GestionDonnees;
-import com.gauthier_matthieu.metier.Representants;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
+
+import com.gauthier_matthieu.interBDD.*;
+import com.gauthier_matthieu.metier.*;
+import java.awt.*;
 import java.util.regex.*;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.*;
 
 /**
  * Cette fenêtre permet la modification d'un Client
@@ -28,51 +21,35 @@ import javax.swing.JTable;
 public class Modification_Clients extends javax.swing.JFrame {
 
     
-    //GestionDonnees gd = new GestionDonnees();
-    RequeteRepresentant rr=new RequeteRepresentant();
-    
-    //private HashMap<Integer,Clients> client= gd.getClients();
-    //private Clients clientObjet; 
     private JTable tableau;
     private Gestion_Clients gc;
+    
     private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternSiret,patternCodePostalNumeroRue;
     private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherSiret,matcherCodePostal,matcherNumeroRue;
     
-    
     private RequeteClient bddClient;
+    private RequeteRepresentant rr;
     Clients clientObjet;
+    Representants representantObjet;
+    
+    
      /**
      * Initialise tous les composants de la fenêtre
      * @param tableau Tableau des clients de l'écran gestion Client
      * @param gc Ecran Gestion_Clients
      */
-    public Modification_Clients(JTable tableau,Gestion_Clients gc) {
+    public Modification_Clients(Gestion_Clients gc,JTable tableau) {
         initComponents();
         setLocationRelativeTo(null);
         this.gc=gc;
         this.tableau=tableau;
-        /*this.clientObjet= client.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         
-        gd.ChargementComboBoxRepresentant(CB_Representant);
-        
-        TF_NomContact.setText(clientObjet.getNom());
-        TF_PrenomContact.setText(clientObjet.getPrenom());
-        TF_Societe.setText(clientObjet.getNomEntreprise());
-        TF_Siret.setText(clientObjet.getSiret());
-        TF_NumRue.setText(Integer.toString(clientObjet.getNumeroVoie()));
-        TF_Rue.setText(clientObjet.getAdresse());
-        TF_Complement.setText(clientObjet.getComplementAdresse());
-        TF_Ville.setText(clientObjet.getVille());
-        TF_codePostal.setText(clientObjet.getCodePostal());
-        CB_Pays.setSelectedItem(clientObjet.getPays());
-        TF_Mail.setText(clientObjet.getMail());
-        TF_Telephone.setText(clientObjet.getNumerotel());
-        TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        CB_Representant.setSelectedItem(gd.getRepresentants().get(clientObjet.getNumeroRepresentant()).toString());*/
         
         bddClient = new RequeteClient();
-        clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        rr=new RequeteRepresentant();
         rr.ChargementComboBoxRepresentant(CB_Representant);
+        clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        
         
         TF_NomContact.setText(clientObjet.getNom());
         TF_PrenomContact.setText(clientObjet.getPrenom());
@@ -87,7 +64,15 @@ public class Modification_Clients extends javax.swing.JFrame {
         TF_Mail.setText(clientObjet.getMail());
         TF_Telephone.setText(clientObjet.getNumerotel());
         TF_NombreCommande.setText(Integer.toString(clientObjet.getNbrCommande()));
-        CB_Representant.setSelectedItem(rr.ChargementComboBoxRepresentant().toString());
+        
+        try{
+        representantObjet=rr.rechercheRepresentant(clientObjet.getNumeroRepresentant());
+        CB_Representant.setSelectedItem(clientObjet.getNumeroRepresentant()+ ". " +representantObjet.getPrenom()+" "+representantObjet.getNom());
+        }
+        catch(IndexOutOfBoundsException ex)
+        {
+            CB_Representant.setSelectedItem("Selection");
+        }
         
     }
     
@@ -417,8 +402,6 @@ public class Modification_Clients extends javax.swing.JFrame {
         Lb_RepresentantNomPrenom.setForeground(new java.awt.Color(102, 102, 102));
         Lb_RepresentantNomPrenom.setText("* Nom, Prénom :");
 
-        CB_Representant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jean-Marc Delapaie", "Paul Savoure", "Marc Laville", "Paul Personne" }));
-
         javax.swing.GroupLayout jPanel_Entreprise2Layout = new javax.swing.GroupLayout(jPanel_Entreprise2);
         jPanel_Entreprise2.setLayout(jPanel_Entreprise2Layout);
         jPanel_Entreprise2Layout.setHorizontalGroup(
@@ -605,24 +588,19 @@ public class Modification_Clients extends javax.swing.JFrame {
                 Lb_Ville.setForeground(Color.red);
                 Verification+="--> Ville\n";
             }
-            
             if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
                 Lb_Pays.setForeground(Color.red);
                 Verification+="--> Pays\n";
             }
-            
             if ("Sélection".equals(CB_Representant.getSelectedItem().toString())) {
                 Lb_RepresentantNomPrenom.setForeground(Color.red);
                 Verification+="--> Représentant\n";
             }
-            
             matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
             if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
                 Lb_CodePostal.setForeground(Color.red);
                 Verification+="--> Code Postal\n";
             }
-
-           
             matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
             if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
@@ -633,20 +611,13 @@ public class Modification_Clients extends javax.swing.JFrame {
                 Lb_PrenomContact.setForeground(Color.red);
                 Verification+="--> Prenom du contact\n";
             }
-            
-            
-            
             matcherMail = patternMail.matcher(TF_Mail.getText());
-            
             if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
             {
                 Verification+="--> Email\n";
                 Lb_Mail.setForeground(Color.red);
             }
-            
-            
             matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
-
             if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
             {
                 Verification+="--> Numéro de téléphone\n";
@@ -657,7 +628,8 @@ public class Modification_Clients extends javax.swing.JFrame {
             if ("".equals(TF_Societe.getText()) || (!"".equals(TF_Siret.getText()) && !matcherSiret.matches()) || "".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches() || "".equals(TF_Rue.getText()) ||!matcherAdresse.matches() || "".equals(TF_Ville.getText()) || !matcherVille.matches() || "Selection".equals(CB_Pays.getSelectedItem().toString())|| "Sélection".equals(CB_Representant.getSelectedItem().toString()) || "".equals(TF_codePostal.getText()) || !matcherCodePostal.matches() || "".equals(TF_NomContact.getText()) ||!matcherNom.matches() || "".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches() ||(!"".equals(TF_Mail.getText()) && !matcherMail.matches())||(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()))  {
                 JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
             } 
-            else {
+            else 
+            {
               clientObjet.setNom(TF_NomContact.getText());
               clientObjet.setPrenom(TF_PrenomContact.getText());
               clientObjet.setNomEntreprise(TF_Societe.getText());
@@ -671,13 +643,13 @@ public class Modification_Clients extends javax.swing.JFrame {
               clientObjet.setMail(TF_Mail.getText());
               clientObjet.setNumerotel(TF_Telephone.getText());
               clientObjet.setNbrCommande(Integer.parseInt(TF_NombreCommande.getText()));
+              clientObjet.setNumeroRepresentant(Integer.parseInt(CB_Representant.getSelectedItem().toString().split("\\.")[0]));
+                
+              bddClient.updateBDDClients(clientObjet);
+              dispose();
+              gc.setVisible(true);
+              JOptionPane.showMessageDialog(null, "Modification client effectuée", "Information", JOptionPane.INFORMATION_MESSAGE);
               
-              String[] numeroRepresentant;
-              numeroRepresentant=CB_Representant.getSelectedItem().toString().split("\\.");
-              clientObjet.setNumeroRepresentant(Integer.parseInt(numeroRepresentant[0]));
-              
-                dispose();
-                gc.setVisible(true);
             }
 
         } catch (Exception ex) {

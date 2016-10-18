@@ -57,6 +57,14 @@ public class Clients extends Personnes {
         increment++;
         this.nbrCommande=0;
     }
+    public Clients(int numeroClient,String nomEntreprise,String siret, int numeroRepresentant,String nom, String prenom,int numeroVoie, String adresse,String complementAdresse, String ville,String mail,String numerotel, String pays, String codePostal) {
+        super(nom, prenom,numeroVoie, adresse,complementAdresse, ville,mail,numerotel, pays, codePostal);
+        this.nomEntreprise=nomEntreprise;
+        this.siret = siret;
+        this.numeroClient = numeroClient;
+        this.numeroRepresentant = numeroRepresentant;
+        this.nbrCommande=0;
+    }
     
     /**
     * Permet d'obtenir le numéro de SIRET de l'entreprise cliente

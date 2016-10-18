@@ -10,10 +10,11 @@ import com.gauthier_matthieu.metier.Clients;
 import javax.swing.table.AbstractTableModel;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
 
 /**
  *  
- * @author glantoine
+ * @author glantoine,mdeschamps
  */
 public class Model_Table_Client extends AbstractTableModel {
 
@@ -33,15 +34,15 @@ public class Model_Table_Client extends AbstractTableModel {
         "Numéro de Tel",
         /*"Nombre de commande"*/};
 
-    private HashMap<Integer, Clients> clients;
+    
     private Object[][] tableData; 
     private Object[][] resultatRequete;
-    //private GestionDonnees gd = new GestionDonnees();
+    
     
 
     public Model_Table_Client() {
     
-        //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
+        
         
         RequeteClient bddClient = new RequeteClient();
         resultatRequete=bddClient.lectureBDDClients();
@@ -49,7 +50,7 @@ public class Model_Table_Client extends AbstractTableModel {
         
         try
         {
-            int index = 0;
+            int index=0;
             while (index<resultatRequete.length)
             {
             tableData[index][0] = resultatRequete[index][0]; // num Client
@@ -69,36 +70,11 @@ public class Model_Table_Client extends AbstractTableModel {
             
             index++;
             }
-
-            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur affichage requête jTable", JOptionPane.ERROR_MESSAGE);
         }
         
         
-        /*this.clients=this.gd.getClients();
-        this.tableData= new Object[clients.keySet().size()][getColumnCount()];
-        int index = 0;
-        for (int key : clients.keySet()) {
-            Clients cli = clients.get(key);
-            tableData[index][0] = cli.getNumeroClient();
-            tableData[index][1] = cli.getNom();
-            tableData[index][2] = cli.getPrenom();
-            tableData[index][3] = cli.getNomEntreprise();
-            tableData[index][4] = cli.getSiret();
-            tableData[index][5] = cli.getNumeroVoie()+" "+cli.getAdresse();
-            tableData[index][6] = cli.getComplementAdresse();
-            tableData[index][7] = cli.getVille();
-            tableData[index][8] = cli.getCodePostal();
-            tableData[index][9] = cli.getPays();
-            tableData[index][10] = cli.getMail();
-            tableData[index][11] = cli.getNumerotel();
-            tableData[index][12] = cli.getNbrCommande();
-            tableData[index][13] = cli.getNumeroRepresentant();
-           
-            index++;
-        }*/
-    
     }
 
     @Override
@@ -120,5 +96,4 @@ public class Model_Table_Client extends AbstractTableModel {
     public String getColumnName(int col) {
         return columnNames[col];
     }
-    
 }
