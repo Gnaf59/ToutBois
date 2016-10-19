@@ -5,13 +5,11 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
+
 import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 

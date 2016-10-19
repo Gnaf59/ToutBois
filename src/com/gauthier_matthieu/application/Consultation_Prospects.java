@@ -5,37 +5,41 @@
  */
 package com.gauthier_matthieu.application;
 
-
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.metier.Prospects;
 import com.gauthier_matthieu.fonctions.MPanelPrinter;
 
 import java.awt.*;
 import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.RequeteProspect;
+import com.gauthier_matthieu.interBDD.RequeteRepresentant;
+import com.gauthier_matthieu.metier.Representants;
 import java.awt.print.Printable;
 import javax.swing.*;
 import java.io.*;
+import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.*;
-
-
 
 /**
  *
  * @author glantoine
  */
 public class Consultation_Prospects extends javax.swing.JFrame {
-    private DateFormat sdf =DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+
+    private DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
     private JTable tableau;
     private Gestion_Prospect gp;
+
     //transmition tableau dans constructeur
-    public Consultation_Prospects(JTable tableau,Gestion_Prospect gp) {
+    public Consultation_Prospects(JTable tableau, Gestion_Prospect gp) {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
-        this.tableau=tableau;
-        this.gp=gp;
-        
+        this.tableau = tableau;
+        this.gp = gp;
+
         Lb_NumeroProspect.setText("");
         Lb_Complement_Consult.setText("");
         Lb_DerniereVisite_Consult.setText("");
@@ -51,36 +55,43 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Telephone_Consult.setText("");
         Lb_Ville_Consult.setText("");
         Lb_codePostal_Consult.setText("");
+
+        try {
+            RequeteProspect bddProspect = new RequeteProspect();
+            Prospects prospectObjet = bddProspect.rechercheProspects(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+
+            Lb_NumeroProspect.setText(Integer.toString(prospectObjet.getNumeroProspect()));
+            Lb_NomContact_Consult.setText(prospectObjet.getNom());
+            Lb_PrenomContact_Consult.setText(prospectObjet.getPrenom());
+            Lb_Societe_Consult.setText(prospectObjet.getNomEntreprise());
+            Lb_Siret_Consult.setText(prospectObjet.getSiret());
+            Lb_NumRue_Consult.setText(Integer.toString(prospectObjet.getNumeroVoie()));
+            Lb_Rue_Consult.setText(prospectObjet.getAdresse());
+            Lb_Complement_Consult.setText(prospectObjet.getComplementAdresse());
+            Lb_Ville_Consult.setText(prospectObjet.getVille());
+            Lb_codePostal_Consult.setText(prospectObjet.getCodePostal());
+            Lb_Pays_Consult.setText(prospectObjet.getPays());
+            Lb_Mail_Consult.setText(prospectObjet.getMail());
+            Lb_Telephone_Consult.setText(prospectObjet.getNumerotel());
+            Lb_DerniereVisite_Consult.setText(sdf.format(prospectObjet.getDerniereVisite()));
+            try {
+                RequeteRepresentant bddRepresentant = new RequeteRepresentant();
+                Representants representants;
+                representants = bddRepresentant.rechercheRepresentant(prospectObjet.getNumeroRepresentant());
+                Lb_RepresentantNomPrenom_Consult.setText(representants.getPrenom() + " " + representants.getNom());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Représentant introuvable", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Prospect introuvable", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Récupération du numéro de prospect impossible", JOptionPane.ERROR_MESSAGE);
+        }
+
         
-        /*appel de la méthode Gestion Prospect*/
-        GestionDonnees gd = new GestionDonnees();
-        /*appel du hashMat client avec toute les fonctions*/
-        HashMap<Integer,Prospects> prospect= gd.getProspects();
-        /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
-        Prospects prospectObjet = prospect.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
-        Lb_NumeroProspect.setText(Integer.toString(prospectObjet.getNumeroProspect()));
-        Lb_NomContact_Consult.setText(prospectObjet.getNom());
-        Lb_PrenomContact_Consult.setText(prospectObjet.getPrenom());
-        Lb_Societe_Consult.setText(prospectObjet.getNomEntreprise());
-        Lb_Siret_Consult.setText(prospectObjet.getSiret());
-        Lb_NumRue_Consult.setText(Integer.toString(prospectObjet.getNumeroVoie()));
-        Lb_Rue_Consult.setText(prospectObjet.getAdresse());
-        Lb_Complement_Consult.setText(prospectObjet.getComplementAdresse());
-        Lb_Ville_Consult.setText(prospectObjet.getVille());
-        Lb_codePostal_Consult.setText(prospectObjet.getCodePostal());
-        Lb_Pays_Consult.setText(prospectObjet.getPays());
-        Lb_Mail_Consult.setText(prospectObjet.getMail());
-        Lb_Telephone_Consult.setText(prospectObjet.getNumerotel());
-        Lb_DerniereVisite_Consult.setText(sdf.format(prospectObjet.getDerniereVisite()));
-        String nomPrenomRepresentant[];
-        nomPrenomRepresentant=gd.getRepresentants().get(prospectObjet.getNumeroRepresentant()).toString().split("\\.");
-        Lb_RepresentantNomPrenom_Consult.setText(nomPrenomRepresentant[1]);
-        //Lb_RepresentantNomPrenom_Consult.setText(Integer.toString(prospectObjet.getNumeroRepresentant()));
+
     }
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,19 +216,23 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Telephone.setText("Téléphone :");
         Lb_Telephone.setToolTipText("");
 
-        Lb_NomContact_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_NomContact_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_NomContact_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_NomContact_Consult.setText("zzzz");
         Lb_NomContact_Consult.setToolTipText("");
 
-        Lb_PrenomContact_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_PrenomContact_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_PrenomContact_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_PrenomContact_Consult.setText("zzzz");
         Lb_PrenomContact_Consult.setToolTipText("");
 
-        Lb_Telephone_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Telephone_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Telephone_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Telephone_Consult.setText("zzzz");
         Lb_Telephone_Consult.setToolTipText("");
 
-        Lb_Mail_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Mail_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Mail_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Mail_Consult.setText("zzzz");
         Lb_Mail_Consult.setToolTipText("");
 
@@ -275,7 +290,8 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Pays.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Pays.setText("Pays :");
 
-        Lb_Pays_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Pays_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Pays_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Pays_Consult.setText("zzzzz");
 
         Lb_Rue.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
@@ -290,19 +306,24 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Complement.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Complement.setText("Complement :");
 
-        Lb_Rue_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Rue_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Rue_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Rue_Consult.setText("zzzz");
 
-        Lb_NumRue_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_NumRue_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_NumRue_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_NumRue_Consult.setText("zzzz");
 
-        Lb_codePostal_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_codePostal_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_codePostal_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_codePostal_Consult.setText("zzzz");
 
-        Lb_Complement_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Complement_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Complement_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Complement_Consult.setText("zzzz");
 
-        Lb_Ville_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Ville_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Ville_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Ville_Consult.setText("zzzz");
 
         javax.swing.GroupLayout jPanel_AdresseLayout = new javax.swing.GroupLayout(jPanel_Adresse);
@@ -314,11 +335,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addComponent(Lb_Ville)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Lb_CodePostal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Lb_codePostal_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Lb_Complement)
@@ -334,20 +351,21 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                                 .addComponent(Lb_Complement_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
             .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_AdresseLayout.createSequentialGroup()
-                        .addContainerGap(206, Short.MAX_VALUE)
-                        .addComponent(Lb_Rue_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(Lb_Pays)
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lb_Pays_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                                .addComponent(Lb_Ville_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Lb_Rue_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel_AdresseLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Lb_Pays)
+                .addGap(58, 58, 58)
+                .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lb_Pays_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel_AdresseLayout.createSequentialGroup()
+                        .addComponent(Lb_Ville_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Lb_CodePostal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Lb_codePostal_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))))
         );
         jPanel_AdresseLayout.setVerticalGroup(
             jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,10 +405,12 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Siret.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Siret.setText("Siret : ");
 
-        Lb_Societe_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Societe_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Societe_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Societe_Consult.setText("zzz");
 
-        Lb_Siret_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_Siret_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_Siret_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Siret_Consult.setText("zzzzz");
 
         javax.swing.GroupLayout jPanel_EntrepriseLayout = new javax.swing.GroupLayout(jPanel_Entreprise);
@@ -405,7 +425,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_EntrepriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lb_Societe_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
+                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_EntrepriseLayout.setVerticalGroup(
@@ -428,14 +448,16 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_RepresentantNomPrenom.setForeground(new java.awt.Color(102, 102, 102));
         Lb_RepresentantNomPrenom.setText("Nom, Prénom :");
 
-        Lb_RepresentantNomPrenom_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_RepresentantNomPrenom_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_RepresentantNomPrenom_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_RepresentantNomPrenom_Consult.setText("zzzzz");
 
         Lb_DerniereVisite.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         Lb_DerniereVisite.setForeground(new java.awt.Color(102, 102, 102));
         Lb_DerniereVisite.setText("Dernière visite:");
 
-        Lb_DerniereVisite_Consult.setFont(new java.awt.Font("Gill Sans MT", 2, 15)); // NOI18N
+        Lb_DerniereVisite_Consult.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        Lb_DerniereVisite_Consult.setForeground(new java.awt.Color(102, 102, 102));
         Lb_DerniereVisite_Consult.setText("zzzzz");
 
         javax.swing.GroupLayout jPanel_Entreprise2Layout = new javax.swing.GroupLayout(jPanel_Entreprise2);
@@ -493,30 +515,37 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                            .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                             .addComponent(Lb_Fenetre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel_Adresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel_Adresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addGap(0, 61, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                                        .addGap(0, 43, Short.MAX_VALUE)
+                                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                                        .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 17, Short.MAX_VALUE)))
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationProspectLayout.createSequentialGroup()
-                                .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel_Contact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Lb_NumeroProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel_ConsutationProspectLayout.setVerticalGroup(
             jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +561,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -568,18 +597,18 @@ public class Consultation_Prospects extends javax.swing.JFrame {
 
     private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
         JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-            + "contacter le SAV au 06/0010020 \n"
-            + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
+                + "contacter le SAV au 06/0010020 \n"
+                + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_Bt_AideActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
-    gp.setVisible(true);
-    this.dispose();
+        gp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-    gp.setVisible(true);
-    this.dispose();
+        gp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
 
@@ -625,9 +654,5 @@ public class Consultation_Prospects extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Entreprise2;
     private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
-
-    
-
-    
 
 }

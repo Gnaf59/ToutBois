@@ -81,8 +81,14 @@ public class Modification_Prospect extends javax.swing.JFrame {
         TF_Telephone.setText(prospectObjet.getNumerotel());
         jD_DerniereVisite.setDate(prospectObjet.getDerniereVisite());
         
+        try{
         representantObjet= bddRepresentant.rechercheRepresentant(prospectObjet.getNumeroRepresentant());
         CB_Representant.setSelectedItem(prospectObjet.getNumeroRepresentant()+". "+representantObjet.getPrenom()+" "+representantObjet.getNom());
+        }
+        catch(NullPointerException ex)
+        {
+            CB_Representant.setSelectedItem("Sélection");
+        }
         
         }
         catch(SQLException ex)
@@ -93,10 +99,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR CONVERSION DATE", JOptionPane.ERROR_MESSAGE);
         }
-        catch(NullPointerException ex)
-        {
-            CB_Representant.setSelectedItem("Sélection");
-        }
+        
     }
     
      
