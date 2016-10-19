@@ -18,6 +18,9 @@ import javax.swing.JOptionPane;
 import com.gauthier_matthieu.interBDD.*;
 import com.gauthier_matthieu.metier.Clients;
 import java.sql.SQLException;
+import java.text.ParseException;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  * Cette Fenêtre s'occupe de l'ajout de nouveau Clients Propose un formulaire
