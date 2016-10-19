@@ -338,6 +338,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         }catch (IndexOutOfBoundsException iobe){
             JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à consulter ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
         }
+        
                      
     }//GEN-LAST:event_BT_Consulter_PRActionPerformed
 
