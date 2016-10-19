@@ -11,7 +11,8 @@ import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
 
 
 /**
- *
+ * Fenêtre d'acceuil de l'application proposant un menu afin d'accéder à toute les fonctionnalitées de l'application
+ * 
  * @author glantoine
  */
 public class fenetre_applications extends javax.swing.JFrame {
@@ -22,6 +23,7 @@ public class fenetre_applications extends javax.swing.JFrame {
      * Creates new form fenetre_applications
      */
     public fenetre_applications() {
+        
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);

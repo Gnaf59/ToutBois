@@ -41,12 +41,13 @@ public class Consultation_Client extends javax.swing.JFrame {
      */
     public Consultation_Client(JTable tableau, Gestion_Clients gc) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau = tableau;
         this.gc = gc;
+        
         try {
-            clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+            clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(this.tableau.getSelectedRow(), 0).toString()));
+            
             // Chargement de l'objet représentant --> récupération des données
 
             Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));

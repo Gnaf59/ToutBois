@@ -5,18 +5,19 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.old.GestionDonnees;
-import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
-import com.gauthier_matthieu.entities.*;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
-import java.io.*;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 
 /**
+ * Cette Fenêtre s'occupe de l'ajout de nouveau Représentants Propose un formulaire
+ * pour entrer toutes les données relative au nouveau représentant et effectue une
+ * vérifications des champs obligatoires avant d'enregistrer le nouveau représentant
+ * dans la Base de donnée
  *
  * @author glantoine
  */
@@ -26,6 +27,11 @@ public class Nouveau_Representant extends javax.swing.JFrame {
     private Pattern patternMail, patternNumeroTel, patternNomPrenomVilleAdresse, patternDouble, patternCodePostalNumeroRue;
     private Matcher matcherMail, matcherNumeroTel, matcherNom, matcherPrenom, matcherVille, matcherAdresse, matcherTauxCommission, matcherSalaireBrut, matcherCodePostal, matcherNumeroRue;
 
+    /**
+     * Initialise les composants de la JFrame
+     * 
+     * @param gr JFrame Gestion_Representant
+     */
     public Nouveau_Representant(Gestion_Representant gr) {
         initComponents();
         setLocationRelativeTo(null);
@@ -79,6 +85,7 @@ public class Nouveau_Representant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nouveau Représentant");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
