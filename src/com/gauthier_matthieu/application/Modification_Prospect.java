@@ -46,7 +46,6 @@ public class Modification_Prospect extends javax.swing.JFrame {
      * Initialise tous les composants de la fenêtre
      *
      * @param tableau Tableau des prospects de l'écran gestion Prospect
-     * @param gc Ecran Gestion_Prospect
      */
     public Modification_Prospect(JTable tableau, Gestion_Prospect gp) {
         initComponents();

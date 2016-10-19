@@ -53,11 +53,9 @@ public class Gestion_Clients extends javax.swing.JFrame {
         BT_Supprimer = new javax.swing.JButton();
         BT_Consulter = new javax.swing.JButton();
         BT_Ajouter = new javax.swing.JButton();
-        BT_Rechercher = new javax.swing.JButton();
         BT_Aide = new javax.swing.JButton();
         BT_Quitter = new javax.swing.JButton();
         Lb_Titre = new javax.swing.JLabel();
-        TF_FiltreClient = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         label1 = new java.awt.Label();
@@ -129,9 +127,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
             }
         });
 
-        BT_Rechercher.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BT_Rechercher.setText("Rechercher");
-
         BT_Aide.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Aide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/question-mark.png"))); // NOI18N
         BT_Aide.setText("Aide");
@@ -142,8 +137,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
         });
 
         BT_Quitter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BT_Quitter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/fermer-croix-supprimer-erreurs-sortie-icone-4368-16.png"))); // NOI18N
-        BT_Quitter.setText("Quitter");
+        BT_Quitter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/go-back-arrow.png"))); // NOI18N
+        BT_Quitter.setText("Retour");
         BT_Quitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_QuitterActionPerformed(evt);
@@ -153,12 +148,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
         Lb_Titre.setFont(new java.awt.Font("Gill Sans MT", 3, 48)); // NOI18N
         Lb_Titre.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Titre.setText("Fichier Clients");
-
-        TF_FiltreClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_FiltreClientActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/logo-02.png"))); // NOI18N
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -207,24 +196,14 @@ public class Gestion_Clients extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(Lb_Titre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TF_FiltreClient, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BT_Rechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(75, 75, 75))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TF_FiltreClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BT_Rechercher)))
-                    .addComponent(Lb_Titre))
+                .addComponent(Lb_Titre)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +225,7 @@ public class Gestion_Clients extends javax.swing.JFrame {
                         .addComponent(BT_Aide)
                         .addComponent(BT_Quitter))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -281,10 +260,6 @@ public class Gestion_Clients extends javax.swing.JFrame {
         fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_QuitterActionPerformed
-
-    private void TF_FiltreClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_FiltreClientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_FiltreClientActionPerformed
 
     private void BT_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AjouterActionPerformed
         //Ouvre une fenêtre Nouveau client et masque la fenêtre de gestion client
@@ -367,10 +342,8 @@ public class Gestion_Clients extends javax.swing.JFrame {
     private javax.swing.JButton BT_Consulter;
     private javax.swing.JButton BT_Modifier;
     private javax.swing.JButton BT_Quitter;
-    private javax.swing.JButton BT_Rechercher;
     private javax.swing.JButton BT_Supprimer;
     private javax.swing.JLabel Lb_Titre;
-    private javax.swing.JTextField TF_FiltreClient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

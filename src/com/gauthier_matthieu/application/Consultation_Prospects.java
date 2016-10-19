@@ -103,7 +103,6 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         jPanel_ConsutationProspect = new javax.swing.JPanel();
         Lb_Fenetre = new javax.swing.JLabel();
         Bt_Annuler = new javax.swing.JButton();
-        Bt_Aide = new javax.swing.JButton();
         Bt_Imprimer = new javax.swing.JButton();
         jPanel_Contact = new javax.swing.JPanel();
         Lb_NomContact = new javax.swing.JLabel();
@@ -143,10 +142,11 @@ public class Consultation_Prospects extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consultation Prospect");
-        setMinimumSize(new java.awt.Dimension(950, 530));
+        setMaximumSize(new java.awt.Dimension(790, 481));
+        setMinimumSize(new java.awt.Dimension(790, 481));
         setName("Consultation Clients"); // NOI18N
         setResizable(false);
-        setSize(new java.awt.Dimension(0, 0));
+        setSize(new java.awt.Dimension(790, 481));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -164,22 +164,12 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         Lb_Fenetre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         Bt_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Bt_Annuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/cross-circular-button.png"))); // NOI18N
-        Bt_Annuler.setText("QUITTER");
+        Bt_Annuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/go-back-arrow.png"))); // NOI18N
+        Bt_Annuler.setText("RETOUR");
         Bt_Annuler.setPreferredSize(new java.awt.Dimension(130, 25));
         Bt_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Bt_AnnulerActionPerformed(evt);
-            }
-        });
-
-        Bt_Aide.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Bt_Aide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/question-mark.png"))); // NOI18N
-        Bt_Aide.setText("AIDE");
-        Bt_Aide.setPreferredSize(new java.awt.Dimension(130, 25));
-        Bt_Aide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Bt_AideActionPerformed(evt);
             }
         });
 
@@ -239,7 +229,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         jPanel_ContactLayout.setHorizontalGroup(
             jPanel_ContactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ContactLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_ContactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lb_Mail)
                     .addComponent(Lb_Telephone)
@@ -250,8 +240,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                     .addComponent(Lb_NomContact_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lb_PrenomContact_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lb_Telephone_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lb_Mail_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(Lb_Mail_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel_ContactLayout.setVerticalGroup(
             jPanel_ContactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +322,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addComponent(Lb_Ville)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                         .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Lb_Complement)
@@ -344,26 +333,23 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                                 .addComponent(Lb_NumRue_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Lb_Rue)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                                .addComponent(Lb_Complement_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())))))
-            .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Lb_Rue_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Lb_Rue_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Lb_Complement_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(jPanel_AdresseLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(Lb_Pays)
                 .addGap(58, 58, 58)
                 .addGroup(jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lb_Pays_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel_AdresseLayout.createSequentialGroup()
-                        .addComponent(Lb_Ville_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Lb_Ville_Consult, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Lb_CodePostal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Lb_codePostal_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))))
+                        .addComponent(Lb_codePostal_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Lb_Pays_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         jPanel_AdresseLayout.setVerticalGroup(
             jPanel_AdresseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,7 +409,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_EntrepriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lb_Societe_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Lb_Siret_Consult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_EntrepriseLayout.setVerticalGroup(
@@ -468,7 +454,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                     .addGroup(jPanel_Entreprise2Layout.createSequentialGroup()
                         .addComponent(Lb_DerniereVisite)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Lb_DerniereVisite_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Lb_DerniereVisite_Consult, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                     .addGroup(jPanel_Entreprise2Layout.createSequentialGroup()
                         .addComponent(Lb_RepresentantNomPrenom)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -508,80 +494,75 @@ public class Consultation_Prospects extends javax.swing.JFrame {
             .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                 .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                            .addComponent(Lb_Fenetre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel_Adresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                                        .addGap(0, 43, Short.MAX_VALUE)
-                                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                                        .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 17, Short.MAX_VALUE)))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationProspectLayout.createSequentialGroup()
-                                .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34))))
-                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Lb_NumeroProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(Lb_NumeroProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(55, 55, 55)
+                            .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_ConsutationProspectLayout.setVerticalGroup(
             jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(Lb_Fenetre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Lb_NumeroProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
-                        .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Bt_Aide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_ConsutationProspect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel_ConsutationProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_ConsutationProspect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel_ConsutationProspect, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
@@ -592,12 +573,6 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         fiche.initPrintablePanel();
         fiche.print();
     }//GEN-LAST:event_Bt_ImprimerActionPerformed
-
-    private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
-        JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-                + "contacter le SAV au 06/0010020 \n"
-                + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_Bt_AideActionPerformed
 
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
         gp.setVisible(true);
@@ -611,7 +586,6 @@ public class Consultation_Prospects extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Bt_Aide;
     private javax.swing.JButton Bt_Annuler;
     private javax.swing.JButton Bt_Imprimer;
     private javax.swing.JLabel Lb_CodePostal;

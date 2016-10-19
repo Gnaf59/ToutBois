@@ -156,33 +156,4 @@ public class GestionBaseDeDonnees {
         return this.statut;
     }
 
-    /*public Object[][] lectureBDDarticle()
-    {
-        String requete;
-        requete= "SELECT * FROM article;";
-        
-        return realiserRequeteSelect(requete);
-    }
-    
-    public void insertBDDArticle(Articles article)
-    {
-        String requete;
-        requete="INSERT INTO `article` (`numeroArticle`, `nomArticle`, `typeArticle`, `genreArticle`, `referenceArticle`, `couleurArticle`, `stockArticle`, `hauteurArticle`, `largeurArticle`, `longueurArticle`, `prixHtArticle`, `tvaArticle`, `poids`)"
-                + "VALUES ('"+article.getNom()+"',"
-                + " '"+article.getType()+"',"
-                + " '"+article.getGenre()+"',"
-                + " '"+article.getReference()+"',"
-                + " '"+article.getCouleur()+"',"
-                + " "+article.getStock()+","
-                + " "+article.getHauteur()+","
-                + " "+article.getLargeur()+","
-                + " "+article.getLongueur()+","
-                + " "+article.getPrixHt()+","
-                + " "+article.getTva()+","
-                + " "+article.getPoids()+");";
-        
-        realiserRequeteInsert(requete);
-        
-         
-    }*/
 }

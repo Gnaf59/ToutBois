@@ -103,7 +103,6 @@ public class Consultation_Representant extends javax.swing.JFrame {
         jPanel_ConsutationRepresentants = new javax.swing.JPanel();
         Lb_Fenetre = new javax.swing.JLabel();
         Bt_Annuler = new javax.swing.JButton();
-        Bt_Aide = new javax.swing.JButton();
         Bt_Imprimer = new javax.swing.JButton();
         jPanel_Salaire = new javax.swing.JPanel();
         Lb_SalaireBrut = new javax.swing.JLabel();
@@ -159,22 +158,12 @@ public class Consultation_Representant extends javax.swing.JFrame {
         Lb_Fenetre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         Bt_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Bt_Annuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/cross-circular-button.png"))); // NOI18N
-        Bt_Annuler.setText("QUITTER");
+        Bt_Annuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/go-back-arrow.png"))); // NOI18N
+        Bt_Annuler.setText("RETOUR");
         Bt_Annuler.setPreferredSize(new java.awt.Dimension(130, 25));
         Bt_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Bt_AnnulerActionPerformed(evt);
-            }
-        });
-
-        Bt_Aide.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Bt_Aide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/question-mark.png"))); // NOI18N
-        Bt_Aide.setText("AIDE");
-        Bt_Aide.setPreferredSize(new java.awt.Dimension(130, 25));
-        Bt_Aide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Bt_AideActionPerformed(evt);
             }
         });
 
@@ -460,14 +449,12 @@ public class Consultation_Representant extends javax.swing.JFrame {
                         .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel_Contact, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel_Adresse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationRepresentantsLayout.createSequentialGroup()
                         .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Bt_Annuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -494,9 +481,8 @@ public class Consultation_Representant extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                            .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(14, Short.MAX_VALUE))))
+                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -519,12 +505,6 @@ public class Consultation_Representant extends javax.swing.JFrame {
         fiche.print();
     }//GEN-LAST:event_Bt_ImprimerActionPerformed
 
-    private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
-        JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-            + "contacter le SAV au 06/0010020 \n"
-            + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_Bt_AideActionPerformed
-
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
         gr.setVisible(true);
         this.dispose();       
@@ -537,7 +517,6 @@ public class Consultation_Representant extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Bt_Aide;
     private javax.swing.JButton Bt_Annuler;
     private javax.swing.JButton Bt_Imprimer;
     private javax.swing.JLabel Lb_CodePostal;
