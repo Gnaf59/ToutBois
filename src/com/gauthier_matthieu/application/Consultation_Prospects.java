@@ -79,8 +79,8 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                 Representants representants;
                 representants = bddRepresentant.rechercheRepresentant(prospectObjet.getNumeroRepresentant());
                 Lb_RepresentantNomPrenom_Consult.setText(representants.getPrenom() + " " + representants.getNom());
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Représentant introuvable", JOptionPane.ERROR_MESSAGE);
+            } catch (IndexOutOfBoundsException ex) {
+                Lb_RepresentantNomPrenom_Consult.setText("Pas de représentant assigné");
             }
 
         } catch (SQLException ex) {
@@ -88,8 +88,6 @@ public class Consultation_Prospects extends javax.swing.JFrame {
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Récupération du numéro de prospect impossible", JOptionPane.ERROR_MESSAGE);
         }
-
-        
 
     }
 

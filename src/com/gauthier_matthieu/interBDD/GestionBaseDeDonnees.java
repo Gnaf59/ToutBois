@@ -59,7 +59,6 @@ public class GestionBaseDeDonnees {
     public boolean testerConnection(){
         try{
         connection = DriverManager.getConnection(url, user, password);
-        Statement statement = connection.createStatement();
         if (connection != null) {
             try {
 

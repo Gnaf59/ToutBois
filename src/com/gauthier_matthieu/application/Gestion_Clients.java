@@ -302,13 +302,15 @@ public class Gestion_Clients extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-       try
+      try
         {
             Modification_Clients mc = new Modification_Clients(this,jTable1);
             mc.setVisible(true);
             this.setVisible(false);
-        }catch(IndexOutOfBoundsException iobe){
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à modifier", "Attention", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException iobe)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à consulter", "Attention", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
