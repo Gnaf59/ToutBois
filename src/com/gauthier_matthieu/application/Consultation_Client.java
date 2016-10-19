@@ -5,7 +5,6 @@
  */
 package com.gauthier_matthieu.application;
 
-
 import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.metier.Clients;
 import com.gauthier_matthieu.fonctions.MPanelPrinter;
@@ -21,11 +20,10 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
-
-
 /**
- * Fenêtre d'affichage d'un client
- * sélectionné dans le tableau des clients de la fenêtre Gestion_Clients
+ * Fenêtre d'affichage d'un client sélectionné dans le tableau des clients de la
+ * fenêtre Gestion_Clients
+ *
  * @author glantoine
  */
 public class Consultation_Client extends javax.swing.JFrame {
@@ -34,51 +32,50 @@ public class Consultation_Client extends javax.swing.JFrame {
     private Gestion_Clients gc;
     private Clients clientObjet;
     private Representants representantObjet;
-        
-     /**
+
+    /**
      * Initialise tous les composants de la fenêtre
+     *
      * @param tableau Tableau des clients de l'écran gestion Client
      * @param gc Ecran Gestion_Clients
      */
-    public Consultation_Client(JTable tableau,Gestion_Clients gc) 
-    {
+    public Consultation_Client(JTable tableau, Gestion_Clients gc) {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
-        this.tableau=tableau;
-        this.gc=gc;
-       try
-       {
-        clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
-        // Chargement de l'objet représentant --> récupération des données
-        
-        
-        Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
-        Lb_NomContact_Consult.setText(clientObjet.getNom());
-        Lb_PrenomContact_Consult.setText(clientObjet.getPrenom());
-        Lb_Societe_Consult.setText(clientObjet.getNomEntreprise());
-        Lb_Siret_Consult.setText(clientObjet.getSiret());
-        Lb_NumRue_Consult.setText(Integer.toString(clientObjet.getNumeroVoie()));
-        Lb_Rue_Consult.setText(clientObjet.getAdresse());
-        Lb_Complement_Consult.setText(clientObjet.getComplementAdresse());
-        Lb_Ville_Consult.setText(clientObjet.getVille());
-        Lb_codePostal_Consult.setText(clientObjet.getCodePostal());
-        Lb_Pays_Consult.setText(clientObjet.getPays());
-        Lb_Mail_Consult.setText(clientObjet.getMail());
-        Lb_Telephone_Consult.setText(clientObjet.getNumerotel());
-        Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
-        
-        representantObjet = new RequeteRepresentant().rechercheRepresentant(clientObjet.getNumeroRepresentant());
-        Lb_RepresentantNomPrenom_Consult.setText(representantObjet.getNom()+" "+representantObjet.getPrenom());
-        
-        }catch (SQLException ex) {
+        this.tableau = tableau;
+        this.gc = gc;
+        try {
+            clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+            // Chargement de l'objet représentant --> récupération des données
+
+            Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
+            Lb_NomContact_Consult.setText(clientObjet.getNom());
+            Lb_PrenomContact_Consult.setText(clientObjet.getPrenom());
+            Lb_Societe_Consult.setText(clientObjet.getNomEntreprise());
+            Lb_Siret_Consult.setText(clientObjet.getSiret());
+            Lb_NumRue_Consult.setText(Integer.toString(clientObjet.getNumeroVoie()));
+            Lb_Rue_Consult.setText(clientObjet.getAdresse());
+            Lb_Complement_Consult.setText(clientObjet.getComplementAdresse());
+            Lb_Ville_Consult.setText(clientObjet.getVille());
+            Lb_codePostal_Consult.setText(clientObjet.getCodePostal());
+            Lb_Pays_Consult.setText(clientObjet.getPays());
+            Lb_Mail_Consult.setText(clientObjet.getMail());
+            Lb_Telephone_Consult.setText(clientObjet.getNumerotel());
+            Lb_NombreCommande_Consult.setText(Integer.toString(clientObjet.getNbrCommande()));
+            try {
+                representantObjet = new RequeteRepresentant().rechercheRepresentant(clientObjet.getNumeroRepresentant());
+                Lb_RepresentantNomPrenom_Consult.setText(representantObjet.getNom() + " " + representantObjet.getPrenom());
+            } catch (IndexOutOfBoundsException ex) {
+                Lb_RepresentantNomPrenom_Consult.setText("Pas de représentant assigné");
+            }
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
-        catch(IndexOutOfBoundsException ex)
-        {
-            Lb_RepresentantNomPrenom_Consult.setText("Pas de représentant assigné");
-        }
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -581,16 +578,16 @@ public class Consultation_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_Bt_ImprimerActionPerformed
     private void Bt_AideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AideActionPerformed
         JOptionPane.showMessageDialog(null, "Cliquez sur \"Valider\" ou sur \"Annuler\" \n Pour plus d'information, "
-            + "contacter le SAV au 06/0010020 \n"
-            + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
+                + "contacter le SAV au 06/0010020 \n"
+                + "ou sur info@toutbois.fr", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_Bt_AideActionPerformed
     private void Bt_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_AnnulerActionPerformed
         gc.setVisible(true);
-        this.dispose();       
+        this.dispose();
     }//GEN-LAST:event_Bt_AnnulerActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       gc.setVisible(true);
-       this.dispose();      
+        gc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bt_Aide;
@@ -635,9 +632,5 @@ public class Consultation_Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Entreprise2;
     private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
-
-    
-
-    
 
 }

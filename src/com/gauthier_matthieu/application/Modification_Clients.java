@@ -82,15 +82,17 @@ public class Modification_Clients extends javax.swing.JFrame {
         CB_Representant.setSelectedItem(clientObjet.getNumeroRepresentant()+ ". " +representantObjet.getPrenom()+" "+representantObjet.getNom());
         
         
-        }catch(SQLException ex)
+        }catch(NullPointerException ex)
+        {
+            CB_Representant.setSelectedItem("Selection");
+        } 
+        
+        catch(SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
         
-        catch(IndexOutOfBoundsException ex)
-        {
-            CB_Representant.setSelectedItem("Selection");
-        } 
+        
     }
     
     

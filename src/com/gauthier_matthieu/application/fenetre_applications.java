@@ -5,15 +5,10 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.old.GestionDonnees;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import com.gauthier_matthieu.entities.*;
+import com.gauthier_matthieu.interBDD.GestionBaseDeDonnees;
+
 
 /**
  *
@@ -21,8 +16,8 @@ import com.gauthier_matthieu.entities.*;
  */
 public class fenetre_applications extends javax.swing.JFrame {
 
+    private GestionBaseDeDonnees gbdd=new GestionBaseDeDonnees();
     
-    private GestionDonnees gd=new GestionDonnees();
     /**
      * Creates new form fenetre_applications
      */
@@ -32,8 +27,6 @@ public class fenetre_applications extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,11 +101,6 @@ public class fenetre_applications extends javax.swing.JFrame {
         gestion.setText("Gestion");
 
         menuClients.setText("Clients");
-        menuClients.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuClientsMouseClicked(evt);
-            }
-        });
         menuClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuClientsActionPerformed(evt);
@@ -159,11 +147,6 @@ public class fenetre_applications extends javax.swing.JFrame {
         facturation.add(menuCréation);
 
         menuConsult1.setText("Consultation");
-        menuConsult1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsult1ActionPerformed(evt);
-            }
-        });
         facturation.add(menuConsult1);
 
         menuSupp1.setText("Suppression");
@@ -195,59 +178,48 @@ public class fenetre_applications extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientsMouseClicked
-
-    }//GEN-LAST:event_menuClientsMouseClicked
-
     private void menuClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientsActionPerformed
         Gestion_Clients gc = new Gestion_Clients(this);
-        gc.setVisible(true);
-        this.setVisible(false);
-        
+        if (gbdd.testerConnection()){
+        gc.setVisible(true);    
+        this.setVisible(false);    
+        }else{
+        JOptionPane.showMessageDialog(null, "      Base de données non connectée. \n Veuillez contacter votre technicien réseau. ", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }               
     }//GEN-LAST:event_menuClientsActionPerformed
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
-        gd.EnregistrerClientsFichier();
-        gd.EnregistrerProspectsFichier();
-        gd.EnregistrerRepresentantsFichier();
         System.exit(0);
     }//GEN-LAST:event_quitterActionPerformed
 
     private void menuProspectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProspectsActionPerformed
         Gestion_Prospect gp =new Gestion_Prospect(this);
-        gp.setVisible(true);
-        this.setVisible(false);
-        
+        if (gbdd.testerConnection()){
+        gp.setVisible(true);    
+        this.setVisible(false);    
+        }else{
+        JOptionPane.showMessageDialog(null, "      Base de données non connectée. \n Veuillez contacter votre technicien réseau. ", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_menuProspectsActionPerformed
 
-    private void menuConsult1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsult1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuConsult1ActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        /*Code de gestion de fermeture de la fenêtre */
-        gd.EnregistrerClientsFichier();
-        gd.EnregistrerProspectsFichier();
-        gd.EnregistrerRepresentantsFichier();
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void menuRepresentantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRepresentantsActionPerformed
         Gestion_Representant gr=new Gestion_Representant(this);
-        gr.setVisible(true);
-        this.setVisible(false);
-        
+        if (gbdd.testerConnection()){
+        gr.setVisible(true);    
+        this.setVisible(false);    
+        }else{
+        JOptionPane.showMessageDialog(null, "      Base de données non connectée. \n Veuillez contacter votre technicien réseau. ", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_menuRepresentantsActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        GestionDonnees gd=new GestionDonnees();
-        gd.ChargerDonneesClients();
-        gd.ChargerDonneesProspect();
-        gd.ChargerDonneesRepresentants();
-        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

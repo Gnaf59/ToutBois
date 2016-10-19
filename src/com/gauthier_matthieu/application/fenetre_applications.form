@@ -40,7 +40,6 @@
                 <Property name="text" type="java.lang.String" value="Clients"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuClientsMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuClientsActionPerformed"/>
               </Events>
             </MenuItem>
@@ -104,9 +103,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultation"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsult1ActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSupp1">
               <Properties>

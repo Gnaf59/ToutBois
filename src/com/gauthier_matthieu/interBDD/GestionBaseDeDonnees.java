@@ -55,6 +55,27 @@ public class GestionBaseDeDonnees {
      * Méthode privée s'occupant de réaliser tout type de requête en fonction de
      * la valeur du type de la requête
      */
+    
+    public boolean testerConnection(){
+        try{
+        connection = DriverManager.getConnection(url, user, password);
+        Statement statement = connection.createStatement();
+        if (connection != null) {
+            try {
+
+                connection.close();
+            } catch (SQLException ignore) {
+                /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
+            }
+        }
+        }catch (SQLException toe){
+            
+            return false;
+            
+        }
+        return true;
+    }
+    
     private void realiserRequete(String requete, int typeRequete) throws SQLException {
 
         connection = DriverManager.getConnection(url, user, password);
