@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
 public class Nouveau_Representant extends javax.swing.JFrame {
 
     private Gestion_Representant gr;
-    private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternDouble,patternCodePostalNumeroRue;
-    private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherTauxCommission,matcherSalaireBrut,matcherCodePostal,matcherNumeroRue;
+    private Pattern patternMail, patternNumeroTel, patternNomPrenomVilleAdresse, patternDouble, patternCodePostalNumeroRue;
+    private Matcher matcherMail, matcherNumeroTel, matcherNom, matcherPrenom, matcherVille, matcherAdresse, matcherTauxCommission, matcherSalaireBrut, matcherCodePostal, matcherNumeroRue;
 
     public Nouveau_Representant(Gestion_Representant gr) {
         initComponents();
@@ -475,167 +475,148 @@ public class Nouveau_Representant extends javax.swing.JFrame {
             Lb_PrenomContact.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
-            
+
             patternNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
             patternMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
             patternNumeroTel = Pattern.compile("[0-9]{10}");
-            patternDouble=Pattern.compile("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
-            patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
-            
+            patternDouble = Pattern.compile("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
+            patternCodePostalNumeroRue = Pattern.compile("[0-9]+");
+
             String Verification = "Veuillez remplir correctement le(s) champs\n";
-            Boolean champsIncomplet=false;
+            Boolean champsIncomplet = false;
 
             matcherNom = patternNomPrenomVilleAdresse.matcher(TF_NomContact.getText());
-            if ("".equals(TF_NomContact.getText())||!matcherNom.matches()) {
+            if ("".equals(TF_NomContact.getText()) || !matcherNom.matches()) {
                 Lb_NomContact.setForeground(Color.red);
-                Verification+="--> Nom du contact\n";
-                if(champsIncomplet==false)
-                {
+                Verification += "--> Nom du contact\n";
+                if (champsIncomplet == false) {
                     TF_NomContact.requestFocusInWindow();
-                    champsIncomplet=true;
+                    champsIncomplet = true;
                 }
             }
 
             matcherPrenom = patternNomPrenomVilleAdresse.matcher(TF_PrenomContact.getText());
-            if ("".equals(TF_PrenomContact.getText()) ||!matcherPrenom.matches()) {
+            if ("".equals(TF_PrenomContact.getText()) || !matcherPrenom.matches()) {
                 Lb_PrenomContact.setForeground(Color.red);
-                Verification+="--> Prénom du contact\n";
-                 if(champsIncomplet==false)
-                {
+                Verification += "--> Prénom du contact\n";
+                if (champsIncomplet == false) {
                     TF_PrenomContact.requestFocusInWindow();
-                    champsIncomplet=true;
+                    champsIncomplet = true;
                 }
             }
-            
+
             matcherNumeroTel = patternNumeroTel.matcher(TF_Telephone.getText());
 
-            if(!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches())
-            {
-                Verification+="--> Numéro de téléphone\n";
+            if (!"".equals(TF_Telephone.getText()) && !matcherNumeroTel.matches()) {
+                Verification += "--> Numéro de téléphone\n";
                 Lb_Telephone.setForeground(Color.red);
-                 if(champsIncomplet==false)
-                {
+                if (champsIncomplet == false) {
                     TF_Telephone.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherMail = patternMail.matcher(TF_Mail.getText());
-            
-            if(!"".equals(TF_Mail.getText()) && !matcherMail.matches())
-            {
-                Verification+="--> Email\n";
-                Lb_Mail.setForeground(Color.red);
-                 if(champsIncomplet==false)
-                {
-                    TF_Mail.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherNumeroRue=patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
-            if ("".equals(TF_NumRue.getText())|| !matcherNumeroRue.matches()) {
-                Lb_NumRue.setForeground(Color.red);
-                Verification += "--> Numéro de la rue\n";
-                 if(champsIncomplet==false)
-                {
-                    TF_NumRue.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherAdresse=patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
-            if ("".equals(TF_Rue.getText())||!matcherAdresse.matches()) {
-                Lb_Rue.setForeground(Color.red);
-                Verification+="--> Adresse\n";
-                 if(champsIncomplet==false)
-                {
-                    TF_Rue.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherVille=patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
-            if ("".equals(TF_Ville.getText())||!matcherVille.matches()) {
-                Lb_Ville.setForeground(Color.red);
-                Verification+="--> Ville\n";
-                if(champsIncomplet==false)
-                {
-                    TF_Ville.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherCodePostal=patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
-            if ("".equals(TF_codePostal.getText())|| !matcherCodePostal.matches()) {
-                Lb_CodePostal.setForeground(Color.red);
-                Verification+="--> Code postal\n";
-                if(champsIncomplet==false)
-                {
-                    TF_codePostal.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
-                Lb_Pays.setForeground(Color.red);
-                Verification+="--> Pays\n";
-                if(champsIncomplet==false)
-                {
-                    CB_Pays.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            
-            matcherSalaireBrut=patternDouble.matcher(TF_SalaireBrut.getText());
-            if ("".equals(TF_SalaireBrut.getText())|| !matcherSalaireBrut.matches()) {
-                Lb_SalaireBrut.setForeground(Color.red);
-                Verification += "--> Salaire Brut\n";
-                if(champsIncomplet==false)
-                {
-                    TF_SalaireBrut.requestFocusInWindow();
-                    champsIncomplet=true;
-                }
-            }
-            matcherTauxCommission=patternDouble.matcher(TF_TauxComission.getText());
-            if ("".equals(TF_TauxComission.getText())|| !matcherTauxCommission.matches()) {
-                Lb_TauxComission.setForeground(Color.red);
-                Verification += "--> Taux de comission\n";
-                if(champsIncomplet==false)
-                {
-                    TF_TauxComission.requestFocusInWindow();
-                    champsIncomplet=true;
+                    champsIncomplet = true;
                 }
             }
 
-            if (champsIncomplet)  
-            {
-                JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
+            matcherMail = patternMail.matcher(TF_Mail.getText());
+
+            if (!"".equals(TF_Mail.getText()) && !matcherMail.matches()) {
+                Verification += "--> Email\n";
+                Lb_Mail.setForeground(Color.red);
+                if (champsIncomplet == false) {
+                    TF_Mail.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
             }
-            else 
-            {
+
+            matcherNumeroRue = patternCodePostalNumeroRue.matcher(TF_NumRue.getText());
+            if ("".equals(TF_NumRue.getText()) || !matcherNumeroRue.matches()) {
+                Lb_NumRue.setForeground(Color.red);
+                Verification += "--> Numéro de la rue\n";
+                if (champsIncomplet == false) {
+                    TF_NumRue.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            matcherAdresse = patternNomPrenomVilleAdresse.matcher(TF_Rue.getText());
+            if ("".equals(TF_Rue.getText()) || !matcherAdresse.matches()) {
+                Lb_Rue.setForeground(Color.red);
+                Verification += "--> Adresse\n";
+                if (champsIncomplet == false) {
+                    TF_Rue.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            matcherVille = patternNomPrenomVilleAdresse.matcher(TF_Ville.getText());
+            if ("".equals(TF_Ville.getText()) || !matcherVille.matches()) {
+                Lb_Ville.setForeground(Color.red);
+                Verification += "--> Ville\n";
+                if (champsIncomplet == false) {
+                    TF_Ville.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            matcherCodePostal = patternCodePostalNumeroRue.matcher(TF_codePostal.getText());
+            if ("".equals(TF_codePostal.getText()) || !matcherCodePostal.matches()) {
+                Lb_CodePostal.setForeground(Color.red);
+                Verification += "--> Code postal\n";
+                if (champsIncomplet == false) {
+                    TF_codePostal.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            if ("Selection".equals(CB_Pays.getSelectedItem().toString())) {
+                Lb_Pays.setForeground(Color.red);
+                Verification += "--> Pays\n";
+                if (champsIncomplet == false) {
+                    CB_Pays.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            matcherSalaireBrut = patternDouble.matcher(TF_SalaireBrut.getText());
+            if ("".equals(TF_SalaireBrut.getText()) || !matcherSalaireBrut.matches()) {
+                Lb_SalaireBrut.setForeground(Color.red);
+                Verification += "--> Salaire Brut\n";
+                if (champsIncomplet == false) {
+                    TF_SalaireBrut.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+            matcherTauxCommission = patternDouble.matcher(TF_TauxComission.getText());
+            if ("".equals(TF_TauxComission.getText()) || !matcherTauxCommission.matches()) {
+                Lb_TauxComission.setForeground(Color.red);
+                Verification += "--> Taux de comission\n";
+                if (champsIncomplet == false) {
+                    TF_TauxComission.requestFocusInWindow();
+                    champsIncomplet = true;
+                }
+            }
+
+            if (champsIncomplet) {
+                JOptionPane.showMessageDialog(null, Verification, "Attention", JOptionPane.ERROR_MESSAGE);
+            } else {
                 //GestionDonnees gd=new GestionDonnees();
                 //gd.EnregistrerRepresentantsCollection(TF_NomContact.getText(),TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), TF_Mail.getText(), TF_Telephone.getText(), Double.parseDouble(TF_SalaireBrut.getText()), Double.parseDouble(TF_TauxComission.getText()));
-                
-                RequeteRepresentant bddRepresentant=new RequeteRepresentant();
+
+                RequeteRepresentant bddRepresentant = new RequeteRepresentant();
                 Representants representant;
-                representant=new Representants(Double.parseDouble(TF_SalaireBrut.getText()), 
+                representant = new Representants(Double.parseDouble(TF_SalaireBrut.getText()),
                         Double.parseDouble(TF_TauxComission.getText()), TF_NomContact.getText(),
-                        TF_PrenomContact.getText() , Integer.parseInt(TF_NumRue.getText()), 
-                        TF_Rue.getText(),TF_Complement.getText(), TF_Ville.getText(), 
-                        TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(), 
+                        TF_PrenomContact.getText(), Integer.parseInt(TF_NumRue.getText()),
+                        TF_Rue.getText(), TF_Complement.getText(), TF_Ville.getText(),
+                        TF_codePostal.getText(), CB_Pays.getSelectedItem().toString(),
                         TF_Mail.getText(), TF_Telephone.getText());
                 bddRepresentant.insertBDDRepresentant(representant);
                 dispose();
                 gr.setVisible(true);
             }
 
-        } 
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.ERROR_MESSAGE);
 
         }
