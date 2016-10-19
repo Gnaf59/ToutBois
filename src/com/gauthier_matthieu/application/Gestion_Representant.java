@@ -19,12 +19,20 @@ import javax.swing.JOptionPane;
  */
 public class Gestion_Representant extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Gestion_Clients
-     * 
-     */
+    
     private fenetre_applications fa=new fenetre_applications();
     
+ /**
+ * Cette fenêtre s'occupe de la gestion du fichier Représentant.
+ * Par l'intermédiaire des boutons nouveau, modifier, consulter ou supprimer 
+ * l'utilisateur à la possibilité de créer un nouveau Représentant en lançant la fenêtre Nouveau_Representant,
+ * modifier un représentant déjà existant et préalablement sélectionné sur la jTable en ouvrant la fenêtre Modification_Representant,
+ * voir les informations du représentant sélectionné sur l'écran Consultation_Representant ou
+ * supprimer un client sélectionné directement dans la fenêtre Gestion_Representant.
+ * 
+ * @author glantoine
+     * @param fa fenêtre d'ouverture de l'application (fenetre_applications)
+ */
     public Gestion_Representant(fenetre_applications fa) {
         this.fa=fa;
         //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
@@ -300,14 +308,7 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_AideActionPerformed
 
     private void BT_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ModifierActionPerformed
-        /*try
-        {
-            Modification_Representant mr=new Modification_Representant(this, jTable1);
-            mr.setVisible(true);
-            this.setVisible(false);
-        }catch (IndexOutOfBoundsException iobe){
-            JOptionPane.showMessageDialog(null, " Veuillez selectionner une ligne à modifier ", " ERREUR ", JOptionPane.ERROR_MESSAGE);
-        }*/
+       
         try
         {
             Modification_Representant mr = new Modification_Representant(this,jTable1);
@@ -321,9 +322,10 @@ public class Gestion_Representant extends javax.swing.JFrame {
     }//GEN-LAST:event_BT_ModifierActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        
         fa.setVisible(true);
         this.dispose();
-        /* mettre le code pour enregistrer les données ici*/
+       
     }//GEN-LAST:event_formWindowClosing
 
     private void BT_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ConsulterActionPerformed
@@ -342,15 +344,13 @@ public class Gestion_Representant extends javax.swing.JFrame {
     private void BT_SupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_SupprimerActionPerformed
         try
         {
-            RequeteRepresentant bddRepresentant=new RequeteRepresentant();
-            //GestionDonnees gd=new GestionDonnees();
+            RequeteRepresentant bddRepresentant=new RequeteRepresentant();            
             int numeroRepresentant=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Représentant ?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
                 bddRepresentant.deleteBDDRepresentants(numeroRepresentant);
-                //gd.SupprimerRepresentantsCollection(numeroRepresentant);
                 jTable1.setModel(new Model_Table_Representants());
             }
                  

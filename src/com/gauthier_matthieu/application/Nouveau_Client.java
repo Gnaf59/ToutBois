@@ -23,7 +23,7 @@ import java.sql.SQLException;
  * Cette Fenêtre s'occupe de l'ajout de nouveau Clients Propose un formulaire
  * pour entrer toutes les données relative au nouveau client et effectue une
  * vérifications des champs obligatoires avant d'enregistrer le nouveau client
- * dans la collection
+ * dans la base de données
  *
  * @author glantoine
  */

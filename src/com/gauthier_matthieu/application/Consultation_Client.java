@@ -41,12 +41,13 @@ public class Consultation_Client extends javax.swing.JFrame {
      */
     public Consultation_Client(JTable tableau, Gestion_Clients gc) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau = tableau;
         this.gc = gc;
+        
         try {
-            clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+            clientObjet = new RequeteClient().rechercheClients(Integer.parseInt(tableau.getValueAt(this.tableau.getSelectedRow(), 0).toString()));
+            
             // Chargement de l'objet représentant --> récupération des données
 
             Lb_NumeroClient.setText(Integer.toString(clientObjet.getNumeroClient()));
@@ -129,6 +130,7 @@ public class Consultation_Client extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consultation Clients");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setMaximumSize(new java.awt.Dimension(870, 585));
         setMinimumSize(new java.awt.Dimension(870, 585));
         setName("Consultation Clients"); // NOI18N

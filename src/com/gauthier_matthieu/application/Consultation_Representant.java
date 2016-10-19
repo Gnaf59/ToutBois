@@ -33,40 +33,20 @@ public class Consultation_Representant extends javax.swing.JFrame {
     
      /**
      * Initialise tous les composants de la fenêtre
+     * 
      * @param tableau Tableau des Représentants de l'écran gestion Représentants
      * @param gr Ecran Gestion_Representant
      */
     public Consultation_Representant(JTable tableau,Gestion_Representant gr) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau=tableau;
         this.gr=gr;
         
-        /*Lb_NumeroClient.setText("");
-        Lb_Complement_Consult.setText("");
-        Lb_Mail_Consult.setText("");
-        Lb_NomContact_Consult.setText("");
-        Lb_SalaireBrut_Consult.setText("");
-        Lb_NumRue_Consult.setText("");
-        Lb_Pays_Consult.setText("");
-        Lb_PrenomContact_Consult.setText("");
-        Lb_Rue_Consult.setText("");
-        Lb_TauxComission_Consult.setText("");
-        Lb_Telephone_Consult.setText("");
-        Lb_Ville_Consult.setText("");
-        Lb_codePostal_Consult.setText("");*/
-        
-        
-        //GestionDonnees gd = new GestionDonnees();
-        /*appel du hashMap client avec les clients*/
-        //HashMap<Integer,Representants> representant= gd.getRepresentants();
-        /*Création d'un objet client à partir du hashMap, ce qui permet de stocker toute les donnée de la ligne*/
         
         try{
         RequeteRepresentant bddRepresentant= new RequeteRepresentant();
-        Representants representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
-        //Representants representantObjet = representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        Representants representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(this.tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         Lb_NumeroClient.setText(Integer.toString(representantObjet.getNumeroRepresentant()));
         Lb_NomContact_Consult.setText(representantObjet.getNom());
         Lb_PrenomContact_Consult.setText(representantObjet.getPrenom());
@@ -138,6 +118,7 @@ public class Consultation_Representant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consultation Représentant");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setMinimumSize(new java.awt.Dimension(950, 530));
         setName("Consultation Clients"); // NOI18N
         setResizable(false);
@@ -460,7 +441,7 @@ public class Consultation_Representant extends javax.swing.JFrame {
                         .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel_Contact, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel_Adresse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ConsutationRepresentantsLayout.createSequentialGroup()
                         .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -494,9 +475,9 @@ public class Consultation_Representant extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel_ConsutationRepresentantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Bt_Imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                            .addComponent(Bt_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Bt_Aide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(14, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

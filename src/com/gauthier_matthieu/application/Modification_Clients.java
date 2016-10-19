@@ -8,23 +8,17 @@ package com.gauthier_matthieu.application;
 import com.gauthier_matthieu.interBDD.RequeteClient;
 import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Clients;
-import com.gauthier_matthieu.old.GestionDonnees;
 import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.io.*;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.*;
 import javax.swing.*;
 
 /**
  * Cette fenêtre permet la modification d'un Client
  * préalablement sélectionné et effectue une vérification de saisie sur les différents champs
- * avant d'enregistrer la modification dans la Collection
+ * avant d'enregistrer la modification dans la Base de données
  * @author glantoine
  */
 public class Modification_Clients extends javax.swing.JFrame {
@@ -61,7 +55,7 @@ public class Modification_Clients extends javax.swing.JFrame {
         try{
             
         
-        clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        clientObjet=bddClient.rechercheClients(Integer.parseInt(tableau.getValueAt(this.tableau.getSelectedRow(), 0).toString()));
         
         
         TF_NomContact.setText(clientObjet.getNom());

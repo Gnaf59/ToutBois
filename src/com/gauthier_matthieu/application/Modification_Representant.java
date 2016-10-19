@@ -10,6 +10,7 @@ import com.gauthier_matthieu.interBDD.*;
 import com.gauthier_matthieu.metier.Representants;
 import com.gauthier_matthieu.entities.*;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -18,44 +19,38 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
+ * Cette Fenêtre s'occupe de l'ajout de nouveau Représentants Propose un formulaire
+ * pour entrer toutes les données relative au nouveau représentant et effectue une
+ * vérifications des champs obligatoires avant d'enregistrer le nouveau représentant
+ * dans la Base de donnée
  *
  * @author glantoine
  */
 public class Modification_Representant extends javax.swing.JFrame {
 
     private Gestion_Representant gr;
-    private GestionDonnees gd=new GestionDonnees();
     private RequeteRepresentant bddRepresentant;
     private JTable tableau;
-    private HashMap<Integer,Representants> representant;
     Representants representantObjet;
     private Pattern patternMail,patternNumeroTel,patternNomPrenomVilleAdresse,patternDouble,patternCodePostalNumeroRue;
     private Matcher matcherMail,matcherNumeroTel,matcherNom,matcherPrenom,matcherVille,matcherAdresse,matcherTauxCommission,matcherSalaireBrut,matcherCodePostal,matcherNumeroRue;
 
+    
+    /**
+     * Initialise les composants de la Jframe
+     * 
+     * @param gr fenêtre Gestion_Representant
+     * @param tableau Jtable de Gestion_Representant
+     */
     public Modification_Representant(Gestion_Representant gr,JTable tableau) {
         initComponents();
         setLocationRelativeTo(null);
         this.gr = gr;
         this.tableau=tableau;
-        /*this.representant= gd.getRepresentants();
-        this.representantObjet= representant.get(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
-        
-        TF_NomContact.setText(representantObjet.getNom());
-        TF_PrenomContact.setText(representantObjet.getPrenom());
-        TF_NumRue.setText(Integer.toString(representantObjet.getNumeroVoie()));
-        TF_Rue.setText(representantObjet.getAdresse());
-        TF_Complement.setText(representantObjet.getComplementAdresse());
-        TF_Ville.setText(representantObjet.getVille());
-        TF_codePostal.setText(representantObjet.getCodePostal());
-        CB_Pays.setSelectedItem(representantObjet.getPays());
-        TF_Mail.setText(representantObjet.getMail());
-        TF_Telephone.setText(representantObjet.getNumerotel());
-        TF_SalaireBrut.setText(Double.toString(representantObjet.getSalaireBrut()));
-        TF_TauxComission.setText(Double.toString(representantObjet.getTauxCommission()));*/
         
         try{
         bddRepresentant=new RequeteRepresentant();
-        representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+        representantObjet=bddRepresentant.rechercheRepresentant(Integer.parseInt(this.tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
         TF_NomContact.setText(representantObjet.getNom());
         TF_PrenomContact.setText(representantObjet.getPrenom());
         TF_NumRue.setText(Integer.toString(representantObjet.getNumeroVoie()));
@@ -123,6 +118,7 @@ public class Modification_Representant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Modification Représentant");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setName("Création Client"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
@@ -519,12 +515,14 @@ public class Modification_Representant extends javax.swing.JFrame {
             Lb_Mail.setForeground(new java.awt.Color(102, 102, 102));
             Lb_Telephone.setForeground(new java.awt.Color(102, 102, 102));
             
+            //pattern de controle de saisie
             patternNomPrenomVilleAdresse = Pattern.compile("^[\\p{L} .'-]+$");
             patternMail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
             patternNumeroTel = Pattern.compile("[0-9]{10}");
             patternDouble=Pattern.compile("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
             patternCodePostalNumeroRue=Pattern.compile("[0-9]+");
             
+            //vérification des données saisies dans le formulaire
             String Verification = "Veuillez remplir correctement le(s) champs\n";
             boolean formulaireMalRempli = false;
             
