@@ -56,9 +56,11 @@ public class fenetre_applications extends javax.swing.JFrame {
         menuConsult1 = new javax.swing.JMenuItem();
         menuSupp1 = new javax.swing.JMenuItem();
         aPropos = new javax.swing.JMenu();
+        menuVersion = new javax.swing.JMenuItem();
+        menuDocumentation = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("ToutBois LGI 1.0");
+        setTitle("ToutBois LGI 0.0.2");
         setIconImages(null);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -158,6 +160,18 @@ public class fenetre_applications extends javax.swing.JFrame {
 
         aPropos.setBackground(new java.awt.Color(153, 153, 153));
         aPropos.setText("A propos");
+
+        menuVersion.setText("Version");
+        menuVersion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVersionActionPerformed(evt);
+            }
+        });
+        aPropos.add(menuVersion);
+
+        menuDocumentation.setText("Documentation");
+        aPropos.add(menuDocumentation);
+
         jMenuBar1.add(aPropos);
 
         setJMenuBar(jMenuBar1);
@@ -218,6 +232,11 @@ public class fenetre_applications extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuRepresentantsActionPerformed
 
+    private void menuVersionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVersionActionPerformed
+        VersionToutbois vr = new VersionToutbois(this, true);
+        vr.setVisible(true);
+    }//GEN-LAST:event_menuVersionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,11 +286,13 @@ public class fenetre_applications extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuConsult;
     private javax.swing.JMenuItem menuConsult1;
     private javax.swing.JMenuItem menuCréation;
+    private javax.swing.JMenuItem menuDocumentation;
     private javax.swing.JMenuItem menuModif;
     private javax.swing.JMenuItem menuProspects;
     private javax.swing.JMenuItem menuRepresentants;
     private javax.swing.JMenuItem menuSupp;
     private javax.swing.JMenuItem menuSupp1;
+    private javax.swing.JMenuItem menuVersion;
     private javax.swing.JMenuItem quitter;
     // End of variables declaration//GEN-END:variables
 }

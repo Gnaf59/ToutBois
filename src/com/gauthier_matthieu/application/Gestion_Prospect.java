@@ -51,11 +51,9 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         BT_Supprimer_PR = new javax.swing.JButton();
         BT_Consulter_PR = new javax.swing.JButton();
         BT_Ajouter_PR = new javax.swing.JButton();
-        BT_Recherche_PR = new javax.swing.JButton();
         BT_Quitter_PR = new javax.swing.JButton();
         BT_Aide_PR = new javax.swing.JButton();
         Lb_Titre_PR = new javax.swing.JLabel();
-        TF_FiltreClient_PR = new javax.swing.JTextField();
         image_PR = new javax.swing.JLabel();
         image_2_PR = new javax.swing.JLabel();
         label1 = new java.awt.Label();
@@ -83,8 +81,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         });
 
         jP_Prospect.setBackground(new java.awt.Color(255, 255, 255));
-        jP_Prospect.setMaximumSize(new java.awt.Dimension(960, 600));
-        jP_Prospect.setPreferredSize(new java.awt.Dimension(960, 600));
+        jP_Prospect.setMaximumSize(new java.awt.Dimension(975, 550));
+        jP_Prospect.setPreferredSize(new java.awt.Dimension(975, 550));
 
         BT_Modifier_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BT_Modifier_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/edit.png"))); // NOI18N
@@ -122,12 +120,9 @@ public class Gestion_Prospect extends javax.swing.JFrame {
             }
         });
 
-        BT_Recherche_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BT_Recherche_PR.setText("Rechercher");
-
         BT_Quitter_PR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BT_Quitter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/fermer-croix-supprimer-erreurs-sortie-icone-4368-16.png"))); // NOI18N
-        BT_Quitter_PR.setText("Quitter");
+        BT_Quitter_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/go-back-arrow.png"))); // NOI18N
+        BT_Quitter_PR.setText("Retour");
         BT_Quitter_PR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_Quitter_PRActionPerformed(evt);
@@ -146,12 +141,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         Lb_Titre_PR.setFont(new java.awt.Font("Gill Sans MT", 3, 48)); // NOI18N
         Lb_Titre_PR.setForeground(new java.awt.Color(102, 102, 102));
         Lb_Titre_PR.setText("Fichier Prospect");
-
-        TF_FiltreClient_PR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_FiltreClient_PRActionPerformed(evt);
-            }
-        });
 
         image_PR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/gauthier_matthieu/image/logo-02.png"))); // NOI18N
         image_PR.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -180,21 +169,18 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_ProspectLayout.createSequentialGroup()
-                                .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
                                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(BT_Modifier_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Ajouter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BT_Consulter_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BT_Recherche_PR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(BT_Supprimer_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jP_ProspectLayout.createSequentialGroup()
                                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(image_2_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jP_ProspectLayout.createSequentialGroup()
                                         .addComponent(BT_Aide_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,11 +198,7 @@ public class Gestion_Prospect extends javax.swing.JFrame {
             .addGroup(jP_ProspectLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Lb_Titre_PR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TF_FiltreClient_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BT_Recherche_PR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jP_ProspectLayout.createSequentialGroup()
@@ -231,13 +213,13 @@ public class Gestion_Prospect extends javax.swing.JFrame {
                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(image_PR)
                     .addComponent(image_2_PR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jP_ProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(BT_Aide_PR)
                         .addComponent(BT_Quitter_PR))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,10 +249,6 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         fa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BT_Quitter_PRActionPerformed
-
-    private void TF_FiltreClient_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_FiltreClient_PRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_FiltreClient_PRActionPerformed
 
     private void BT_Ajouter_PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_Ajouter_PRActionPerformed
         Nouveau_Prospect np = new Nouveau_Prospect(this);
@@ -351,10 +329,8 @@ public class Gestion_Prospect extends javax.swing.JFrame {
     private javax.swing.JButton BT_Consulter_PR;
     private javax.swing.JButton BT_Modifier_PR;
     private javax.swing.JButton BT_Quitter_PR;
-    private javax.swing.JButton BT_Recherche_PR;
     private javax.swing.JButton BT_Supprimer_PR;
     private javax.swing.JLabel Lb_Titre_PR;
-    private javax.swing.JTextField TF_FiltreClient_PR;
     private javax.swing.JLabel image_2_PR;
     private javax.swing.JLabel image_PR;
     private javax.swing.JPanel jP_Prospect;
