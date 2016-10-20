@@ -5,27 +5,28 @@
  */
 package com.gauthier_matthieu.application;
 
-import com.gauthier_matthieu.old.GestionDonnees;
-import javax.swing.JTable;
 import com.gauthier_matthieu.entities.*;
 import com.gauthier_matthieu.interBDD.RequeteProspect;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumn;
-/**
- *
+
+  /**
+ * Cette fenêtre s'occupe de la gestion de la table prospect.
+ * Par l'intermédiaire des boutons nouveau, modifier, consulter ou supprimer 
+ * l'utilisateur à la possibilité de créer un nouveau client en lançant la fenêtre Nouveau_Prospect,
+ * modifier un client déjà existant et préalablement sélectionné sur la jTable en ouvrant la fenêtre Modification_Prospect,
+ * voir les informations du Prospect sélectionné sur l'écran Consultation_Prospect ou
+ * supprimer un Prospect sélectionné directement dans la fenêtre Gestion_Prospect.
+ * 
  * @author glantoine
  */
 public class Gestion_Prospect extends javax.swing.JFrame {
     
     private fenetre_applications fa=new fenetre_applications();
     /**
-     * Creates new form Gestion_Clients
-     * @param fa Nécessite La fenêtre de démarrage du programme en paramêtre Pour gérer son affichage
+     * Génère la fenêtre et initialise ces composants
+     * @param fa Nécessite en paramêtre la fenetre_applications afin de gérer son affichage
      */
     public Gestion_Prospect(fenetre_applications fa) {
         this.fa=fa;
@@ -308,14 +309,14 @@ public class Gestion_Prospect extends javax.swing.JFrame {
         try
         {
             RequeteProspect bddProspect= new RequeteProspect();
-            //GestionDonnees gd=new GestionDonnees();
+           
             int numeroProspect=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
             
             int selectedOption = JOptionPane.showConfirmDialog(null,"Voulez vous supprimer ce Prospect?", "INFORMATION",JOptionPane.YES_NO_OPTION);    
             if (selectedOption == JOptionPane.YES_OPTION) 
             {
                 bddProspect.deleteBDDProspect(numeroProspect);
-                //gd.SupprimerProspectsCollection(numeroProspect);
+                
                 jTable1.setModel(new Model_Table_Prospect());
             }
             JOptionPane.showMessageDialog(null, " Suppression du prospect effectuée.", "Information", JOptionPane.INFORMATION_MESSAGE);

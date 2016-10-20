@@ -5,16 +5,16 @@
  */
 package com.gauthier_matthieu.interBDD;
 
-import static com.gauthier_matthieu.interBDD.GestionBaseDeDonnees.INSERT;
+
 import com.gauthier_matthieu.metier.Prospects;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /**
+ * Classe réalisant toutes les requêtes pour gérer la table prospect
  *
  * @author Dev
  */
@@ -25,8 +25,12 @@ public class RequeteProspect extends GestionBaseDeDonnees {
         requete = "SELECT *FROM prospect;";
         return realiserRequeteSelect(requete);
     }
-//-------------------------------------------------------------------------------   
-
+ /**
+     * Requête permettant d'enregistrer les nouveaux prospects
+     *
+     * @param prospect Prospect à ajouter dans la base de donnée
+     * @throws SQLException
+     */
     public void insertBDDprospect(Prospects prospect) throws SQLException {
         java.sql.Date sqlDate = new java.sql.Date(prospect.getDerniereVisite().getTime());
 
@@ -51,7 +55,12 @@ public class RequeteProspect extends GestionBaseDeDonnees {
                 + "'" + sqlDate + "');";
         realiserRequeteInsert(requete);
     }
-
+    /**
+     * Requête permettant de modifier les prospects existants
+     *
+     * @param prospect Prospect à modifier dans la base de données
+     * @throws SQLException
+     */
     public void updateBDDProspect(Prospects prospect) throws SQLException {
         String requete;
         java.sql.Date sqlDate = new java.sql.Date(prospect.getDerniereVisite().getTime());
@@ -75,12 +84,23 @@ public class RequeteProspect extends GestionBaseDeDonnees {
 
         realiserRequeteUpdate(requete);
     }
-
+    /**
+     * Requête permettant de supprimer un prospect
+     *
+     * @param numeroProspect numéro du prospect
+     * @throws SQLException
+     */
     public void deleteBDDProspect(int numeroProspect) throws SQLException {
         String requete = "DELETE FROM `prospect` WHERE `numeroProspect`=" + numeroProspect + ";";
         realiserRequeteDelete(requete);
     }
-
+    /**
+     * Requête permettant de rechercher un client a partir du numéro de client
+     *
+     * @param numeroProspect numéro du prospect
+     * @return un objet Prospect
+     * @throws SQLException
+     */
     public Prospects rechercheProspects(int numeroProspect) throws SQLException, ParseException {
         String requete;
         requete = "SELECT * FROM prospect WHERE `numeroProspect` = " + numeroProspect + ";";

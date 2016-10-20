@@ -229,7 +229,7 @@ public class GestionDonnees {
     /**
      * Methode Permettant d'initialiser l'incrément du numéro de Prospect.
      */
-    private void InitialisationIncrementNumeroProspect()
+    /*private void InitialisationIncrementNumeroProspect()
     {
         Iterator i = this.prospects.keySet().iterator();
         int clef;
@@ -246,7 +246,7 @@ public class GestionDonnees {
                 }
             }
         
-    }
+    }*/
     //-------------------------------------------------------------------------------------------------------------------------
     /**
      * Methode Permettant de charger le fichier texte Prospects.txt dans le hashmap prospects
@@ -275,7 +275,7 @@ public class GestionDonnees {
                 }
             
             //Met l'incrément de La classe prospect à la valeur du plus haut numéro de prospect inclus 
-            InitialisationIncrementNumeroProspect();
+            /*InitialisationIncrementNumeroProspect();*/
         }     
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Erreur Chargement des données", JOptionPane.ERROR_MESSAGE);

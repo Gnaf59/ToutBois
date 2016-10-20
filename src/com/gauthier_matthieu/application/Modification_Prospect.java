@@ -13,25 +13,24 @@ import com.gauthier_matthieu.interBDD.RequeteRepresentant;
 import com.gauthier_matthieu.metier.Representants;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.io.*;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
- *
+ * Cette fenêtre permet la modification d'un Prospect
+ * préalablement sélectionné et effectue une vérification de saisie sur les différents champs
+ * avant d'enregistrer la modification dans la Base de données
  * @author glantoine
  */
 public class Modification_Prospect extends javax.swing.JFrame {
 
     GestionDonnees gd = new GestionDonnees();
 
-    //private HashMap<Integer,Prospects> prospects= gd.getProspects();
+    
     private Prospects prospectObjet;
     private Representants representantObjet;
     private JTable tableau;
@@ -46,7 +45,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
      * Initialise tous les composants de la fenêtre
      *
      * @param tableau Tableau des prospects de l'écran gestion Prospect
-     * @param gc Ecran Gestion_Prospect
+     * @param gp Ecran Gestion_Prospect
      */
     public Modification_Prospect(JTable tableau, Gestion_Prospect gp) {
         initComponents();
@@ -59,7 +58,7 @@ public class Modification_Prospect extends javax.swing.JFrame {
 
         try {
 
-            this.prospectObjet = bddProspect.rechercheProspects(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+            this.prospectObjet = bddProspect.rechercheProspects(Integer.parseInt(this.tableau.getValueAt(this.tableau.getSelectedRow(), 0).toString()));
 
             TF_NomContact.setText(prospectObjet.getNom());
             TF_PrenomContact.setText(prospectObjet.getPrenom());

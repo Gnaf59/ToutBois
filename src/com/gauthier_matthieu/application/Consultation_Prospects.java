@@ -23,6 +23,8 @@ import java.text.ParseException;
 import java.util.*;
 
 /**
+ * Fenêtre d'affichage d'un prospect sélectionné dans le tableau des prospects de la
+ * fenêtre Gestion_Prospects
  *
  * @author glantoine
  */
@@ -32,10 +34,14 @@ public class Consultation_Prospects extends javax.swing.JFrame {
     private JTable tableau;
     private Gestion_Prospect gp;
 
-    //transmition tableau dans constructeur
+    /**
+     * Initialise tous les composants de la fenêtre
+     * 
+     * @param tableau Tableau des Représentants de l'écran gestion Représentants
+     * @param gp Ecran Gestion_Prospect
+     */
     public Consultation_Prospects(JTable tableau, Gestion_Prospect gp) {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setLocationRelativeTo(null);
         this.tableau = tableau;
         this.gp = gp;
@@ -58,7 +64,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
 
         try {
             RequeteProspect bddProspect = new RequeteProspect();
-            Prospects prospectObjet = bddProspect.rechercheProspects(Integer.parseInt(tableau.getValueAt(tableau.getSelectedRow(), 0).toString()));
+            Prospects prospectObjet = bddProspect.rechercheProspects(Integer.parseInt(this.tableau.getValueAt(this.tableau.getSelectedRow(), 0).toString()));
 
             Lb_NumeroProspect.setText(Integer.toString(prospectObjet.getNumeroProspect()));
             Lb_NomContact_Consult.setText(prospectObjet.getNom());
@@ -143,6 +149,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consultation Prospect");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("..//image//logo-02.png")));
         setMinimumSize(new java.awt.Dimension(950, 530));
         setName("Consultation Clients"); // NOI18N
         setResizable(false);
@@ -514,7 +521,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel_Entreprise, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                            .addComponent(Lb_Fenetre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Lb_Fenetre, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel_ConsutationProspectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -559,7 +566,7 @@ public class Consultation_Prospects extends javax.swing.JFrame {
                         .addComponent(jPanel_Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jPanel_Entreprise2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addComponent(Lb_copyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_ConsutationProspectLayout.createSequentialGroup()
                         .addComponent(jPanel_Contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

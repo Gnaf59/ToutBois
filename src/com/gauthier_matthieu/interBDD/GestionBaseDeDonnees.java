@@ -5,16 +5,12 @@
  */
 package com.gauthier_matthieu.interBDD;
 
-import com.gauthier_matthieu.metier.Representants;
-import com.gauthier_matthieu.metier.Prospects;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
-import com.gauthier_matthieu.entities.*;
 
 /**
+ * Classe permettant de se connecter à la base de données et d'exécuter des
+ * requêtes non spécifique
  *
  * @author glantoine
  */
@@ -50,31 +46,38 @@ public class GestionBaseDeDonnees {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur chargement driver jdbc", JOptionPane.ERROR_MESSAGE);
         }
     }
-
     /**
-     * Méthode privée s'occupant de réaliser tout type de requête en fonction de
-     * la valeur du type de la requête
+     * Méthode permettant de tester si la connection à la base de données est possible
+     * 
+     * @return un booléen représentant si la connection existe ou pas.
      */
-    
-    public boolean testerConnection(){
-        try{
-        connection = DriverManager.getConnection(url, user, password);
-        if (connection != null) {
-            try {
+    public boolean testerConnection() {
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+            if (connection != null) {
+                try {
 
-                connection.close();
-            } catch (SQLException ignore) {
-                /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
+                    connection.close();
+                } catch (SQLException ignore) {
+                    /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
+                }
             }
-        }
-        }catch (SQLException toe){
-            
+        } catch (SQLException toe) {
+
             return false;
-            
+
         }
         return true;
     }
-    
+
+    /**
+     * Méthode privée s'occupant de réaliser tout type de requête 
+     * en fonction de la valeur du type de la requête.
+     * 
+     * @param requete requête SQL  à traiter
+     * @param typeRequete Type de requête à traiter
+     * @throws java.sql.SQLException 
+     */
     private void realiserRequete(String requete, int typeRequete) throws SQLException {
 
         connection = DriverManager.getConnection(url, user, password);
@@ -121,8 +124,9 @@ public class GestionBaseDeDonnees {
      *
      * @param requete requête SQL SELECT à traiter
      * @return Le résultat de la requête sous forme de ResultSet
+     * @throws java.sql.SQLException
      */
-    public Object[][] realiserRequeteSelect(String requete) throws SQLException{
+    public Object[][] realiserRequeteSelect(String requete) throws SQLException {
         realiserRequete(requete, SELECT);
         return this.objetResultat;
     }
@@ -133,8 +137,9 @@ public class GestionBaseDeDonnees {
      * @param requete requête SQL d'insertion dans la base de donnée (INSERT) à
      * traiter
      * @return le statut d'éxécution de la requête
+     * @throws java.sql.SQLException
      */
-    public int realiserRequeteInsert(String requete) throws SQLException{
+    public int realiserRequeteInsert(String requete) throws SQLException {
         realiserRequete(requete, INSERT);
         return this.statut;
     }
@@ -145,44 +150,22 @@ public class GestionBaseDeDonnees {
      * @param requete requête SQL d'insertion dans la base de donnée (INSERT) à
      * traiter
      * @return le statut d'éxécution de la requête
+     * @throws java.sql.SQLException
      */
     public int realiserRequeteUpdate(String requete) throws SQLException {
         realiserRequete(requete, UPDATE);
         return this.statut;
     }
-
-    public int realiserRequeteDelete(String requete) throws SQLException{
+    /**
+     * Méthode permettant d'éxécuter les requêtes SQL DELETE
+     * 
+     * @param requete
+     * @return le statut de la requête
+     * @throws SQLException 
+     */
+    public int realiserRequeteDelete(String requete) throws SQLException {
         realiserRequete(requete, DELETE);
         return this.statut;
     }
 
-    /*public Object[][] lectureBDDarticle()
-    {
-        String requete;
-        requete= "SELECT * FROM article;";
-        
-        return realiserRequeteSelect(requete);
-    }
-    
-    public void insertBDDArticle(Articles article)
-    {
-        String requete;
-        requete="INSERT INTO `article` (`numeroArticle`, `nomArticle`, `typeArticle`, `genreArticle`, `referenceArticle`, `couleurArticle`, `stockArticle`, `hauteurArticle`, `largeurArticle`, `longueurArticle`, `prixHtArticle`, `tvaArticle`, `poids`)"
-                + "VALUES ('"+article.getNom()+"',"
-                + " '"+article.getType()+"',"
-                + " '"+article.getGenre()+"',"
-                + " '"+article.getReference()+"',"
-                + " '"+article.getCouleur()+"',"
-                + " "+article.getStock()+","
-                + " "+article.getHauteur()+","
-                + " "+article.getLargeur()+","
-                + " "+article.getLongueur()+","
-                + " "+article.getPrixHt()+","
-                + " "+article.getTva()+","
-                + " "+article.getPoids()+");";
-        
-        realiserRequeteInsert(requete);
-        
-         
-    }*/
 }

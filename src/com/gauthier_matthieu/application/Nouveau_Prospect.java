@@ -20,6 +20,10 @@ import java.util.Iterator;
 import java.util.HashMap;
 
 /**
+ * Cette Fenêtre s'occupe de l'ajout de nouveaux Prospects Propose un formulaire
+ * pour entrer toutes les données relative au nouveau Prospect et effectue une
+ * vérifications des champs obligatoires avant d'enregistrer le nouveau Prospect
+ * dans la base de données
  *
  * @author glantoine
  */

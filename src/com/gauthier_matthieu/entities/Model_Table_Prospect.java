@@ -6,12 +6,7 @@
 package com.gauthier_matthieu.entities;
 
 import com.gauthier_matthieu.interBDD.*;
-import com.gauthier_matthieu.old.GestionDonnees;
-import com.gauthier_matthieu.metier.Prospects;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.util.HashMap;
-import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
@@ -37,11 +32,9 @@ public class Model_Table_Prospect extends AbstractTableModel {
         "Numéro Représentant",
         "Dernière visite"};
 
-    private HashMap<Integer, Prospects> prospects;
+    
     private Object[][] tableData;
     private Object[][] resultatRequete;
-    private GestionDonnees gd = new GestionDonnees();
-    private DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
 
     public Model_Table_Prospect() {
 
@@ -78,35 +71,10 @@ public class Model_Table_Prospect extends AbstractTableModel {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERREUR SQL", JOptionPane.ERROR_MESSAGE);
         }
 
-        /*
-        //Charge le contenu du Hashmap Clients pour remplir un objet tableData pour l'affichage.
-        this.prospects=this.gd.getProspects();
-        this.tableData= new Object[prospects.keySet().size()][getColumnCount()];
-        int index = 0;
-        for (int key : prospects.keySet()) {
-            Prospects pro = prospects.get(key);
-            tableData[index][0] = pro.getNumeroProspect();
-            tableData[index][1] = pro.getNom();
-            tableData[index][2] = pro.getPrenom();
-            tableData[index][3] = pro.getNomEntreprise();
-            tableData[index][4] = pro.getSiret();
-            tableData[index][5] = pro.getNumeroVoie()+" "+pro.getAdresse();
-            tableData[index][6] = pro.getComplementAdresse();
-            tableData[index][7] = pro.getVille();
-            tableData[index][8] = pro.getCodePostal();
-            tableData[index][9] = pro.getPays();
-            tableData[index][10] = pro.getMail();
-            tableData[index][11] = pro.getNumerotel();
-            tableData[index][12] = pro.getNumeroRepresentant();
-            tableData[index][13] = sdf.format(pro.getDerniereVisite());
-           
-            index++;
-        }*/
     }
 
     @Override
     public int getRowCount() {
-        //return prospects.size();
         return resultatRequete.length;
     }
 
@@ -120,6 +88,7 @@ public class Model_Table_Prospect extends AbstractTableModel {
         return tableData[rowIndex][columnIndex];
     }
 
+    @Override
     public String getColumnName(int col) {
         return nomColonne[col];
     }
